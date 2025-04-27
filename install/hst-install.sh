@@ -74,7 +74,7 @@ check_wget_curl() {
 			wget -q https://dev.brepo.ru/bayrepo/hestiacp/raw/branch/master/install/hst-install-rhel.sh -O hst-install-rhel.sh
 			if [ "$?" -eq '0' ]; then
 				bash hst-install-rhel.sh $*
-				exit
+				exit $?
 			else
 				echo "Error: hst-install-rhel.sh download failed."
 				exit 1
@@ -97,7 +97,7 @@ check_wget_curl() {
 			curl -s -O https://dev.brepo.ru/bayrepo/hestiacp/raw/branch/master/install/hst-install-rhel.sh
 			if [ "$?" -eq '0' ]; then
 				bash hst-install-rhel.sh $*
-				exit
+				exit $?
 			else
 				echo "Error: hst-install-rhel.sh download failed."
 				exit 1

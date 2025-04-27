@@ -93,15 +93,16 @@ bash hst-install.sh -h
   -Z, --sieve             Install Sieve              [yes|no]   default: no
   -c, --clamav            Install ClamAV             [yes|no]   default: no
   -t, --spamassassin      Install SpamAssassin       [yes|no]   default: yes
-  -i, --iptables          Install Iptables           [yes|no]   default: yes
+  -i, --firewall          Install firewalld          [yes|no]   default: yes
   -b, --fail2ban          Install Fail2ban           [yes|no]   default: yes
   -q, --quota             Filesystem Quota           [yes|no]   default: no
   -d, --api               Activate API               [yes|no]   default: yes
   -r, --port              Change Backend Port                   default: 8083
   -l, --lang              Default language                      default: en
   -y, --interactive       Interactive install        [yes|no]   default: yes
-  -I, --nopublicip        Use local ip               [yes|no]   default: yes
-  -u, --uselocalphp       Use PHP from local repo    [yes|no]   default: yes
+  -I, --nopublicip        Use local ip               [yes|no]   default: no
+  -u, --uselocalphp       Use PHP from local repo    [yes|no]   default: no
+  -C, --usemirrorclamav   Use mirrored clamav        [yes|no]   default: no
   -s, --hostname          Set hostname
   -e, --email             Set admin email
   -p, --password          Set admin password

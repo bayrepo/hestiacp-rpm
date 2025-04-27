@@ -1,7 +1,8 @@
-commit 2b1157b0aa4b4d24f7b331f6a2dd29705e188cf7 (HEAD -> devel, origin/master, origin/devel, origin/HEAD, master)
+commit 9eea39db23ebd10eb8c171f64c233038bb4ecfe9 (HEAD -> master, origin/master, origin/devel, origin/HEAD, devel)
 Author: <a@bayrepo.ru>
-Date:   Sun Mar 23 23:37:17 2025 +0300
+Date:   Sun Apr 27 23:32:25 2025 +0300
 
-    Fixed new repo path
+    Force fix
+
 
 

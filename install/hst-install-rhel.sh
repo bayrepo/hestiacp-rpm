@@ -38,7 +38,7 @@ HESTIA_COMMON_DIR="$HESTIA/install/common"
 VERBOSE='no'
 
 # Define software versions
-HESTIA_INSTALL_VER='1.9.4.rpm~alpha'
+HESTIA_INSTALL_VER='1.9.5.rpm~alpha'
 
 # Dependencies
 mariadb_v="10.11"
@@ -83,7 +83,7 @@ help() {
   -Z, --sieve             Install Sieve              [yes|no]   default: no
   -c, --clamav            Install ClamAV             [yes|no]   default: no
   -t, --spamassassin      Install SpamAssassin       [yes|no]   default: yes
-  -i, --iptables          Install Iptables           [yes|no]   default: yes
+  -i, --firewall          Install Iptables           [yes|no]   default: yes
   -b, --fail2ban          Install Fail2ban           [yes|no]   default: yes
   -q, --quota             Filesystem Quota           [yes|no]   default: no
   -d, --api               Activate API               [yes|no]   default: yes
@@ -91,7 +91,8 @@ help() {
   -l, --lang              Default language                      default: en
   -y, --interactive       Interactive install        [yes|no]   default: yes
   -I, --nopublicip        Use local ip               [yes|no]   default: yes
-  -u, --uselocalphp       Use PHP from local repo    [yes|no]   default: yes
+  -u, --uselocalphp       Use PHP from local repo    [yes|no]   default: no
+  -C, --usemirrorclamav   Use mirrored clamav        [yes|no]   default: no
   -s, --hostname          Set hostname
   -e, --email             Set admin email
   -p, --password          Set admin password
@@ -276,8 +277,9 @@ for arg; do
 		--dovecot) args="${args}-z " ;;
 		--sieve) args="${args}-Z " ;;
 		--clamav) args="${args}-c " ;;
+		--usemirrorclamav) args="${args}-C " ;;
 		--spamassassin) args="${args}-t " ;;
-		--iptables) args="${args}-i " ;;
+		--firewall) args="${args}-i " ;;
 		--fail2ban) args="${args}-b " ;;
 		--multiphp) args="${args}-o " ;;
 		--quota) args="${args}-q " ;;
@@ -302,7 +304,7 @@ done
 eval set -- "$args"
 
 # Parsing arguments
-while getopts "u:I:a:w:v:j:k:m:M:g:d:x:z:Z:c:t:i:b:r:o:q:l:y:s:e:p:R:fh" Option; do
+while getopts "u:I:a:w:v:j:k:m:M:g:d:x:z:Z:c:C:t:i:b:r:o:q:l:y:s:e:p:R:f:h" Option; do
 	case $Option in
 		a) apache=$OPTARG ;;       # Apache
 		w) phpfpm=$OPTARG ;;       # PHP-FPM
@@ -317,6 +319,10 @@ while getopts "u:I:a:w:v:j:k:m:M:g:d:x:z:Z:c:t:i:b:r:o:q:l:y:s:e:p:R:fh" Option;
 		z) dovecot=$OPTARG ;;      # Dovecot
 		Z) sieve=$OPTARG ;;        # Sieve
 		c) clamd=$OPTARG ;;        # ClamAV
+		C) 
+			clamd=$OPTARG
+			clamdm="yes"
+		;;        # ClamAV Mirrored
 		t) spamd=$OPTARG ;;        # SpamAssassin
 		i) iptables=$OPTARG ;;     # Iptables
 		b) fail2ban=$OPTARG ;;     # Fail2ban
@@ -329,7 +335,7 @@ while getopts "u:I:a:w:v:j:k:m:M:g:d:x:z:Z:c:t:i:b:r:o:q:l:y:s:e:p:R:fh" Option;
 		e) email=$OPTARG ;;        # Admin email
 		p) vpass=$OPTARG ;;        # Admin password
 		R) withrpms=$OPTARG ;;     # Hestia rpms path
-		f) force='yes' ;;          # Force install
+		f) force=$OPTARG ;;          # Force install
 		h) help ;;                 # Help
 		I) nopublicip=$OPTARG ;;   # NoPublicIP
 		u) uselocalphp=$OPTARG ;;  # UseLocalPHP
@@ -366,10 +372,14 @@ set_default_value 'fail2ban' 'yes'
 set_default_value 'quota' 'no'
 set_default_value 'interactive' 'yes'
 set_default_value 'api' 'yes'
-set_default_value 'nopublicip' 'yes'
+set_default_value 'nopublicip' 'no'
 set_default_port '8083'
 set_default_lang 'en'
-set_default_value 'uselocalphp' 'yes'
+set_default_value 'uselocalphp' 'no'
+
+if [ "$force" != "yes" ]; then
+	force="no"
+fi
 
 # Checking software conflicts
 if [ "$proftpd" = 'yes' ]; then
@@ -971,12 +981,13 @@ fi
 #----------------------------------------------------------#
 
 if [ "$iptables" = 'yes' ]; then
-	if [ -f /etc/redhat-release ]; then
-		dnf install iptables-nft -y
-		systemctl stop firewalld
-		systemctl disable firewalld
-		systemctl enable nftables --now
-	fi
+	dnf install iptables-nft -y
+	systemctl stop firewalld
+	systemctl disable firewalld
+	systemctl enable nftables --now
+else
+	systemctl stop firewalld
+	systemctl disable firewalld
 fi
 
 # Installing rpm packages
@@ -1806,7 +1817,11 @@ if [ "$clamd" = 'yes' ]; then
 	gpasswd -a clamav exim > /dev/null 2>&1
 	cp -f $HESTIA_INSTALL_DIR/clamav/clamd.conf /etc/clamd.d/daemon.conf
 	cp -f $HESTIA_INSTALL_DIR/clamav/clamd.tmpfiles /etc/tmpfiles.d/clamav.conf
-	cp -f $HESTIA_INSTALL_DIR/clamav/freshclam.conf /etc/freshclam.conf
+	if [ -n "$clamdm" ]; then
+		cp -f $HESTIA_INSTALL_DIR/clamav/freshclam.conf /etc/freshclam.conf
+	else
+		cp -f $HESTIA_INSTALL_DIR/clamav/freshclam_orig.conf /etc/freshclam.conf
+	fi
 	touch /var/log/freshclam.log
 	chown clamav:clamav /var/log/freshclam.log
 	rm -f /var/lib/clamav/freshclam.dat
