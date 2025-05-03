@@ -38,7 +38,7 @@ HESTIA_COMMON_DIR="$HESTIA/install/common"
 VERBOSE='no'
 
 # Define software versions
-HESTIA_INSTALL_VER='1.9.5.rpm~alpha'
+HESTIA_INSTALL_VER='1.9.5.rpm-alpha'
 
 # Dependencies
 mariadb_v="10.11"
@@ -146,7 +146,7 @@ set_default_lang() {
 	if [ -z "$lang" ]; then
 		eval lang=$1
 	fi
-	lang_list="ar az bg bn bs ca cs da de el en es fa fi fr hr hu id it ja ka ku ko nl no pl pt pt-br ro ru sk sr sv th tr uk ur vi zh-cn zh-tw"
+	lang_list="sq ar az bg bn bs ca cs da de el en es fa fi fr hr hu id it ja ka ku ko nl no pl pt pt-br ro ru sk sr sv th tr uk ur vi zh-cn zh-tw"
 	if ! (echo $lang_list | grep -w $lang > /dev/null 2>&1); then
 		eval lang=$1
 	fi
@@ -319,7 +319,7 @@ while getopts "u:I:a:w:v:j:k:m:M:g:d:x:z:Z:c:C:t:i:b:r:o:q:l:y:s:e:p:R:f:h" Opti
 		z) dovecot=$OPTARG ;;      # Dovecot
 		Z) sieve=$OPTARG ;;        # Sieve
 		c) clamd=$OPTARG ;;        # ClamAV
-		C) 
+		C)
 			clamd=$OPTARG
 			clamdm="yes"
 		;;        # ClamAV Mirrored
@@ -408,8 +408,9 @@ if [ "x$(id -u)" != 'x0' ]; then
 	check_result 1 "Script can be run executed only by root"
 fi
 
-if [ -d "/usr/local/hestia" ] && [ "$force" = "no" ]; then
+if [ -d "/usr/local/hestia" ] || rpm -q hestia &>/dev/null; then
 	check_result 1 "Hestia install detected. Unable to continue"
+    exit 1
 fi
 
 # Checking admin user account
@@ -1501,7 +1502,7 @@ if [ "$phpfpm" = "yes" ]; then
 		check_result $? "php-fpm start failed"
 		# Set default php version to $php_v
 		alternatives --install /usr/bin/php php /opt/brepo/php${php_v}/bin/php 1 > /dev/null 2>&1
-		alternatives --set php /opt/brepo/php${php_v}/bin/php > /dev/null 2>&1 
+		alternatives --set php /opt/brepo/php${php_v}/bin/php > /dev/null 2>&1
 	else
 		cp -f $HESTIA_INSTALL_DIR/php-fpm/www.conf /etc/opt/remi/php${php_v}/php-fpm.d
 		systemctl enable php${php_v}-php-fpm --now >> $LOG
@@ -1708,30 +1709,39 @@ fi
 #----------------------------------------------------------#
 
 if [ "$postgresql" = 'yes' ]; then
-	echo "[ * ] Configuring PostgreSQL database server..."
-	ppass=$(gen_pass)
-	cp -f $HESTIA_INSTALL_DIR/postgresql/pg_hba.conf /etc/postgresql/*/main/
-	systemctl restart postgresql
-	sudo -iu postgres psql -c "ALTER USER postgres WITH PASSWORD '$ppass'" > /dev/null 2>&1
+    echo "[ * ] Configuring PostgreSQL database server..."
+    dnf install -y postgresql-server postgresql-contrib policycoreutils-python-utils > /dev/null 2>&1
 
-	mkdir -p /etc/phppgadmin/
-	mkdir -p /usr/share/phppgadmin/
+    # Initialize the database
+    if [ ! -f /var/lib/pgsql/data/PG_VERSION ]; then
+        sudo postgresql-setup initdb > /dev/null 2>&1
+    fi
 
-	wget --retry-connrefused --quiet https://github.com/hestiacp/phppgadmin/releases/download/v$pga_v/phppgadmin-v$pga_v.tar.gz
-	tar xzf phppgadmin-v$pga_v.tar.gz -C /usr/share/phppgadmin/
+    ppass=$(gen_pass)
+    # Fixed the change to the default path of the PostgreSQL configuration file to the RHEL path
+    cp -f $HESTIA_INSTALL_DIR/postgresql/pg_hba.conf /var/lib/pgsql/data/
+    systemctl enable --now postgresql
+    sudo -iu postgres psql -c "ALTER USER postgres WITH PASSWORD '$ppass'" > /dev/null 2>&1
 
-	cp -f $HESTIA_INSTALL_DIR/pga/config.inc.php /etc/phppgadmin/
+    mkdir -p /etc/phppgadmin/
+    mkdir -p /usr/share/phppgadmin/
 
-	ln -s /etc/phppgadmin/config.inc.php /usr/share/phppgadmin/conf/
-	# Configuring phpPgAdmin
-	if [ "$apache" = 'yes' ]; then
-		cp -f $HESTIA_INSTALL_DIR/pga/phppgadmin.conf /etc/httpd/conf.h.d/phppgadmin.inc
-	fi
-	cp -f $HESTIA_INSTALL_DIR/pga/config.inc.php /etc/phppgadmin/
+    wget --retry-connrefused --quiet https://github.com/hestiacp/phppgadmin/releases/download/v$pga_v/phppgadmin-v$pga_v.tar.gz
+    tar xzf phppgadmin-v$pga_v.tar.gz -C /usr/share/phppgadmin/ --no-same-owner
 
-	rm phppgadmin-v$pga_v.tar.gz
-	write_config_value "DB_PGA_ALIAS" "phppgadmin"
-	$HESTIA/bin/v-change-sys-db-alias 'pga' "phppgadmin"
+    cp -f $HESTIA_INSTALL_DIR/pga/config.inc.php /etc/phppgadmin/
+
+    ln -s /etc/phppgadmin/config.inc.php /usr/share/phppgadmin/conf/
+    # Fixed the Apache configuration file path to RHEL standard path
+    if [ "$apache" = 'yes' ]; then
+        cp -f $HESTIA_INSTALL_DIR/pga/phppgadmin.conf /etc/httpd/conf.d/phppgadmin.conf
+    fi
+    cp -f $HESTIA_INSTALL_DIR/pga/config.inc.php /etc/phppgadmin/
+
+    rm phppgadmin-v$pga_v.tar.gz
+    write_config_value "DB_PGA_ALIAS" "phppgadmin"
+    $HESTIA/bin/v-change-sys-db-alias 'pga' "phppgadmin"
+    setsebool -P httpd_can_network_connect_db 1
 fi
 
 #----------------------------------------------------------#
@@ -2180,7 +2190,19 @@ fi' >> /root/.bashrc
 #----------------------------------------------------------#
 #                   Hestia Access Info                     #
 #----------------------------------------------------------#
-
+# Get the system name
+if command -v lsb_release >/dev/null; then
+    os_name=$(lsb_release -sd | tr -d '"')
+elif [ -f /etc/os-release ]; then
+    . /etc/os-release
+    os_name="${PRETTY_NAME:-$NAME}"
+elif [ -f /etc/redhat-release ]; then
+    os_name=$(sed 's/ release//' /etc/redhat-release)
+elif [ -f /etc/debian_version ]; then
+    os_name="Debian $(cat /etc/debian_version)"
+else
+    os_name="Unknown OS ($(uname -sr))"
+fi
 # Comparing hostname and IP
 host_ip=$(host $servername | head -n 1 | awk '{print $NF}')
 if [ "$host_ip" = "$ip" ]; then
@@ -2192,9 +2214,7 @@ echo "===================================================================="
 echo -e "\n"
 
 # Sending notification to admin email
-echo -e "Congratulations!
-
-You have successfully installed Hestia Control Panel on your server.
+echo -e "Congratulations!\n\nYou have successfully installed Hestia $HESTIA_INSTALL_VER Control Panel on your  $os_name server.
 
 Ready to get started? Log in using the following credentials:
 
@@ -2208,9 +2228,11 @@ echo -e -n " 	Username:   admin
 Thank you for choosing Hestia Control Panel(RPM edition) to power your full stack web server,
 we hope that you enjoy using it as much as we do!
 
-Documentation:  https://hestiadocs.brepo.ru/
-Forum:          https://forum.hestiacp.com/
-GitHub:         https://github.com/bayrepo/hestiacp-rpm or development storage https://dev.brepo.ru/bayrepo/hestiacp
+RHEL GitHub:              https://github.com/bayrepo/hestiacp-rpm
+RHEL development:         https://dev.brepo.ru/bayrepo/hestiacp
+RHEL Documentation:       https://hestiadocs.brepo.ru/docs
+Forum:                    https://forum.hestiacp.com
+DEBIAN Documentation:     https://hestiacp.com/docs
 
 Note: Automatic updates are enabled by default. If you would like to disable them,
 please log in and navigate to Server > Updates to turn them off.
@@ -2231,7 +2253,7 @@ cat $tmpfile
 rm -f $tmpfile
 
 # Add welcome message to notification panel
-$HESTIA/bin/v-add-user-notification admin 'Добро пожаловать в HestiaCP' '<p>Перйдите по ссылке для добавления <a href="/add/user/">пользователя</a> и <a href="/add/web/">домена</a>. Для получения информации ознакомтесь с <a href="https://hestiadocs.brepo.ru/docs/" target="_blank">документацией</a>.</p><p class="u-text-bold">Желаем удачного дня!</p><p><i class="fas fa-heart icon-red"></i> Команда разработчиков HestiaCP</p>'
+$HESTIA/bin/v-add-user-notification admin "Welcome to the Hestia Control Panel"  " <p>You 🎉 have successfully installed the Hestia $HESTIA_INSTALL_VER control panel on the $os_name server. We recommend that you start the configuration in the following order:</p><p>1. Create a <a href='/add/user/'> user account</a> for rights<br>management 2. Add <a href='/add/web/'> site domain</a> for deployment<br>3. Select the documentation according to your OS version:<br> 📜 <a href='https://hestiadocs.brepo.ru/docs/' target='_blank'>Red Hat (RHEL)</a> <br>🌐 documentation <a href='https://hestiacp.com/docs' target='_blank' rel='noopener noreferrer'>Official English Documentation</a><br>4. If you have any problems, please contact:<br> 💬 <a href='https://forum.hestiacp.com/' target='_blank' rel='noopener noreferrer'>Official community</a><br>🐞 <a href='https://github.com/hestiacp/hestiacp/issues' target='_blank' rel='noopener noreferrer'>Bug reports on GitHub</a><br>🔍 <a href='https://github.com/bayrepo/hestiacp/issues' target='_blank'>Issue tracker for RHEL version</a></p><p class='u-text-bold'>Useful tips:</p><p>💡 Feature suggestions should be sent to the appropriate GitHub<br>🚨 repositories In case of server issues, attach system logs to forum<br>✨ posts We wish that <a href='https://hestiacp.com' target='_blank' rel='noopener noreferrer'>Hestia</a> provides the perfect experience with your fully functional server!<br>💌 Sincerely, the development team <a href='https://hestiacp.com' target='_blank' rel='noopener noreferrer'>Hestia</a> — an open server control panel</p>"
 
 # Clean-up
 # Sort final configuration file

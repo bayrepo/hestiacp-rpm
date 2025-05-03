@@ -3,17 +3,17 @@ msgstr ""
 "Project-Id-Version: hestiacp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-08 13:33+0000\n"
-"PO-Revision-Date: 2025-05-03 07:10\n"
+"PO-Revision-Date: 2025-05-03 07:47\n"
 "Last-Translator: \n"
-"Language-Team: Greek\n"
-"Language: el_GR\n"
+"Language-Team: Albanian\n"
+"Language: sq_AL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: hestiacp\n"
 "X-Crowdin-Project-ID: 587405\n"
-"X-Crowdin-Language: el\n"
+"X-Crowdin-Language: sq\n"
 "X-Crowdin-File: hestiacp.pot\n"
 "X-Crowdin-File-ID: 3\n"
 
@@ -23,16 +23,16 @@ msgstr ""
 #: ../../web/schedule/restore/index.php:70
 #: ../../web/schedule/backup/index.php:17
 msgid "Error: Hestia did not return any output."
-msgstr "Σφάλμα: Η Εστία δεν επέστρεψε κανένα αποτέλεσμα."
+msgstr "Gabim: Hestia nuk ktheu asnjë dalje."
 
 #: ../../web/templates/includes/jump-to-top-link.php:4
 #: ../../web/templates/includes/jump-to-top-link.php:7
 msgid "Top"
-msgstr "Επάνω"
+msgstr "Sipër"
 
 #: ../../web/templates/includes/panel.php:29
 msgid "Logged in as"
-msgstr "Συνδεδεμένος ως"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:35
 #: ../../web/templates/pages/list_user.php:29
@@ -54,7 +54,7 @@ msgstr "Συνδεδεμένος ως"
 #: ../../web/templates/pages/list_web.php:84
 #: ../../web/templates/pages/list_web.php:318
 msgid "Disk"
-msgstr "Δίσκος"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:42
 #: ../../web/templates/pages/list_user.php:23
@@ -74,31 +74,31 @@ msgstr "Δίσκος"
 #: ../../web/templates/pages/list_web.php:327
 #: ../../web/edit/package/index.php:200 ../../web/add/package/index.php:84
 msgid "Bandwidth"
-msgstr "Eύρος Zώνης"
+msgstr "Bandwidth"
 
 #: ../../web/templates/includes/panel.php:67
 #: ../../web/templates/includes/panel.php:75
 msgid "Notifications"
-msgstr "Ειδοποιήσεις"
+msgstr "Njoftime"
 
 #: ../../web/templates/includes/panel.php:86
 msgid "Loading..."
-msgstr ""
+msgstr "Po ngarkohet..."
 
 #: ../../web/templates/includes/panel.php:92
 #: ../../web/templates/includes/js.php:10
 msgid "No notifications"
-msgstr ""
+msgstr "Nuk ka njoftime"
 
 #: ../../web/templates/includes/panel.php:113
 #: ../../web/templates/includes/panel.php:116
 msgid "Delete notification"
-msgstr ""
+msgstr "Fshi njoftimin"
 
 #: ../../web/templates/includes/panel.php:139
 #: ../../web/templates/includes/js.php:11
 msgid "Delete all notifications"
-msgstr ""
+msgstr "Fshi të gjitha njoftimet"
 
 #: ../../web/templates/includes/panel.php:154
 #: ../../web/templates/pages/list_weblog.php:30
@@ -118,17 +118,17 @@ msgstr ""
 #: ../../web/templates/includes/panel.php:168
 #: ../../web/templates/includes/panel.php:170
 msgid "File manager"
-msgstr ""
+msgstr "Menaxhues i skedarëve"
 
 #: ../../web/templates/includes/panel.php:182
 #: ../../web/templates/includes/panel.php:184
 msgid "Web terminal"
-msgstr ""
+msgstr "Web Terminal"
 
 #: ../../web/templates/includes/panel.php:196
 #: ../../web/templates/includes/panel.php:198
 msgid "Server settings"
-msgstr ""
+msgstr "Cilësimet e serverit"
 
 #: ../../web/templates/includes/panel.php:208
 #: ../../web/templates/includes/panel.php:210
@@ -137,7 +137,7 @@ msgstr ""
 #: ../../web/templates/pages/list_log.php:72
 #: ../../web/templates/pages/list_services.php:20
 msgid "Logs"
-msgstr "Αρχεία καταγραφής"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:226
 #: ../../web/templates/includes/panel.php:228
@@ -146,12 +146,12 @@ msgstr "Αρχεία καταγραφής"
 #: ../../web/templates/pages/list_web.php:237
 #: ../../web/templates/pages/list_web.php:340
 msgid "Statistics"
-msgstr "Στατιστικά"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:235
 #: ../../web/templates/includes/panel.php:237
 msgid "Help"
-msgstr ""
+msgstr "Ndihmë"
 
 #: ../../web/templates/includes/panel.php:244
 #: ../../web/templates/includes/panel.php:246
@@ -162,7 +162,7 @@ msgstr ""
 #: ../../web/templates/pages/list_server_info.php:105
 #: ../../web/templates/pages/list_server_info.php:107
 msgid "Log out"
-msgstr "Αποσύνδεση"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:272
 msgid "Collapse main menu"
@@ -178,7 +178,7 @@ msgstr ""
 #: ../../web/templates/pages/list_user.php:75
 #: ../../web/templates/pages/edit_server.php:1274
 msgid "Users"
-msgstr "Χρήστες"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:290
 #: ../../web/templates/includes/panel.php:297
@@ -188,11 +188,11 @@ msgstr "Χρήστες"
 #: ../../web/templates/includes/panel.php:365
 #: ../../web/templates/includes/panel.php:381
 msgid "Suspended"
-msgstr ""
+msgstr "I pezulluar"
 
 #: ../../web/templates/includes/panel.php:291
 msgid "USER"
-msgstr "ΧΡΗΣΤΗΣ"
+msgstr "USER"
 
 #: ../../web/templates/includes/panel.php:308
 #: ../../web/templates/includes/panel.php:312
@@ -215,7 +215,7 @@ msgstr ""
 #: ../../web/templates/pages/add_mail_acc.php:82
 #: ../../web/templates/pages/edit_web.php:57
 msgid "Aliases"
-msgstr "Ψευδώνυμα"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:308
 #: ../../web/templates/includes/panel.php:327
@@ -224,14 +224,14 @@ msgstr "Ψευδώνυμα"
 #: ../../web/templates/includes/panel.php:381
 #: ../../web/templates/includes/panel.php:397
 msgid "Limit"
-msgstr "Όριο"
+msgstr "Limiti"
 
 #: ../../web/templates/includes/panel.php:309
 #: ../../web/templates/pages/add_firewall_banlist.php:37
 #: ../../web/templates/pages/edit_package.php:74
 #: ../../web/templates/pages/add_package.php:72
 msgid "WEB"
-msgstr "ΙΣΤΟΣΕΛΙΔΑ"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:328
 #: ../../web/templates/pages/add_firewall_banlist.php:39
@@ -243,28 +243,28 @@ msgstr ""
 
 #: ../../web/templates/includes/panel.php:331
 msgid "Zones"
-msgstr ""
+msgstr "Zonat"
 
 #: ../../web/templates/includes/panel.php:334
 #: ../../web/templates/pages/list_dns.php:34
 #: ../../web/templates/pages/list_dns.php:80
 #: ../../web/templates/pages/list_dns.php:216
 msgid "Records"
-msgstr "Εγγραφές"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:347
 #: ../../web/templates/pages/add_firewall_banlist.php:40
 #: ../../web/templates/pages/edit_package.php:216
 #: ../../web/templates/pages/add_package.php:207
 msgid "MAIL"
-msgstr "ΤΑΧΥΔΡΟΜΕΙΟ"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:353
 #: ../../web/templates/pages/list_mail.php:22
 #: ../../web/templates/pages/list_mail.php:77
 #: ../../web/templates/pages/list_mail.php:296
 msgid "Accounts"
-msgstr "Λογαριασμοί"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:365
 #: ../../web/templates/includes/panel.php:369
@@ -284,7 +284,7 @@ msgstr "Λογαριασμοί"
 #: ../../web/templates/pages/edit_server.php:491
 #: ../../web/edit/package/index.php:185 ../../web/add/package/index.php:69
 msgid "Databases"
-msgstr "Βάσεις Δεδομένων"
+msgstr "Bazat e të dhënave"
 
 #: ../../web/templates/includes/panel.php:366
 #: ../../web/templates/pages/add_firewall_banlist.php:41
@@ -298,11 +298,11 @@ msgstr ""
 #: ../../web/templates/includes/panel.php:385
 #: ../../web/templates/pages/list_backup_detail.php:230
 msgid "Jobs"
-msgstr "Εργασίες"
+msgstr ""
 
 #: ../../web/templates/includes/panel.php:382
 msgid "CRON"
-msgstr ""
+msgstr "CRON"
 
 #: ../../web/templates/includes/panel.php:397
 #: ../../web/templates/includes/panel.php:401
@@ -320,11 +320,11 @@ msgstr ""
 #: ../../web/templates/pages/list_backup.php:40
 #: ../../web/edit/package/index.php:191 ../../web/add/package/index.php:75
 msgid "Backups"
-msgstr "Αντίγραφα Ασφαλείας"
+msgstr "Backups"
 
 #: ../../web/templates/includes/panel.php:398
 msgid "BACKUP"
-msgstr "ΑΝΤΙΓΡΑΦΟ ΑΣΦΑΛΕΙΑΣ"
+msgstr "BACKUP"
 
 #: ../../web/templates/includes/email-settings-panel.php:2
 msgid "Common Account Settings"
@@ -357,7 +357,7 @@ msgstr ""
 #: ../../web/edit/web/index.php:1331 ../../web/add/db/index.php:20
 #: ../../web/add/user/index.php:23
 msgid "Username"
-msgstr "Όνομα Χρήστη"
+msgstr "Emri i përdoruesit"
 
 #: ../../web/templates/includes/email-settings-panel.php:10
 #: ../../web/templates/includes/email-settings-panel.php:19
@@ -385,7 +385,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_mail.php:191 ../../web/add/mail/index.php:222
 #: ../../web/add/db/index.php:23 ../../web/add/user/index.php:26
 msgid "Password"
-msgstr "Κωδικός"
+msgstr "Fjalkalimi"
 
 #: ../../web/templates/includes/email-settings-panel.php:26
 msgid "Webmail"
@@ -414,7 +414,7 @@ msgstr ""
 #: ../../web/templates/includes/email-settings-panel.php:67
 #: ../../web/templates/includes/email-settings-panel.php:86
 msgid "Normal password"
-msgstr "Κωδικός πρόσβασης"
+msgstr ""
 
 #: ../../web/templates/includes/email-settings-panel.php:52
 #: ../../web/templates/includes/email-settings-panel.php:56
@@ -436,13 +436,13 @@ msgstr "Κωδικός πρόσβασης"
 #: ../../web/templates/pages/list_firewall.php:169
 #: ../../web/edit/firewall/index.php:76 ../../web/add/firewall/index.php:48
 msgid "Port"
-msgstr "Θύρα"
+msgstr "Port"
 
 #: ../../web/templates/includes/email-settings-panel.php:59
 #: ../../web/templates/includes/email-settings-panel.php:78
 #: ../../web/templates/includes/email-settings-panel.php:97
 msgid "No encryption"
-msgstr "Χωρίς κρυπτογράφηση"
+msgstr ""
 
 #: ../../web/templates/includes/email-settings-panel.php:63
 msgid "POP3 Settings"
@@ -464,13 +464,13 @@ msgstr ""
 #: ../../web/templates/pages/edit_mail_acc.php:60
 #: ../../web/templates/pages/add_mail_acc.php:62
 msgid "1 uppercase & 1 lowercase character"
-msgstr "1 κεφαλαίο & 1 πεζό χαρακτήρα"
+msgstr ""
 
 #: ../../web/templates/includes/password-requirements.php:5
 #: ../../web/templates/pages/edit_mail_acc.php:61
 #: ../../web/templates/pages/add_mail_acc.php:63
 msgid "1 number"
-msgstr "1 αριθμός"
+msgstr ""
 
 #: ../../web/templates/includes/js.php:9
 #: ../../web/templates/pages/edit_mail_acc.php:75
@@ -504,19 +504,19 @@ msgstr "1 αριθμός"
 #: ../../web/templates/pages/add_package.php:336
 #: ../../web/templates/pages/add_mail_acc.php:75
 msgid "Unlimited"
-msgstr "Απεριόριστο"
+msgstr ""
 
 #: ../../web/templates/includes/js.php:12
 msgid "Are you sure you want to leave the page?"
-msgstr ""
+msgstr "Jeni i sigurt se doni të ikni prej kësaj faqeje?"
 
 #: ../../web/templates/includes/js.php:14
 msgid "BLACKLIST"
-msgstr ""
+msgstr "BLACKLIST"
 
 #: ../../web/templates/includes/js.php:15
 msgid "IPVERSE"
-msgstr ""
+msgstr "IPVERSE"
 
 #: ../../web/templates/includes/extra-ns-fields.php:8
 msgid "Remove"
@@ -525,71 +525,71 @@ msgstr ""
 #: ../../web/templates/footer.php:25 ../../web/templates/footer.php:61
 #: ../../web/templates/footer.php:64
 msgid "Shortcuts"
-msgstr ""
+msgstr "Shortcuts"
 
 #: ../../web/templates/footer.php:35
 msgid "Add new object"
-msgstr ""
+msgstr "Shto objekt të ri"
 
 #: ../../web/templates/footer.php:36
 msgid "Save form"
-msgstr ""
+msgstr "Ruaj formularin"
 
 #: ../../web/templates/footer.php:37
 msgid "Unsave form"
-msgstr ""
+msgstr "Zhvendos formularin"
 
 #: ../../web/templates/footer.php:38
 msgid "Go to WEB list"
-msgstr ""
+msgstr "Shkoni te lista WEB"
 
 #: ../../web/templates/footer.php:39
 msgid "Go to DNS list"
-msgstr ""
+msgstr "Shkoni te lista DNS"
 
 #: ../../web/templates/footer.php:40
 msgid "Go to MAIL list"
-msgstr ""
+msgstr "Shkoni te lista MAIL"
 
 #: ../../web/templates/footer.php:41
 msgid "Go to DB list"
-msgstr ""
+msgstr "Shkoni te lista DB"
 
 #: ../../web/templates/footer.php:42
 msgid "Go to CRON list"
-msgstr ""
+msgstr "Shkoni te lista CRON"
 
 #: ../../web/templates/footer.php:43
 msgid "Go to BACKUP list"
-msgstr ""
+msgstr "Shkoni te lista BACKUP"
 
 #: ../../web/templates/footer.php:46
 msgid "Focus on search"
-msgstr ""
+msgstr "Përqendrohuni në kërkim"
 
 #: ../../web/templates/footer.php:47
 msgid "Display / Hide shortcuts"
-msgstr ""
+msgstr "Shfaq / Fshih shkurtoret"
 
 #: ../../web/templates/footer.php:48
 msgid "Move backward through top menu"
-msgstr ""
+msgstr "Lëvizni prapa përmes menysë së sipërme"
 
 #: ../../web/templates/footer.php:49
 msgid "Move forward through top menu"
-msgstr ""
+msgstr "Lëvizni përpara përmes menysë së sipërme"
 
 #: ../../web/templates/footer.php:50
 msgid "Enter focused element"
-msgstr ""
+msgstr "Fut elementin e fokusuar"
 
 #: ../../web/templates/footer.php:51
 msgid "Move up through elements list"
-msgstr ""
+msgstr "Lëvizni lart përmes listës së elementeve"
 
 #: ../../web/templates/footer.php:52
 msgid "Move down through elements list"
-msgstr ""
+msgstr "Lëvizni poshtë nëpër listën e elementeve"
 
 #: ../../web/templates/pages/edit_user.php:6
 #: ../../web/templates/pages/add_web.php:6
@@ -672,7 +672,7 @@ msgstr ""
 #: ../../web/templates/pages/list_firewall.php:6
 #: ../../web/templates/pages/edit_server_php.php:6
 msgid "Back"
-msgstr "Πίσω"
+msgstr "Mbrapa"
 
 #: ../../web/templates/pages/edit_user.php:19
 #: ../../web/templates/pages/edit_user.php:20
@@ -683,7 +683,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_user.php:31
 #: ../../web/templates/pages/list_access_keys.php:55
 msgid "Access Keys"
-msgstr "Κλειδιά πρόσβασης"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:37
 #: ../../web/templates/pages/add_web.php:12
@@ -724,7 +724,7 @@ msgstr "Κλειδιά πρόσβασης"
 #: ../../web/templates/pages/add_ip.php:11
 #: ../../web/templates/pages/edit_server_php.php:11
 msgid "Save"
-msgstr "Αποθήκευση"
+msgstr "Ruaj"
 
 #: ../../web/templates/pages/edit_user.php:61
 #: ../../web/templates/pages/list_user.php:151
@@ -736,7 +736,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_user.php:69
 #: ../../web/templates/pages/add_user.php:39 ../../web/add/user/index.php:35
 msgid "Contact Name"
-msgstr ""
+msgstr "Emri i kontaktit"
 
 #: ../../web/templates/pages/edit_user.php:76
 #: ../../web/templates/pages/list_user.php:166
@@ -745,7 +745,7 @@ msgstr ""
 #: ../../web/templates/pages/login/reset_1.php:18
 #: ../../web/add/user/index.php:32
 msgid "Email"
-msgstr "Ηλεκτρονικό Ταχυδρομείο"
+msgstr "Email"
 
 #: ../../web/templates/pages/edit_user.php:85
 #: ../../web/templates/pages/edit_mail_acc.php:46
@@ -769,7 +769,7 @@ msgstr "Ηλεκτρονικό Ταχυδρομείο"
 #: ../../web/templates/pages/edit_web.php:418
 #: ../../web/templates/pages/edit_web.php:471
 msgid "Generate"
-msgstr "Δημιουργία"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:102
 #: ../../web/templates/pages/add_user.php:64
@@ -804,22 +804,22 @@ msgstr ""
 #: ../../web/templates/pages/edit_user.php:134
 #: ../../web/templates/pages/add_user.php:76
 msgid "Language"
-msgstr "Γλώσσα"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:153
 #: ../../web/templates/pages/add_user.php:95
 msgid "Role"
-msgstr "Ρόλος"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:155
 #: ../../web/templates/pages/add_user.php:97
 msgid "User"
-msgstr "Χρήστης"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:156
 #: ../../web/templates/pages/add_user.php:98
 msgid "Administrator"
-msgstr "Διαχειριστής"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:157
 #: ../../web/templates/pages/add_user.php:99
@@ -829,7 +829,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_user.php:163
 #: ../../web/templates/pages/edit_server.php:87
 msgid "Theme"
-msgstr "Εμφάνιση"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:181
 msgid "Default List Sort Order"
@@ -878,7 +878,7 @@ msgstr ""
 #: ../../web/templates/pages/list_cron.php:25
 #: ../../web/templates/pages/list_cron.php:34
 msgid "Date"
-msgstr "Ημερομηνία"
+msgstr "Data"
 
 #: ../../web/templates/pages/edit_user.php:184
 #: ../../web/templates/pages/list_user.php:17
@@ -912,7 +912,7 @@ msgstr "Ημερομηνία"
 #: ../../web/templates/pages/list_web.php:202
 #: ../../web/add/firewall/ipset/index.php:23
 msgid "Name"
-msgstr "Ονομα"
+msgstr "Emri"
 
 #: ../../web/templates/pages/edit_user.php:189
 #: ../../web/templates/pages/list_user.php:32
@@ -924,7 +924,7 @@ msgstr "Ονομα"
 #: ../../web/edit/package/index.php:142 ../../web/add/package/index.php:23
 #: ../../web/add/user/index.php:29
 msgid "Package"
-msgstr "Πακέτο"
+msgstr "Paketa"
 
 #: ../../web/templates/pages/edit_user.php:205
 #: ../../web/templates/pages/edit_server_mysql.php:50
@@ -942,15 +942,15 @@ msgstr ""
 #: ../../web/templates/pages/list_packages.php:175
 #: ../../web/templates/pages/add_package.php:269
 msgid "SSH Access"
-msgstr "Πρόσβαση SSH"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:225
 msgid "PHP CLI Version"
-msgstr "Έκδοση γραμμής εντολών PHP"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:244
 msgid "Default Name Servers"
-msgstr "Προεπιλεγμένοι Διακομιστές Ονομάτων"
+msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:253
 #: ../../web/templates/pages/edit_package.php:209
@@ -962,7 +962,7 @@ msgstr ""
 #: ../../web/templates/pages/add_web.php:27
 #: ../../web/templates/pages/list_web.php:7
 msgid "Add Web Domain"
-msgstr "Προσθήκη Domain Ιστοσελίδας"
+msgstr ""
 
 #: ../../web/templates/pages/add_web.php:32
 #: ../../web/templates/pages/add_mail.php:39
@@ -983,14 +983,14 @@ msgstr ""
 #: ../../web/templates/pages/add_dns.php:44
 #: ../../web/templates/pages/add_db.php:44
 msgid "Add User"
-msgstr "Προσθήκη Χρήστη"
+msgstr ""
 
 #: ../../web/templates/pages/add_web.php:38
 #: ../../web/templates/pages/add_mail.php:45
 #: ../../web/templates/pages/add_dns.php:45
 #: ../../web/templates/pages/add_db.php:45
 msgid "Continue"
-msgstr "Συνέχεια"
+msgstr ""
 
 #: ../../web/templates/pages/add_web.php:43
 #: ../../web/templates/pages/generate_ssl.php:11
@@ -1006,7 +1006,7 @@ msgstr "Συνέχεια"
 #: ../../web/add/mail/index.php:215 ../../web/add/web/index.php:17
 #: ../../web/add/dns/index.php:22 ../../web/add/dns/index.php:220
 msgid "Domain"
-msgstr ""
+msgstr "Domain"
 
 #: ../../web/templates/pages/add_web.php:47
 #: ../../web/templates/pages/list_log_auth.php:49
@@ -1033,19 +1033,19 @@ msgstr ""
 #: ../../web/add/firewall/banlist/index.php:26 ../../web/add/ip/index.php:23
 #: ../../web/add/web/index.php:20 ../../web/add/dns/index.php:25
 msgid "IP Address"
-msgstr "Διεύθυνση IP"
+msgstr "IP adresa"
 
 #: ../../web/templates/pages/add_web.php:63
 msgid "DNS Support"
-msgstr "Υποστήριξη DNS"
+msgstr ""
 
 #: ../../web/templates/pages/add_web.php:73
 msgid "Mail Support"
-msgstr "Υποστήριξη Ταχυδρομείου"
+msgstr ""
 
 #: ../../web/templates/pages/list_firewall_ipset.php:9
 msgid "Add IP list"
-msgstr "Προσθήκη λίστας IP"
+msgstr "Shtoni listën e IP-ve"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:16
 #: ../../web/templates/pages/list_firewall_ipset.php:19
@@ -1089,7 +1089,7 @@ msgstr "Προσθήκη λίστας IP"
 #: ../../web/templates/pages/list_firewall.php:48
 #: ../../web/templates/pages/list_firewall.php:51
 msgid "Apply to selected"
-msgstr ""
+msgstr "Aplikoni tek të përzgjedhurat"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:17
 #: ../../web/templates/pages/list_firewall_ipset.php:68
@@ -1161,12 +1161,12 @@ msgstr ""
 #: ../../web/templates/pages/list_firewall.php:151
 #: ../../web/templates/pages/list_firewall.php:155
 msgid "Delete"
-msgstr "Διαγραφή"
+msgstr "Fshije"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:30
 #: ../../web/templates/pages/list_firewall.php:17
 msgid "IPset IP Lists"
-msgstr ""
+msgstr "Listat IP të IPset"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:35
 #: ../../web/templates/pages/list_dns_rec.php:80
@@ -1189,27 +1189,27 @@ msgstr ""
 #: ../../web/templates/pages/list_cron.php:75
 #: ../../web/templates/pages/list_firewall.php:68
 msgid "Select all"
-msgstr "Επιλογή όλων"
+msgstr "Zgjidhi të gjitha"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:37
 #: ../../web/templates/pages/list_firewall_ipset.php:59
 #: ../../web/templates/pages/add_firewall_ipset.php:71
 msgid "IP List Name"
-msgstr ""
+msgstr "Emri i listës IP"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:39
 #: ../../web/templates/pages/list_firewall_ipset.php:79
 #: ../../web/templates/pages/add_firewall_ipset.php:99
 #: ../../web/add/firewall/ipset/index.php:32
 msgid "Auto Update"
-msgstr "Αυτόματη Ενημέρωση"
+msgstr "Përditësim automatik"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:40
 #: ../../web/templates/pages/list_firewall_ipset.php:87
 #: ../../web/templates/pages/add_firewall_ipset.php:92
 #: ../../web/add/firewall/ipset/index.php:29
 msgid "IP Version"
-msgstr ""
+msgstr "Versioni IP"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:42
 #: ../../web/templates/pages/list_firewall_ipset.php:95
@@ -1222,7 +1222,7 @@ msgstr ""
 #: ../../web/templates/pages/list_firewall_banlist.php:40
 #: ../../web/templates/pages/list_firewall_banlist.php:82
 msgid "Time"
-msgstr "χρόνος"
+msgstr "Ora"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:54
 #: ../../web/templates/pages/list_firewall_ipset.php:55
@@ -1269,12 +1269,12 @@ msgstr "χρόνος"
 #: ../../web/templates/pages/list_firewall.php:106
 #: ../../web/templates/pages/list_firewall.php:107
 msgid "Select"
-msgstr "Επιλογή"
+msgstr "Selekto"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:70
 #, php-format
 msgid "Are you sure you want to delete IP list %s?"
-msgstr ""
+msgstr "Jeni i sigurt që dëshironi të fshini listën e IP %s?"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:81
 #: ../../web/templates/pages/list_mail_acc.php:114
@@ -1303,7 +1303,7 @@ msgstr ""
 #: ../../web/templates/pages/list_web.php:174
 #: ../../web/templates/pages/list_web.php:182
 msgid "Disabled"
-msgstr "Απενεργοποιημένο"
+msgstr "E çaktivizuar"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:83
 #: ../../web/templates/pages/list_mail_acc.php:117
@@ -1329,18 +1329,18 @@ msgstr "Απενεργοποιημένο"
 #: ../../web/templates/pages/list_web.php:178
 #: ../../web/templates/pages/list_web.php:185
 msgid "Enabled"
-msgstr "Ενεργοποιημένο"
+msgstr "I aktivizuar"
 
 #: ../../web/templates/pages/list_firewall_ipset.php:106
 msgid "There are currently no IP lists defined."
-msgstr "Προς το παρόν δεν έχουν καθοριστεί λίστες IP."
+msgstr "Aktualisht nuk ka lista IP të përcaktuara."
 
 #: ../../web/templates/pages/list_firewall_ipset.php:108
 #, php-format
 msgid "%d IP list"
 msgid_plural "%d IP lists"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d lista IP"
 
 #: ../../web/templates/pages/edit_mail_acc.php:33
 #: ../../web/templates/pages/list_mail_acc.php:172
@@ -1353,17 +1353,17 @@ msgstr ""
 #: ../../web/templates/pages/add_mail_acc.php:42
 #: ../../web/add/mail/index.php:218
 msgid "Account"
-msgstr "Λογαριασμός"
+msgstr "Llogaritë"
 
 #: ../../web/templates/pages/edit_mail_acc.php:57
 #: ../../web/templates/pages/add_mail_acc.php:59
 msgid "Your password must have at least"
-msgstr "Ο κωδικός πρέπει να περιλαμβάνει τουλάχιστον"
+msgstr ""
 
 #: ../../web/templates/pages/edit_mail_acc.php:59
 #: ../../web/templates/pages/add_mail_acc.php:61
 msgid "8 characters long"
-msgstr "8 χαρακτήρες"
+msgstr ""
 
 #: ../../web/templates/pages/edit_mail_acc.php:65
 #: ../../web/templates/pages/add_user.php:122
@@ -1385,7 +1385,7 @@ msgstr ""
 #: ../../web/templates/pages/add_mail_acc.php:71
 #: ../../web/edit/package/index.php:197 ../../web/add/package/index.php:81
 msgid "Quota"
-msgstr "Ποσοστό"
+msgstr "Kuota"
 
 #: ../../web/templates/pages/edit_mail_acc.php:71
 #: ../../web/templates/pages/edit_package.php:39
@@ -1409,16 +1409,16 @@ msgstr ""
 #: ../../web/templates/pages/edit_mail_acc.php:95
 #: ../../web/templates/pages/add_mail_acc.php:101
 msgid "Do not store forwarded mail"
-msgstr "Μη αποθήκευση προωθημένων μηνυμάτων ταχυδρομείου"
+msgstr ""
 
 #: ../../web/templates/pages/edit_mail_acc.php:100
 #: ../../web/templates/pages/add_mail_acc.php:88
 msgid "Forward to"
-msgstr "Προώθηση σε"
+msgstr ""
 
 #: ../../web/templates/pages/edit_mail_acc.php:100
 msgid "one or more email addresses"
-msgstr "μία ή περισσότερες διευθύνσεις ηλεκτρονικού ταχυδρομείου"
+msgstr ""
 
 #: ../../web/templates/pages/edit_mail_acc.php:107
 #: ../../web/templates/pages/list_mail_acc.php:91
@@ -1430,7 +1430,7 @@ msgstr ""
 #: ../../web/templates/pages/list_log.php:80
 #: ../../web/templates/pages/list_log.php:124
 msgid "Message"
-msgstr "Μήνυμα"
+msgstr ""
 
 #: ../../web/templates/pages/edit_mail_acc.php:118
 #: ../../web/templates/pages/edit_package.php:241
@@ -1439,7 +1439,7 @@ msgstr "Μήνυμα"
 #: ../../web/templates/pages/edit_mail.php:64
 #: ../../web/edit/package/index.php:182 ../../web/add/package/index.php:87
 msgid "Rate Limit"
-msgstr "Όριο Αξιολόγησης"
+msgstr "Kufiri i normës"
 
 #: ../../web/templates/pages/edit_mail_acc.php:118
 #: ../../web/templates/pages/add_mail_acc.php:106
@@ -1473,7 +1473,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_server_service.php:43
 #: ../../web/templates/pages/edit_server_php.php:75
 msgid "Restart"
-msgstr "επανεκκίνηση"
+msgstr ""
 
 #: ../../web/templates/pages/list_mail_dns.php:20
 #: ../../web/templates/pages/list_dns_rec.php:75
@@ -1494,7 +1494,7 @@ msgstr "επανεκκίνηση"
 #: ../../web/templates/pages/add_package.php:181
 #: ../../web/edit/package/index.php:173 ../../web/add/package/index.php:60
 msgid "DNS Records"
-msgstr "Εγγραφές DNS"
+msgstr "Të dhënat DNS"
 
 #: ../../web/templates/pages/list_mail_dns.php:24
 #: ../../web/templates/pages/list_mail_dns.php:33
@@ -1510,7 +1510,7 @@ msgstr "Εγγραφές DNS"
 #: ../../web/templates/pages/edit_dns_rec.php:33
 #: ../../web/templates/pages/add_dns_rec.php:33 ../../web/add/dns/index.php:223
 msgid "Record"
-msgstr "Εγγραφή"
+msgstr "Regjistro"
 
 #: ../../web/templates/pages/list_mail_dns.php:25
 #: ../../web/templates/pages/list_mail_dns.php:37
@@ -1554,7 +1554,7 @@ msgstr "Εγγραφή"
 #: ../../web/templates/pages/add_dns_rec.php:38 ../../web/add/db/index.php:26
 #: ../../web/add/dns/index.php:226
 msgid "Type"
-msgstr "Τύπος"
+msgstr "Tipi"
 
 #: ../../web/templates/pages/list_mail_dns.php:26
 #: ../../web/templates/pages/list_mail_dns.php:41
@@ -1568,7 +1568,7 @@ msgstr "Τύπος"
 #: ../../web/templates/pages/edit_dns_rec.php:75
 #: ../../web/templates/pages/add_dns_rec.php:74
 msgid "Priority"
-msgstr "Προτεραιότητα"
+msgstr ""
 
 #: ../../web/templates/pages/list_mail_dns.php:27
 #: ../../web/templates/pages/list_mail_dns.php:44
@@ -1602,11 +1602,11 @@ msgstr ""
 #: ../../web/templates/pages/edit_dns_rec.php:59
 #: ../../web/templates/pages/add_dns_rec.php:58 ../../web/add/dns/index.php:229
 msgid "IP or Value"
-msgstr "IP ή Τιμή"
+msgstr "IP ose Vlera"
 
 #: ../../web/templates/pages/list_dns_rec.php:10
 msgid "Add Record"
-msgstr "Προσθήκη εγγραφής"
+msgstr ""
 
 #: ../../web/templates/pages/list_dns_rec.php:13
 #: ../../web/templates/pages/list_dns.php:159
@@ -1629,7 +1629,7 @@ msgstr ""
 #: ../../web/templates/pages/list_cron.php:22
 #: ../../web/templates/pages/list_firewall.php:22
 msgid "Sort items"
-msgstr "Ταξινόμηση στοιχείων"
+msgstr ""
 
 #: ../../web/templates/pages/list_dns_rec.php:20
 #: ../../web/templates/pages/list_user.php:15
@@ -1663,7 +1663,7 @@ msgstr ""
 #: ../../web/templates/pages/list_cron.php:100
 #: ../../web/templates/pages/list_firewall.php:92
 msgid "Suspend"
-msgstr ""
+msgstr "I pezulluar"
 
 #: ../../web/templates/pages/list_dns_rec.php:50
 #: ../../web/templates/pages/list_user.php:51
@@ -1681,7 +1681,7 @@ msgstr ""
 #: ../../web/templates/pages/list_cron.php:93
 #: ../../web/templates/pages/list_firewall.php:85
 msgid "Unsuspend"
-msgstr ""
+msgstr "Hiqi pezullimin"
 
 #: ../../web/templates/pages/list_dns_rec.php:62
 #: ../../web/templates/pages/list_dns_rec.php:63
@@ -1718,7 +1718,7 @@ msgstr ""
 #: ../../web/templates/pages/list_cron.php:57
 #: ../../web/templates/pages/list_cron.php:58
 msgid "Search"
-msgstr "Αναζήτηση"
+msgstr "Kërko"
 
 #: ../../web/templates/pages/list_dns_rec.php:117
 #: ../../web/templates/pages/list_dns_rec.php:131
@@ -1737,7 +1737,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_whitelabel.php:82
 #: ../../web/templates/pages/edit_server.php:1142
 msgid "Default"
-msgstr "Προκαθορισμένο"
+msgstr ""
 
 #: ../../web/templates/pages/list_dns_rec.php:178
 #, php-format
@@ -1766,12 +1766,12 @@ msgstr ""
 #: ../../web/templates/pages/list_ssl.php:77
 #: ../../web/templates/pages/list_ssl.php:80
 msgid "Download"
-msgstr "Κατέβασμα"
+msgstr "Shkarko"
 
 #: ../../web/templates/pages/list_weblog.php:55
 #: ../../web/templates/pages/list_weblog.php:57
 msgid "Error Log"
-msgstr "Καταγραφές Σφαλμάτων"
+msgstr ""
 
 #: ../../web/templates/pages/list_weblog.php:67
 #: ../../web/templates/pages/list_weblog.php:69
@@ -1781,17 +1781,17 @@ msgstr "Καταγραφές Σφαλμάτων"
 #: ../../web/templates/pages/list_server_info.php:99
 #: ../../web/templates/pages/list_server_info.php:101
 msgid "Refresh"
-msgstr "Φρεσκάρω"
+msgstr ""
 
 #: ../../web/templates/pages/list_weblog.php:97
 #, php-format
 msgid "Last 70 lines of %s.%s.log"
-msgstr "Τελευταίες 70 γραμμές του %s.%s.log"
+msgstr ""
 
 #: ../../web/templates/pages/list_user.php:9
 #: ../../web/templates/pages/list_packages.php:47
 msgid "Packages"
-msgstr "Πακέτα"
+msgstr ""
 
 #: ../../web/templates/pages/list_user.php:42
 #: ../../web/templates/pages/list_mail.php:40
@@ -1847,7 +1847,7 @@ msgstr ""
 #: ../../web/templates/pages/list_web.php:74
 #: ../../web/edit/package/index.php:164 ../../web/add/package/index.php:51
 msgid "Web Domains"
-msgstr "Domains Ιστοσελίδας"
+msgstr "Web Domains"
 
 #: ../../web/templates/pages/list_user.php:99
 #: ../../web/templates/pages/list_user.php:100
@@ -1861,7 +1861,7 @@ msgstr "Domains Ιστοσελίδας"
 #: ../../web/templates/pages/add_package.php:171
 #: ../../web/edit/package/index.php:170 ../../web/add/package/index.php:57
 msgid "DNS Zones"
-msgstr "Ζώνες DNS"
+msgstr "DNS Zona"
 
 #: ../../web/templates/pages/list_user.php:103
 #: ../../web/templates/pages/list_user.php:104
@@ -1877,7 +1877,7 @@ msgstr "Ζώνες DNS"
 #: ../../web/templates/pages/add_package.php:211
 #: ../../web/edit/package/index.php:176 ../../web/add/package/index.php:63
 msgid "Mail Domains"
-msgstr "Domains Ταχυδρομείου"
+msgstr "Mail Domenit"
 
 #: ../../web/templates/pages/list_user.php:126
 #, php-format
@@ -1908,14 +1908,14 @@ msgstr ""
 #: ../../web/templates/pages/list_packages.php:139
 #: ../../web/templates/pages/list_packages.php:142
 msgid "Edit Package"
-msgstr "Επεξεργασία Πακέτου"
+msgstr ""
 
 #: ../../web/templates/pages/list_user.php:309
 #, php-format
 msgid "%d user account"
 msgid_plural "%d user accounts"
-msgstr[0] "%d λογαριασμός χρήστη"
-msgstr[1] "%d λογαριασμοί χρηστών"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../../web/templates/pages/list_backup_exclusions.php:9
 #: ../../web/templates/pages/edit_backup_exclusions.php:25
@@ -1925,12 +1925,12 @@ msgstr ""
 #: ../../web/templates/pages/list_backup_exclusions.php:29
 #: ../../web/templates/pages/list_backup.php:7
 msgid "Backup Exclusions"
-msgstr ""
+msgstr "Backup Përjashtimet"
 
 #: ../../web/templates/pages/list_backup_exclusions.php:34
 #: ../../web/templates/pages/list_backup_exclusions.php:45
 msgid "Value"
-msgstr "Ρεκόρ"
+msgstr ""
 
 #: ../../web/templates/pages/list_backup_exclusions.php:48
 msgid "No exclusions"
@@ -1940,7 +1940,7 @@ msgstr ""
 #: ../../web/templates/pages/list_key.php:21
 #: ../../web/templates/pages/add_key.php:31
 msgid "Add SSH Key"
-msgstr "Προσθήκη κλειδιού SSH"
+msgstr ""
 
 #: ../../web/templates/pages/list_key.php:31
 msgid "SSH Keys"
@@ -1955,7 +1955,7 @@ msgstr ""
 #: ../../web/templates/pages/list_key.php:74
 #: ../../web/templates/pages/add_key.php:34 ../../web/add/key/index.php:17
 msgid "SSH Key"
-msgstr ""
+msgstr "SSH Key"
 
 #: ../../web/templates/pages/list_key.php:65
 #, php-format
@@ -1988,12 +1988,12 @@ msgstr ""
 #: ../../web/templates/pages/list_ip.php:70
 #: ../../web/templates/pages/list_ip.php:134
 msgid "Status"
-msgstr "Κατάσταση"
+msgstr "Statusi"
 
 #: ../../web/templates/pages/list_log_auth.php:50
 #: ../../web/templates/pages/list_log_auth.php:94
 msgid "Browser"
-msgstr "Φυλλομετρητής"
+msgstr ""
 
 #: ../../web/templates/pages/list_log_auth.php:67
 msgid "Success"
@@ -2008,8 +2008,8 @@ msgstr ""
 #, php-format
 msgid "%d log record"
 msgid_plural "%d log records"
-msgstr[0] "%d αρχείο καταγραφής"
-msgstr[1] "%d αρχεία καταγραφής"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../../web/templates/pages/setup_webapp.php:27
 #, php-format
@@ -2033,7 +2033,7 @@ msgstr ""
 #: ../../web/templates/pages/list_search.php:51
 #: ../../web/templates/pages/list_search.php:123
 msgid "Search Results"
-msgstr "Αναζήτηση Αποτελεσμάτων"
+msgstr ""
 
 #: ../../web/templates/pages/list_search.php:53
 #: ../../web/templates/pages/list_search.php:161
@@ -2041,14 +2041,14 @@ msgstr "Αναζήτηση Αποτελεσμάτων"
 #: ../../web/templates/pages/list_ip.php:72
 #: ../../web/templates/pages/list_ip.php:142
 msgid "Owner"
-msgstr "Ιδιοκτήτης"
+msgstr ""
 
 #: ../../web/templates/pages/list_search.php:182
 #, php-format
 msgid "%d object"
 msgid_plural "%d objects"
-msgstr[0] "%d αντικείμενο"
-msgstr[1] "%d αντικείμενα"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../../web/templates/pages/list_rrd.php:9
 msgid "Advanced Details"
@@ -2058,23 +2058,23 @@ msgstr ""
 #: ../../web/templates/pages/add_cron.php:67
 #: ../../web/templates/pages/edit_cron.php:67
 msgid "Daily"
-msgstr "Καθημερινά"
+msgstr ""
 
 #: ../../web/templates/pages/list_rrd.php:14
 #: ../../web/templates/pages/add_cron.php:68
 #: ../../web/templates/pages/edit_cron.php:68
 msgid "Weekly"
-msgstr "Εβδομαδιαία"
+msgstr ""
 
 #: ../../web/templates/pages/list_rrd.php:15
 #: ../../web/templates/pages/add_cron.php:69
 #: ../../web/templates/pages/edit_cron.php:69
 msgid "Monthly"
-msgstr "Μηνιαία"
+msgstr ""
 
 #: ../../web/templates/pages/list_rrd.php:16
 msgid "Yearly"
-msgstr "Ετήσια"
+msgstr ""
 
 #: ../../web/templates/pages/list_rrd.php:17
 msgid "Biennially"
@@ -2098,7 +2098,7 @@ msgstr ""
 #: ../../web/templates/pages/list_server_preview.php:20
 #: ../../web/templates/pages/list_server_preview.php:30
 msgid "Category"
-msgstr "Κατηγορία"
+msgstr ""
 
 #: ../../web/templates/pages/list_log.php:90
 msgid "Information"
@@ -2117,14 +2117,14 @@ msgstr ""
 #: ../../web/templates/pages/list_mail.php:229
 #: ../../web/templates/pages/add_mail_acc.php:32
 msgid "Add Mail Account"
-msgstr "Προσθήκη Λογαριασμού Ταχυδρομείου"
+msgstr "Shto llogarinë e Mail"
 
 #: ../../web/templates/pages/list_mail_acc.php:19
 #: ../../web/templates/pages/list_mail.php:251
 #: ../../web/templates/pages/list_mail.php:254
 #: ../../web/templates/pages/edit_mail.php:35
 msgid "Edit Mail Domain"
-msgstr ""
+msgstr "Redaktoni Mail Domain"
 
 #: ../../web/templates/pages/list_mail_acc.php:78
 #: ../../web/templates/pages/edit_package.php:230
@@ -2139,12 +2139,12 @@ msgstr ""
 #: ../../web/templates/pages/add_package.php:221
 #: ../../web/edit/package/index.php:179 ../../web/add/package/index.php:66
 msgid "Mail Accounts"
-msgstr "Λογαριασμοί Ταχυδρομείου"
+msgstr "Llogaritë e Mail"
 
 #: ../../web/templates/pages/list_mail_acc.php:90
 #: ../../web/templates/pages/list_mail_acc.php:272
 msgid "Forwarding"
-msgstr "Προώθηση"
+msgstr ""
 
 #: ../../web/templates/pages/list_mail_acc.php:104
 #, php-format
@@ -2175,7 +2175,7 @@ msgstr ""
 #: ../../web/templates/pages/list_mail.php:239
 #: ../../web/templates/pages/list_mail.php:242
 msgid "Open Webmail"
-msgstr ""
+msgstr "Hapni Webmail"
 
 #: ../../web/templates/pages/list_mail_acc.php:240
 #, php-format
@@ -2202,7 +2202,7 @@ msgstr ""
 #: ../../web/templates/pages/add_firewall_banlist.php:34
 #: ../../web/add/firewall/banlist/index.php:23
 msgid "Banlist"
-msgstr "Λίστα απαγόρευσης"
+msgstr "Banlist"
 
 #: ../../web/templates/pages/add_firewall_banlist.php:36
 msgid "SSH"
@@ -2222,7 +2222,7 @@ msgstr ""
 #: ../../web/templates/pages/list_services.php:6
 #: ../../web/templates/pages/edit_server_nginx.php:9
 msgid "Configure"
-msgstr "Ρύθμιση"
+msgstr ""
 
 #: ../../web/templates/pages/edit_backup_exclusions.php:29
 msgid "Type domain name, one per line. To exclude all domains use *. To exclude specific dirs use following format: domain.tld:public_html/cache:public_html/tmp"
@@ -2254,12 +2254,12 @@ msgstr ""
 #: ../../web/templates/pages/list_updates.php:29
 #: ../../web/templates/pages/edit_server.php:148
 msgid "Updates"
-msgstr "Ενημερώσεις"
+msgstr "Përditësimet"
 
 #: ../../web/templates/pages/list_services.php:16
 #: ../../web/templates/pages/edit_server.php:1527
 msgid "Firewall"
-msgstr "Τείχος Προστασίας"
+msgstr ""
 
 #: ../../web/templates/pages/list_services.php:26
 msgid "Are you sure you want to restart the server?"
@@ -2281,17 +2281,17 @@ msgstr ""
 
 #: ../../web/templates/pages/list_services.php:70
 msgid "Operating System"
-msgstr "Λειτουργικό σύστημα"
+msgstr ""
 
 #: ../../web/templates/pages/list_services.php:76
 msgid "Load Average"
-msgstr "Μέσος Όρος Φόρτου"
+msgstr ""
 
 #: ../../web/templates/pages/list_services.php:82
 #: ../../web/templates/pages/list_services.php:101
 #: ../../web/templates/pages/list_services.php:196
 msgid "Uptime"
-msgstr "Χρόνος λειτουργίας"
+msgstr ""
 
 #: ../../web/templates/pages/list_services.php:91
 msgid "Services"
@@ -2300,25 +2300,25 @@ msgstr ""
 #: ../../web/templates/pages/list_services.php:98
 #: ../../web/templates/pages/list_services.php:147
 msgid "Service"
-msgstr "Υπηρεσία"
+msgstr ""
 
 #: ../../web/templates/pages/list_services.php:100
 #: ../../web/templates/pages/list_services.php:192
 #: ../../web/templates/pages/list_updates.php:34
 #: ../../web/templates/pages/list_updates.php:58
 msgid "Description"
-msgstr "περιγραφή"
+msgstr "Përshkrimi"
 
 #: ../../web/templates/pages/list_services.php:102
 #: ../../web/templates/pages/list_services.php:200
 #: ../../web/templates/pages/list_server_info.php:45
 msgid "CPU"
-msgstr "Επεξεργαστής"
+msgstr ""
 
 #: ../../web/templates/pages/list_services.php:103
 #: ../../web/templates/pages/list_services.php:204
 msgid "Memory"
-msgstr "Μνήμη"
+msgstr ""
 
 #: ../../web/templates/pages/list_services.php:149
 #: ../../web/templates/pages/list_services.php:159
@@ -2350,7 +2350,7 @@ msgstr ""
 #: ../../web/templates/pages/list_backup_detail.php:9
 #: ../../web/templates/pages/list_backup_detail_incremental.php:7
 msgid "Restore All"
-msgstr "Επαναφορά Όλων"
+msgstr ""
 
 #: ../../web/templates/pages/list_backup_detail.php:18
 #: ../../web/templates/pages/list_backup_detail.php:49
@@ -2390,7 +2390,7 @@ msgstr "Επαναφορά Όλων"
 #: ../../web/templates/pages/list_backup_detail_incremental.php:210
 #: ../../web/templates/pages/list_backup_detail_incremental.php:212
 msgid "Restore"
-msgstr "Επαναφορά"
+msgstr "Rivendos"
 
 #: ../../web/templates/pages/list_backup_detail.php:40
 #: ../../web/templates/pages/list_backup_detail_incremental.php:39
@@ -2411,7 +2411,7 @@ msgstr ""
 #: ../../web/templates/pages/list_backup_detail_incremental.php:170
 #: ../../web/templates/pages/list_backup_detail_incremental.php:204
 msgid "Details"
-msgstr "Λεπτομέρειες"
+msgstr ""
 
 #: ../../web/templates/pages/list_backup_detail.php:69
 #: ../../web/templates/pages/list_backup_detail_incremental.php:65
@@ -2443,7 +2443,7 @@ msgstr ""
 #: ../../web/templates/pages/list_backup_detail_incremental.php:167
 #: ../../web/add/db/index.php:17
 msgid "Database"
-msgstr "Βάση Δεδομένων"
+msgstr "Baza e të dhënave"
 
 #: ../../web/templates/pages/list_backup_detail.php:226
 #: ../../web/templates/pages/edit_package.php:269
@@ -2456,7 +2456,7 @@ msgstr "Βάση Δεδομένων"
 #: ../../web/templates/pages/list_cron.php:70
 #: ../../web/edit/package/index.php:188 ../../web/add/package/index.php:72
 msgid "Cron Jobs"
-msgstr "Εργασίες Cron"
+msgstr "Cron Jobs"
 
 #: ../../web/templates/pages/list_backup_detail.php:294
 #: ../../web/templates/pages/list_files_incremental.php:135
@@ -2469,13 +2469,13 @@ msgstr[1] ""
 
 #: ../../web/templates/pages/add_user.php:71
 msgid "Send welcome email"
-msgstr "Αποστολή email καλωσορίσματος"
+msgstr ""
 
 #: ../../web/templates/pages/edit_package.php:33
 #: ../../web/templates/pages/list_updates.php:33
 #: ../../web/templates/pages/add_package.php:32
 msgid "Package Name"
-msgstr "Όνομα Πακέτου"
+msgstr ""
 
 #: ../../web/templates/pages/edit_package.php:64
 #: ../../web/templates/pages/add_package.php:62
@@ -2494,7 +2494,7 @@ msgstr ""
 #: ../../web/templates/pages/add_package.php:86
 #: ../../web/edit/package/index.php:167 ../../web/add/package/index.php:54
 msgid "Web Aliases"
-msgstr "Ψευδώνυμα Ιστοσελίδας"
+msgstr "Web Pseudonimet"
 
 #: ../../web/templates/pages/edit_package.php:88
 #: ../../web/templates/pages/edit_package.php:190
@@ -2503,34 +2503,34 @@ msgstr "Ψευδώνυμα Ιστοσελίδας"
 #: ../../web/templates/pages/add_package.php:181
 #: ../../web/templates/pages/add_package.php:221
 msgid "per domain"
-msgstr "ανά domain"
+msgstr ""
 
 #: ../../web/templates/pages/edit_package.php:99
 #: ../../web/templates/pages/add_package.php:97
 #: ../../web/templates/pages/edit_web.php:265
 #: ../../web/edit/package/index.php:145 ../../web/add/package/index.php:26
 msgid "Web Template"
-msgstr "Πρότυπο Ιστοσελίδας"
+msgstr "Web Template"
 
 #: ../../web/templates/pages/edit_package.php:117
 #: ../../web/templates/pages/add_package.php:114
 #: ../../web/templates/pages/edit_web.php:302
 #: ../../web/edit/package/index.php:149 ../../web/add/package/index.php:30
 msgid "Backend Template"
-msgstr "Πρότυπο Παρασκηνίου"
+msgstr "Shablloni i Backend-it"
 
 #: ../../web/templates/pages/edit_package.php:137
 #: ../../web/templates/pages/add_package.php:132
 #: ../../web/templates/pages/edit_web.php:332
 #: ../../web/edit/package/index.php:154 ../../web/add/package/index.php:38
 msgid "Proxy Template"
-msgstr "Πρότυπο Διαμεσολαβητή"
+msgstr "Proxy Template"
 
 #: ../../web/templates/pages/edit_package.php:162
 #: ../../web/templates/pages/add_package.php:156
 #: ../../web/edit/package/index.php:158 ../../web/add/package/index.php:45
 msgid "DNS Template"
-msgstr "Πρότυπο DNS"
+msgstr "DNS Template"
 
 #: ../../web/templates/pages/edit_package.php:200
 #: ../../web/templates/pages/add_dns.php:111
@@ -2548,7 +2548,7 @@ msgstr ""
 #: ../../web/templates/pages/add_package.php:256
 #: ../../web/templates/pages/edit_server.php:1085
 msgid "System"
-msgstr "Σύστημα"
+msgstr ""
 
 #: ../../web/templates/pages/edit_package.php:297
 #: ../../web/templates/pages/add_package.php:288
@@ -2598,7 +2598,7 @@ msgstr ""
 #: ../../web/templates/pages/list_mail.php:7
 #: ../../web/templates/pages/add_mail.php:34
 msgid "Add Mail Domain"
-msgstr "Προσθήκη Domain Ταχυδρομείου"
+msgstr ""
 
 #: ../../web/templates/pages/list_mail.php:79
 #: ../../web/templates/pages/list_mail.php:316
@@ -2606,7 +2606,7 @@ msgstr "Προσθήκη Domain Ταχυδρομείου"
 #: ../../web/templates/pages/edit_server.php:381
 #: ../../web/templates/pages/edit_mail.php:86
 msgid "Anti-Virus"
-msgstr ""
+msgstr "Anti-Virus"
 
 #: ../../web/templates/pages/list_mail.php:80
 #: ../../web/templates/pages/list_mail.php:320
@@ -2614,12 +2614,12 @@ msgstr ""
 #: ../../web/templates/pages/edit_server.php:392
 #: ../../web/templates/pages/edit_mail.php:72
 msgid "Spam Filter"
-msgstr ""
+msgstr "Filtri i spamit"
 
 #: ../../web/templates/pages/list_mail.php:81
 #: ../../web/templates/pages/list_mail.php:324
 msgid "DKIM"
-msgstr ""
+msgstr "DKIM"
 
 #: ../../web/templates/pages/list_mail.php:82
 #: ../../web/templates/pages/list_mail.php:328
@@ -2627,40 +2627,40 @@ msgstr ""
 #: ../../web/templates/pages/list_web.php:86
 #: ../../web/templates/pages/list_web.php:336
 msgid "SSL"
-msgstr ""
+msgstr "SSL"
 
 #: ../../web/templates/pages/list_mail.php:98
 #: ../../web/templates/pages/list_dns.php:98
 #: ../../web/templates/pages/list_web.php:100
 #, php-format
 msgid "Are you sure you want to unsuspend domain %s?"
-msgstr ""
+msgstr "Jeni i sigurt që dëshironi të riaktivizoni domenin %s?"
 
 #: ../../web/templates/pages/list_mail.php:133
 #: ../../web/templates/pages/list_dns.php:112
 #: ../../web/templates/pages/list_web.php:107
 #, php-format
 msgid "Are you sure you want to suspend domain %s?"
-msgstr ""
+msgstr "Jeni i sigurt që dëshironi të pezulloni domenin %s?"
 
 #: ../../web/templates/pages/list_mail.php:286
 #: ../../web/templates/pages/list_dns.php:206
 #: ../../web/templates/pages/list_web.php:304
 #, php-format
 msgid "Are you sure you want to delete domain %s?"
-msgstr ""
+msgstr "Jeni i sigurt që dëshironi të fshini domenin %s?"
 
 #: ../../web/templates/pages/list_mail.php:337
 #, php-format
 msgid "%d mail domain"
 msgid_plural "%d mail domains"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d mail domaint"
 
 #: ../../web/templates/pages/list_dns_public.php:7
 #: ../../web/templates/pages/list_dns.php:7
 msgid "Add DNS Domain"
-msgstr "Προσθήκη DNS Domain"
+msgstr ""
 
 #: ../../web/templates/pages/list_dns_public.php:29
 #: ../../web/templates/pages/list_dns.php:170
@@ -2728,22 +2728,22 @@ msgstr[1] ""
 
 #: ../../web/templates/pages/list_updates.php:12
 msgid "Disable Automatic Updates"
-msgstr ""
+msgstr "Çaktivizo përditësimet automatike"
 
 #: ../../web/templates/pages/list_updates.php:16
 msgid "Enable Automatic Updates"
-msgstr ""
+msgstr "Aktivizo përditësimet automatike"
 
 #: ../../web/templates/pages/list_updates.php:35
 #: ../../web/templates/pages/list_updates.php:62
 #: ../../web/templates/pages/edit_server.php:152
 #: ../../web/templates/pages/list_webapps.php:27
 msgid "Version"
-msgstr "Έκδοση"
+msgstr "Verzion"
 
 #: ../../web/templates/pages/list_updates.php:54
 msgid "Package Names"
-msgstr ""
+msgstr "Emri i paketës"
 
 #: ../../web/templates/pages/list_updates.php:68
 msgid "Update available"
@@ -2756,7 +2756,7 @@ msgstr ""
 #: ../../web/templates/pages/list_access_keys.php:15
 #: ../../web/templates/pages/add_access_key.php:24
 msgid "Add Access Key"
-msgstr "Προσθήκη κλειδιού πρόσβασης"
+msgstr ""
 
 #: ../../web/templates/pages/list_access_keys.php:31
 #: ../../web/templates/pages/list_access_keys.php:62
@@ -2764,7 +2764,7 @@ msgstr "Προσθήκη κλειδιού πρόσβασης"
 #: ../../web/templates/pages/list_access_keys.php:91
 #: ../../web/templates/pages/list_access_key.php:27
 msgid "Access Key"
-msgstr "Κλειδί πρόσβασης"
+msgstr ""
 
 #: ../../web/templates/pages/list_access_keys.php:34
 #: ../../web/templates/pages/list_access_keys.php:64
@@ -2777,7 +2777,7 @@ msgstr "Κλειδί πρόσβασης"
 #: ../../web/templates/pages/list_firewall.php:72
 #: ../../web/templates/pages/list_firewall.php:161
 msgid "Comment"
-msgstr "Σχόλιο"
+msgstr ""
 
 #: ../../web/templates/pages/list_access_keys.php:103
 #, php-format
@@ -2802,7 +2802,7 @@ msgstr ""
 #: ../../web/templates/pages/list_access_key.php:46
 #: ../../web/add/access-key/index.php:40
 msgid "Permissions"
-msgstr ""
+msgstr "Lejet"
 
 #: ../../web/templates/pages/add_access_key.php:37
 #: ../../web/templates/pages/edit_ip.php:69
@@ -2820,7 +2820,7 @@ msgstr ""
 #: ../../web/templates/pages/add_ip.php:76
 #: ../../web/templates/pages/add_ip.php:82
 msgid "Optional"
-msgstr ""
+msgstr "Opsione"
 
 #: ../../web/templates/pages/edit_whitelabel.php:33
 msgid "White Label Options"
@@ -2894,7 +2894,7 @@ msgstr ""
 #: ../../web/templates/pages/list_backup.php:70
 #: ../../web/templates/pages/list_backup.php:71
 msgid "Yes"
-msgstr "Ναι"
+msgstr "Po"
 
 #: ../../web/templates/pages/edit_whitelabel.php:110
 #: ../../web/templates/pages/add_firewall_ipset.php:102
@@ -2931,7 +2931,7 @@ msgstr "Ναι"
 #: ../../web/templates/pages/list_backup.php:63
 #: ../../web/templates/pages/list_backup.php:64
 msgid "No"
-msgstr "Όχι"
+msgstr "Jo"
 
 #: ../../web/templates/pages/edit_whitelabel.php:119
 #: ../../web/templates/pages/edit_whitelabel.php:124
@@ -2953,7 +2953,7 @@ msgstr ""
 
 #: ../../web/templates/pages/list_dns.php:25
 msgid "Expire"
-msgstr "Λήγει"
+msgstr ""
 
 #: ../../web/templates/pages/list_dns.php:43
 #: ../../web/templates/pages/list_web.php:43
@@ -2965,7 +2965,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_dns.php:51
 #: ../../web/templates/pages/add_dns.php:71
 msgid "Template"
-msgstr "Πρότυπο"
+msgstr ""
 
 #: ../../web/templates/pages/list_dns.php:83
 #: ../../web/templates/pages/list_dns.php:234
@@ -2983,13 +2983,13 @@ msgstr ""
 #: ../../web/templates/pages/edit_dns.php:77
 #: ../../web/templates/pages/add_dns.php:103
 msgid "Expiration Date"
-msgstr "Ημερομηνία Λήξης"
+msgstr ""
 
 #: ../../web/templates/pages/list_dns.php:149
 #: ../../web/templates/pages/list_dns.php:152
 #: ../../web/templates/pages/add_dns_rec.php:25
 msgid "Add DNS Record"
-msgstr "Προσθήκη Εγγραφής DNS"
+msgstr ""
 
 #: ../../web/templates/pages/list_dns.php:253
 #, php-format
@@ -3011,7 +3011,7 @@ msgstr ""
 #: ../../web/templates/pages/list_ip.php:126
 #: ../../web/templates/pages/add_ip.php:39 ../../web/add/ip/index.php:26
 msgid "Netmask"
-msgstr "Μάσκα Δικτύου"
+msgstr "Netmask"
 
 #: ../../web/templates/pages/edit_ip.php:44
 #: ../../web/templates/pages/list_ip.php:31
@@ -3019,17 +3019,17 @@ msgstr "Μάσκα Δικτύου"
 #: ../../web/templates/pages/list_ip.php:130
 #: ../../web/templates/pages/add_ip.php:43 ../../web/add/ip/index.php:29
 msgid "Interface"
-msgstr "Διεπαφή"
+msgstr "Interface"
 
 #: ../../web/templates/pages/edit_ip.php:50
 #: ../../web/templates/pages/add_ip.php:57
 msgid "Shared"
-msgstr "Κοινόχρηστα"
+msgstr ""
 
 #: ../../web/templates/pages/edit_ip.php:55
 #: ../../web/templates/pages/add_ip.php:62 ../../web/add/ip/index.php:32
 msgid "Assigned User"
-msgstr ""
+msgstr "Përdorues i caktuar"
 
 #: ../../web/templates/pages/edit_ip.php:69
 #: ../../web/templates/pages/add_ip.php:76
@@ -3047,13 +3047,13 @@ msgstr ""
 #: ../../web/templates/pages/edit_mail.php:120
 #: ../../web/templates/pages/list_ssl.php:7
 msgid "Generate Self-Signed SSL Certificate"
-msgstr ""
+msgstr "Gjeneroni një certifikatë SSL të vetë-nënshkruar"
 
 #: ../../web/templates/pages/generate_ssl.php:27
 #: ../../web/templates/pages/add_firewall_ipset.php:49
 #: ../../web/generate/ssl/index.php:41
 msgid "Country"
-msgstr "Χώρα"
+msgstr "Vendi"
 
 #: ../../web/templates/pages/generate_ssl.php:28
 msgid "ISO 3166-1 alpha-2 two-letter code"
@@ -3061,16 +3061,16 @@ msgstr ""
 
 #: ../../web/templates/pages/generate_ssl.php:34
 msgid "State / Province"
-msgstr "Πολιτεία / Επαρχία"
+msgstr ""
 
 #: ../../web/templates/pages/generate_ssl.php:40
 msgid "City / Locality"
-msgstr "Πόλη / Περιοχή"
+msgstr ""
 
 #: ../../web/templates/pages/generate_ssl.php:46
 #: ../../web/generate/ssl/index.php:50
 msgid "Organization"
-msgstr "Οργανισμός"
+msgstr "Organizata"
 
 #: ../../web/templates/pages/edit_dns.php:71
 #: ../../web/templates/pages/add_dns.php:97
@@ -3080,11 +3080,11 @@ msgstr ""
 #: ../../web/templates/pages/edit_dns.php:77
 #: ../../web/templates/pages/add_dns.php:103
 msgid "YYYY-MM-DD"
-msgstr "ΕΕΕΕ-MM-ΗΗ"
+msgstr ""
 
 #: ../../web/templates/pages/list_firewall_banlist.php:9
 msgid "Ban IP Address"
-msgstr "Αποκλεισμός Διεύθυνσης IP"
+msgstr ""
 
 #: ../../web/templates/pages/list_firewall_banlist.php:30
 #: ../../web/templates/pages/list_firewall.php:13
@@ -3094,7 +3094,7 @@ msgstr ""
 #: ../../web/templates/pages/list_firewall_banlist.php:41
 #: ../../web/templates/pages/list_firewall_banlist.php:86
 msgid "Chain"
-msgstr ""
+msgstr "Zinxhir"
 
 #: ../../web/templates/pages/list_firewall_banlist.php:69
 #: ../../web/templates/pages/list_ip.php:117
@@ -3110,20 +3110,20 @@ msgstr ""
 #, php-format
 msgid "%d banned IP address"
 msgid_plural "%d banned IP addresses"
-msgstr[0] "%d απαγορευμένη διεύθυνση IP"
-msgstr[1] "%d απαγορευμένες διευθύνσεις IP"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../../web/templates/pages/list_packages.php:9
 #: ../../web/templates/pages/add_package.php:29
 msgid "Add Package"
-msgstr "Προσθήκη Πακέτου"
+msgstr ""
 
 #: ../../web/templates/pages/list_packages.php:57
 #: ../../web/templates/pages/list_packages.php:58
 #: ../../web/templates/pages/list_packages.php:173
 #: ../../web/edit/package/index.php:161 ../../web/add/package/index.php:48
 msgid "Shell"
-msgstr "Κέλυφος"
+msgstr "Shell"
 
 #: ../../web/templates/pages/list_packages.php:150
 #: ../../web/templates/pages/list_packages.php:153
@@ -3139,8 +3139,8 @@ msgstr ""
 #, php-format
 msgid "%d package"
 msgid_plural "%d packages"
-msgstr[0] "%d πακέτo"
-msgstr[1] "%d πακέτα"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../../web/templates/pages/add_mail.php:39
 msgid "a mail domain"
@@ -3149,17 +3149,17 @@ msgstr ""
 #: ../../web/templates/pages/add_mail.php:55
 #: ../../web/templates/pages/edit_mail.php:44
 msgid "Webmail Client"
-msgstr ""
+msgstr "Webmail Klienti"
 
 #: ../../web/templates/pages/add_mail.php:79
 #: ../../web/templates/pages/edit_mail.php:78
 msgid "Reject Spam"
-msgstr ""
+msgstr "Refuzo Spam-in"
 
 #: ../../web/templates/pages/add_mail.php:94
 #: ../../web/templates/pages/edit_mail.php:93
 msgid "DKIM Support"
-msgstr "Υποστήριξη DKIM"
+msgstr "DKIM Support"
 
 #: ../../web/templates/pages/add_mail.php:100
 #: ../../web/templates/pages/edit_mail.php:174
@@ -3178,7 +3178,7 @@ msgstr ""
 #: ../../web/templates/pages/add_db.php:105
 #: ../../web/templates/pages/edit_mail.php:179 ../../web/add/db/index.php:29
 msgid "Host"
-msgstr "Πλήθος"
+msgstr "Host"
 
 #: ../../web/templates/pages/list_access_key.php:31
 msgid "Access Key ID"
@@ -3186,7 +3186,7 @@ msgstr ""
 
 #: ../../web/templates/pages/list_access_key.php:39
 msgid "Secret Key"
-msgstr "Μυστικό Κλειδί"
+msgstr ""
 
 #: ../../web/templates/pages/list_access_key.php:40
 msgid "Warning! Last chance to save secret key!"
@@ -3198,7 +3198,7 @@ msgstr ""
 
 #: ../../web/templates/pages/list_server_preview.php:35
 msgid "Policy"
-msgstr "Πρακτική"
+msgstr ""
 
 #: ../../web/templates/pages/list_server_preview.php:35
 #: ../../web/templates/pages/edit_server.php:1360
@@ -3211,7 +3211,7 @@ msgstr ""
 
 #: ../../web/templates/pages/list_stats.php:6
 msgid "Overall Statistics"
-msgstr "Συγκεντρωτικά Στατιστικά"
+msgstr ""
 
 #: ../../web/templates/pages/list_stats.php:14
 msgid "Show Per User"
@@ -3225,12 +3225,12 @@ msgstr ""
 #: ../../web/templates/pages/list_stats.php:106
 #: ../../web/templates/pages/list_server_info.php:70
 msgid "Web"
-msgstr "Ιστοσελίδα"
+msgstr ""
 
 #: ../../web/templates/pages/list_stats.php:124
 #: ../../web/templates/pages/list_server_info.php:86
 msgid "Mail"
-msgstr "Ταχυδρομείο"
+msgstr ""
 
 #: ../../web/templates/pages/list_stats.php:162
 msgid "SSL Domains"
@@ -3240,8 +3240,8 @@ msgstr ""
 #, php-format
 msgid "%d month"
 msgid_plural "%d months"
-msgstr[0] "%d μήνα"
-msgstr[1] "%d μήνες"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../../web/templates/pages/add_dns.php:34
 msgid "Add DNS Zone"
@@ -3264,22 +3264,22 @@ msgstr ""
 #, php-format
 msgid "%d IP address"
 msgid_plural "%d IP addresses"
-msgstr[0] "%d διεύθυνση IP"
-msgstr[1] "%d διευθύνσεις IP"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../../web/templates/pages/list_server_info.php:19
 #: ../../web/templates/pages/list_server_info.php:20
 msgid "Hestia Control Panel"
-msgstr "Πίνακας Ελέγχου Hestia"
+msgstr ""
 
 #: ../../web/templates/pages/list_server_info.php:51
 msgid "RAM"
-msgstr "Μνήμη"
+msgstr ""
 
 #: ../../web/templates/pages/list_server_info.php:63
 #: ../../web/templates/pages/edit_server.php:9
 msgid "Network"
-msgstr "Δίκτυο"
+msgstr ""
 
 #: ../../web/templates/pages/edit_db.php:25
 #: ../../web/templates/pages/list_db.php:164
@@ -3300,12 +3300,12 @@ msgstr ""
 #: ../../web/templates/pages/list_db.php:255
 #: ../../web/templates/pages/add_db.php:117 ../../web/add/db/index.php:32
 msgid "Charset"
-msgstr "Κωδικοποίηση"
+msgstr "Set Karakteresh"
 
 #: ../../web/templates/pages/add_cron.php:26
 #: ../../web/templates/pages/list_cron.php:7
 msgid "Add Cron Job"
-msgstr "Προσθήκη Εργασίας Cron"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:28
 #: ../../web/templates/pages/edit_cron.php:28
@@ -3319,7 +3319,7 @@ msgstr ""
 #: ../../web/templates/pages/list_cron.php:77
 #: ../../web/templates/pages/list_cron.php:116 ../../web/add/cron/index.php:32
 msgid "Command"
-msgstr "Εντολή"
+msgstr "Komanda"
 
 #: ../../web/templates/pages/add_cron.php:42
 #: ../../web/templates/pages/add_cron.php:110
@@ -3334,7 +3334,7 @@ msgstr "Εντολή"
 #: ../../web/templates/pages/list_cron.php:79
 #: ../../web/templates/pages/list_cron.php:168 ../../web/add/cron/index.php:17
 msgid "Minute"
-msgstr "Λεπτό"
+msgstr "Minutë"
 
 #: ../../web/templates/pages/add_cron.php:46
 #: ../../web/templates/pages/add_cron.php:142
@@ -3347,7 +3347,7 @@ msgstr "Λεπτό"
 #: ../../web/templates/pages/list_cron.php:80
 #: ../../web/templates/pages/list_cron.php:172 ../../web/add/cron/index.php:20
 msgid "Hour"
-msgstr "Ώρα"
+msgstr "Orë"
 
 #: ../../web/templates/pages/add_cron.php:50
 #: ../../web/templates/pages/add_cron.php:292
@@ -3356,27 +3356,27 @@ msgstr "Ώρα"
 #: ../../web/templates/pages/list_cron.php:81
 #: ../../web/templates/pages/list_cron.php:176 ../../web/add/cron/index.php:23
 msgid "Day"
-msgstr "Ημέρα"
+msgstr "Ditë"
 
 #: ../../web/templates/pages/add_cron.php:54
 #: ../../web/templates/pages/edit_cron.php:54
 #: ../../web/templates/pages/list_cron.php:82
 #: ../../web/templates/pages/list_cron.php:180 ../../web/add/cron/index.php:26
 msgid "Month"
-msgstr "Μήνας"
+msgstr "Muaji"
 
 #: ../../web/templates/pages/add_cron.php:58
 #: ../../web/templates/pages/edit_cron.php:58
 #: ../../web/templates/pages/list_cron.php:83
 #: ../../web/templates/pages/list_cron.php:184 ../../web/add/cron/index.php:29
 msgid "Day of Week"
-msgstr "Ημέρα της Εβδομάδας"
+msgstr "Ditë të javës"
 
 #: ../../web/templates/pages/add_cron.php:65
 #: ../../web/templates/pages/edit_cron.php:65
 #: ../../web/templates/pages/edit_server.php:1171
 msgid "Minutes"
-msgstr "Λεπτά"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:66
 #: ../../web/templates/pages/edit_cron.php:66
@@ -3394,7 +3394,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_cron.php:199
 #: ../../web/templates/pages/edit_cron.php:270
 msgid "Run Command"
-msgstr "Εκτελέστε την εντολή"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:80
 #: ../../web/templates/pages/edit_cron.php:80
@@ -3472,37 +3472,37 @@ msgstr ""
 #: ../../web/templates/pages/add_cron.php:204
 #: ../../web/templates/pages/edit_cron.php:204
 msgid "Monday"
-msgstr "Δευτέρα"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:205
 #: ../../web/templates/pages/edit_cron.php:205
 msgid "Tuesday"
-msgstr "Τρίτη"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:206
 #: ../../web/templates/pages/edit_cron.php:206
 msgid "Wednesday"
-msgstr "Τετάρτη"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:207
 #: ../../web/templates/pages/edit_cron.php:207
 msgid "Thursday"
-msgstr "Πέμπτη"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:208
 #: ../../web/templates/pages/edit_cron.php:208
 msgid "Friday"
-msgstr "Παρασκευή"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:209
 #: ../../web/templates/pages/edit_cron.php:209
 msgid "Saturday"
-msgstr "Σάββατο"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:210
 #: ../../web/templates/pages/edit_cron.php:210
 msgid "Sunday"
-msgstr "Κυριακή"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:272
 #: ../../web/templates/pages/edit_cron.php:272
@@ -3530,62 +3530,62 @@ msgstr ""
 #: ../../web/templates/pages/add_cron.php:277
 #: ../../web/templates/pages/edit_cron.php:277
 msgid "Jan"
-msgstr "Ιαν"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:278
 #: ../../web/templates/pages/edit_cron.php:278
 msgid "Feb"
-msgstr "Φεβ"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:279
 #: ../../web/templates/pages/edit_cron.php:279
 msgid "Mar"
-msgstr "Μαρ"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:280
 #: ../../web/templates/pages/edit_cron.php:280
 msgid "Apr"
-msgstr "Απρ"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:281
 #: ../../web/templates/pages/edit_cron.php:281
 msgid "May"
-msgstr "Μαι"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:282
 #: ../../web/templates/pages/edit_cron.php:282
 msgid "Jun"
-msgstr "Ιουν"
+msgstr ""
 
 #: ../../web/templates/pages/add_cron.php:283
 #: ../../web/templates/pages/edit_cron.php:283
 msgid "Jul"
-msgstr "Ιουλ"
+msgstr "Korrik"
 
 #: ../../web/templates/pages/add_cron.php:284
 #: ../../web/templates/pages/edit_cron.php:284
 msgid "Aug"
-msgstr "Αυγ"
+msgstr "Gusht"
 
 #: ../../web/templates/pages/add_cron.php:285
 #: ../../web/templates/pages/edit_cron.php:285
 msgid "Sep"
-msgstr "Σεπ"
+msgstr "Shtator"
 
 #: ../../web/templates/pages/add_cron.php:286
 #: ../../web/templates/pages/edit_cron.php:286
 msgid "Oct"
-msgstr "Οκτ"
+msgstr "Tetor"
 
 #: ../../web/templates/pages/add_cron.php:287
 #: ../../web/templates/pages/edit_cron.php:287
 msgid "Nov"
-msgstr "Νοε"
+msgstr "Nëntor"
 
 #: ../../web/templates/pages/add_cron.php:288
 #: ../../web/templates/pages/edit_cron.php:288
 msgid "Dec"
-msgstr "Δεκ"
+msgstr "Dhjetor"
 
 #: ../../web/templates/pages/add_firewall_ipset.php:61
 msgid "Block Malicious IPs"
@@ -3598,7 +3598,7 @@ msgstr ""
 #: ../../web/templates/pages/add_firewall_ipset.php:76
 #: ../../web/add/firewall/ipset/index.php:26
 msgid "Data Source"
-msgstr "Πηγή δεδομένων"
+msgstr "Burim i të dhënave"
 
 #: ../../web/templates/pages/add_firewall_ipset.php:76
 msgid "URL, script or file"
@@ -3618,7 +3618,7 @@ msgstr ""
 #: ../../web/templates/pages/list_db.php:20
 #: ../../web/templates/pages/add_db.php:34
 msgid "Add Database"
-msgstr "Προσθήκη Βάσης Δεδομένων"
+msgstr ""
 
 #: ../../web/templates/pages/list_db.php:75
 msgid "Suspend All"
@@ -3666,11 +3666,11 @@ msgstr ""
 #: ../../web/templates/pages/edit_server.php:15
 #: ../../web/edit/server/hestiaweb/index.php:34
 msgid "Panel Cronjobs"
-msgstr "Πίνακας Cronjobs"
+msgstr "Paneli Cronjobs"
 
 #: ../../web/templates/pages/edit_server.php:75
 msgid "Time Zone"
-msgstr "Ζώνη Ώρας"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:106
 msgid "Set as selected theme for all users"
@@ -3678,7 +3678,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:110
 msgid "Default Language"
-msgstr "Προεπιλεγμένη Γλώσσα"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:127
 msgid "Set as default language for all users"
@@ -3686,15 +3686,15 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:139
 msgid "Enable debug mode"
-msgstr "Ενεργοποίηση κατάστασης απασφαλμάτωσης"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:159
 msgid "Release"
-msgstr "Κυκλοφορία"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:166
 msgid "Options"
-msgstr "Επιλογές"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:177
 msgid "Enable preview features"
@@ -3702,7 +3702,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:181
 msgid "View"
-msgstr "Προβολή"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:194
 msgid "Send email notification when an update has been installed"
@@ -3723,7 +3723,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:242
 msgid "PHP Interpreter"
-msgstr ""
+msgstr "Përkthyes PHP"
 
 #: ../../web/templates/pages/edit_server.php:253
 msgid "Backend Pool Mode"
@@ -3753,7 +3753,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_server.php:367
 #: ../../web/templates/pages/edit_server.php:371
 msgid "Mail Server"
-msgstr "Διακομιστής αλληλογραφίας"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:404
 msgid "Webmail Alias"
@@ -3777,7 +3777,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:527
 msgid "More info"
-msgstr "Περισσότερες πληροφορίιες"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:579
 #: ../../web/templates/pages/edit_server.php:637
@@ -3803,7 +3803,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:674
 msgid "Compression"
-msgstr "Συμπίεση"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:694
 msgid "Compression Level"
@@ -3811,7 +3811,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:710
 msgid "zstd only"
-msgstr "μόνο zstd"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:717
 #: ../../web/templates/pages/edit_server.php:832
@@ -3819,7 +3819,7 @@ msgstr "μόνο zstd"
 #: ../../web/templates/pages/edit_web.php:377
 #: ../../web/list/backup/incremental/index.php:11
 msgid "Directory"
-msgstr "Ευρετήριο"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:744
 msgid "Remote Backup"
@@ -3833,7 +3833,7 @@ msgstr ""
 #: ../../web/templates/pages/list_firewall.php:165
 #: ../../web/edit/firewall/index.php:73 ../../web/add/firewall/index.php:45
 msgid "Protocol"
-msgstr "Πρωτόκολλο"
+msgstr "Protokoll"
 
 #: ../../web/templates/pages/edit_server.php:917
 msgid "Enable incremental backup"
@@ -3864,26 +3864,26 @@ msgstr ""
 #: ../../web/templates/pages/edit_mail.php:119
 #: ../../web/templates/pages/list_ssl.php:19
 msgid "SSL Certificate"
-msgstr "Πιστοποιητικό SSL"
+msgstr "Certifikata SSL"
 
 #: ../../web/templates/pages/edit_server.php:1033
 #: ../../web/templates/pages/edit_web.php:201
 #: ../../web/templates/pages/edit_mail.php:125
 #: ../../web/templates/pages/list_ssl.php:46
 msgid "SSL Private Key"
-msgstr ""
+msgstr "Çelësi privat SSL"
 
 #: ../../web/templates/pages/edit_server.php:1043
 #: ../../web/templates/pages/edit_web.php:214
 #: ../../web/templates/pages/edit_mail.php:138
 msgid "Issued To"
-msgstr ""
+msgstr "Lëshuar për"
 
 #: ../../web/templates/pages/edit_server.php:1048
 #: ../../web/templates/pages/edit_web.php:220
 #: ../../web/templates/pages/edit_mail.php:144
 msgid "Alternate"
-msgstr ""
+msgstr "Alternuar"
 
 #: ../../web/templates/pages/edit_server.php:1053
 #: ../../web/templates/pages/edit_web.php:225
@@ -3917,7 +3917,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1079
 msgid "Security"
-msgstr "Ασφάλεια"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1089
 msgid "API"
@@ -3947,7 +3947,7 @@ msgstr ""
 #: ../../web/templates/pages/login/login_2.php:24
 #: ../../web/templates/pages/login/login_1.php:23
 msgid "Login"
-msgstr "Σύνδεση"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1138
 msgid "Login screen style"
@@ -3955,7 +3955,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1145
 msgid "Old Style"
-msgstr "Παλιό Στυλ"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1151
 msgid "Allow users to reset their passwords"
@@ -3971,15 +3971,15 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1197
 msgid "Strict"
-msgstr "Αυστηρό"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1207
 msgid "System Protection"
-msgstr "Προστασία Συστήματος"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1211
 msgid "System Administrator account"
-msgstr "Λογαριασμός Διαχειριστή Συστήματος"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1215
 msgid "Restrict access to read-only for other administrators"
@@ -3987,7 +3987,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1232
 msgid "Hide account from other administrators"
-msgstr "Απόκρυψη λογαριασμού από άλλους διαχειριστές"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1249
 msgid "Do not allow other administrators to access Server Settings"
@@ -3995,7 +3995,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1270
 msgid "Policies"
-msgstr "Πρακτικές"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1278
 msgid "Allow users to edit their account details"
@@ -4019,7 +4019,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1361
 msgid "Preview"
-msgstr "Προεπισκόπιση"
+msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1379
 msgid "Allow suspended users to create new backups"
@@ -4051,7 +4051,7 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:1488
 msgid "Web Terminal"
-msgstr ""
+msgstr "Web Terminal"
 
 #: ../../web/templates/pages/edit_server.php:1501
 msgid "Limit System Resources"
@@ -4064,11 +4064,11 @@ msgstr ""
 #: ../../web/templates/pages/list_webapps.php:16
 #: ../../web/templates/pages/edit_web.php:15
 msgid "Quick Install App"
-msgstr "Εγκατάσταση εφαρμογής"
+msgstr ""
 
 #: ../../web/templates/pages/list_webapps.php:29
 msgid "Setup"
-msgstr "στήσετε"
+msgstr ""
 
 #: ../../web/templates/pages/add_db.php:39
 msgid "a database"
@@ -4093,21 +4093,21 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:79
 msgid "Web Statistics"
-msgstr "Στατιστικά Ιστοσελίδας"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:98
 msgid "Statistics Authorization"
-msgstr "Εξουσιοδότηση Στατιστικών"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:124
 msgid "Enable domain redirection"
-msgstr "Ενεργοποίηση ανακατεύθυνσης τομέα"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:131
 #: ../../web/templates/pages/edit_web.php:137
 #, php-format
 msgid "Redirect visitors to %s"
-msgstr "Ανακατεύθυνση επισκεπτών στο %s"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:143
 msgid "Redirect visitors to a custom domain or web address"
@@ -4119,17 +4119,17 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:152
 msgid "Status code"
-msgstr "Κωδικός κατάστασης"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:167
 #: ../../web/templates/pages/edit_mail.php:99
 msgid "Enable SSL for this domain"
-msgstr ""
+msgstr "Aktivizo SSL për këtë domen"
 
 #: ../../web/templates/pages/edit_web.php:174
 #: ../../web/templates/pages/edit_mail.php:106
 msgid "Use Let's Encrypt to obtain SSL certificate"
-msgstr ""
+msgstr "Përdorni Let's Encrypt për të marrë certifikatën SSL"
 
 #: ../../web/templates/pages/edit_web.php:180
 msgid "Enable automatic HTTPS redirection"
@@ -4142,7 +4142,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_web.php:206
 #: ../../web/templates/pages/edit_mail.php:130
 msgid "SSL Certificate Authority / Intermediate"
-msgstr "Αρχή Πιστοποιητικού SSL / Ενδιάμεσος"
+msgstr "Autoriteti i Certifikatës SSL / i ndërmjetëm"
 
 #: ../../web/templates/pages/edit_web.php:249
 msgid "Hide Certificate"
@@ -4151,7 +4151,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_web.php:249
 #: ../../web/templates/pages/edit_web.php:250
 msgid "Show Certificate"
-msgstr "Προβολή πιστοποιητικού"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:284
 msgid "Enable FastCGI cache"
@@ -4163,11 +4163,11 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:326
 msgid "Proxy Support"
-msgstr "Υποστήριξη Διαμεσολαβητή"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:350
 msgid "Proxy Extensions"
-msgstr "Πρόσθετα Διαμεσολαβητή"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:359
 msgid "Custom document root"
@@ -4190,12 +4190,12 @@ msgstr ""
 #: ../../web/templates/pages/edit_web.php:425
 #: ../../web/templates/pages/edit_web.php:478
 msgid "Path"
-msgstr "Μονοπάτι"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:433
 #: ../../web/templates/pages/edit_web.php:484
 msgid "Send FTP credentials to email"
-msgstr "Αποστολή διαπιστευτηρίων FTP στη διεύθυνση ηλεκτρονικού ταχυδρομείου"
+msgstr ""
 
 #: ../../web/templates/pages/edit_web.php:442
 msgid "Add FTP account"
@@ -4216,22 +4216,22 @@ msgstr ""
 #: ../../web/templates/pages/list_firewall.php:111
 #: ../../web/edit/firewall/index.php:70 ../../web/add/firewall/index.php:42
 msgid "Action"
-msgstr "Ενέργεια"
+msgstr "Veprim"
 
 #: ../../web/templates/pages/edit_firewall.php:30
 #: ../../web/templates/pages/add_firewall.php:30
 msgid "DROP"
-msgstr "ΑΠΟΡΡΙΨΗ"
+msgstr "REFUZO"
 
 #: ../../web/templates/pages/edit_firewall.php:31
 #: ../../web/templates/pages/add_firewall.php:31
 msgid "ACCEPT"
-msgstr "ΑΠΟΔΟΧΗ"
+msgstr "PRANOJ"
 
 #: ../../web/templates/pages/edit_firewall.php:44
 #: ../../web/templates/pages/add_firewall.php:44
 msgid "Ranges and lists are acceptable"
-msgstr ""
+msgstr "Zona dhe listat janë të pranueshme"
 
 #: ../../web/templates/pages/edit_firewall.php:46
 #: ../../web/templates/pages/add_firewall.php:46
@@ -4245,34 +4245,34 @@ msgstr ""
 
 #: ../../web/templates/pages/list_backup.php:6
 msgid "Create Backup"
-msgstr "Δημιουργία Αντίγραφου Ασφαλείας"
+msgstr "Krijo Backup"
 
 #: ../../web/templates/pages/list_backup.php:47
 #: ../../web/templates/pages/list_backup.php:81
 msgid "File Name"
-msgstr "Ονομα αρχείου"
+msgstr "Emri i Skedarit"
 
 #: ../../web/templates/pages/list_backup.php:50
 #: ../../web/templates/pages/list_backup.php:137
 msgid "Size"
-msgstr "Μέγεθος"
+msgstr "Madhësia"
 
 #: ../../web/templates/pages/list_backup.php:52
 #: ../../web/templates/pages/list_backup.php:150
 msgid "Runtime"
-msgstr "Χρόνος εκτέλεσης"
+msgstr "Koha e ekzekutimit"
 
 #: ../../web/templates/pages/list_backup.php:120
 #, php-format
 msgid "Are you sure you want to delete backup %s?"
-msgstr ""
+msgstr "Jeni i sigurt që dëshironi të fshini Backup %s?"
 
 #: ../../web/templates/pages/list_backup.php:159
 #, php-format
 msgid "%d backup"
 msgid_plural "%d backups"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d backup"
+msgstr[1] "%d backupi"
 
 #: ../../web/templates/pages/login/reset2fa.php:8
 msgid "Account Unlocked"
@@ -4284,7 +4284,7 @@ msgstr ""
 
 #: ../../web/templates/pages/login/reset2fa.php:13
 msgid "Log in"
-msgstr "Σύνδεση"
+msgstr ""
 
 #: ../../web/templates/pages/login/reset2fa.php:21
 msgid "Unlock Account"
@@ -4292,12 +4292,12 @@ msgstr ""
 
 #: ../../web/templates/pages/login/reset2fa.php:31
 msgid "2FA Reset Code"
-msgstr "Κωδικός ανάκτησης λογαριασμού"
+msgstr ""
 
 #: ../../web/templates/pages/login/reset2fa.php:36
 #: ../../web/templates/pages/login/reset_1.php:23
 msgid "Submit"
-msgstr "Υποβολή"
+msgstr ""
 
 #: ../../web/templates/pages/login/reset_1.php:8
 #: ../../web/templates/pages/login/login_a.php:22
@@ -4305,7 +4305,7 @@ msgstr "Υποβολή"
 #: ../../web/templates/pages/login/login_1.php:15
 #: ../../web/templates/pages/login/reset_3.php:7
 msgid "Forgot Password"
-msgstr "Ξεχάσατε τον κωδικό πρόσβασης"
+msgstr ""
 
 #: ../../web/templates/pages/login/login_2.php:8
 msgid "Two-factor Authentication"
@@ -4313,7 +4313,7 @@ msgstr ""
 
 #: ../../web/templates/pages/login/login_2.php:15
 msgid "2FA Token"
-msgstr "OTP PIN"
+msgstr ""
 
 #: ../../web/templates/pages/login/login_2.php:17
 msgid "Forgot Token"
@@ -4323,12 +4323,12 @@ msgstr ""
 #: ../../web/templates/pages/login/login.php:8 ../../web/add/user/index.php:175
 #, php-format
 msgid "Welcome to %s"
-msgstr ""
+msgstr "Mirë se vini në %s"
 
 #: ../../web/templates/pages/login/login_a.php:29
 #: ../../web/templates/pages/login/login.php:18
 msgid "Next"
-msgstr "Επόμενο"
+msgstr ""
 
 #: ../../web/templates/pages/login/reset_2.php:13
 msgid "Password reset code has been sent to your email address"
@@ -4336,27 +4336,27 @@ msgstr ""
 
 #: ../../web/templates/pages/login/reset_2.php:19
 msgid "Reset Code"
-msgstr "Επαναφορά κωδικού"
+msgstr ""
 
 #: ../../web/templates/pages/login/reset_2.php:24
 msgid "Confirm"
-msgstr "Επιβεβαίωση"
+msgstr ""
 
 #: ../../web/templates/pages/login/login_1.php:8
 msgid "Welcome"
-msgstr "Καλωσήρθατε"
+msgstr ""
 
 #: ../../web/templates/pages/login/reset_3.php:17
 msgid "New Password"
-msgstr "Νέος κωδικός πρόσβασης"
+msgstr ""
 
 #: ../../web/templates/pages/login/reset_3.php:21
 msgid "Confirm Password"
-msgstr "Επιβεβαίωση κωδικού πρόσβασης"
+msgstr ""
 
 #: ../../web/templates/pages/login/reset_3.php:26
 msgid "Reset"
-msgstr "Επαναφορά"
+msgstr ""
 
 #: ../../web/templates/pages/list_files_incremental.php:24
 msgid "Restore Files"
@@ -4388,16 +4388,16 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:64
 msgid "email / hour / account"
-msgstr ""
+msgstr "email / orë/ llogari"
 
 #: ../../web/templates/pages/edit_mail.php:113
 #, php-format
 msgid "To enable Let's Encrypt SSL, ensure that DNS records exist for mail.%s and %s!"
-msgstr ""
+msgstr "Për të aktivizuar Let's Encrypt SSL, sigurohuni që të ekzistojnë regjistrimet DNS për postën.%s dhe %s!"
 
 #: ../../web/templates/pages/add_firewall.php:25
 msgid "Add Firewall Rule"
-msgstr ""
+msgstr "Shto rregulla për Firewall"
 
 #: ../../web/templates/pages/list_web.php:48
 msgid "Purge Nginx Cache"
@@ -4417,7 +4417,7 @@ msgstr ""
 #: ../../web/templates/pages/list_web.php:269
 #: ../../web/templates/pages/list_web.php:272
 msgid "Download Site"
-msgstr ""
+msgstr "Faqja e shkarkimit"
 
 #: ../../web/templates/pages/list_web.php:349
 #, php-format
@@ -4453,8 +4453,8 @@ msgstr ""
 #, php-format
 msgid "%d cron job"
 msgid_plural "%d cron jobs"
-msgstr[0] "%d εργασία cron"
-msgstr[1] "%d εργασίες cron"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../../web/templates/pages/list_ssl.php:73
 msgid "SSL CSR"
@@ -4462,7 +4462,7 @@ msgstr ""
 
 #: ../../web/templates/pages/list_firewall.php:9
 msgid "Add Rule"
-msgstr "Προσθήκη Κανόνα"
+msgstr ""
 
 #: ../../web/templates/pages/list_firewall.php:63
 msgid "Firewall Rules"
@@ -4487,8 +4487,8 @@ msgstr ""
 #, php-format
 msgid "%d firewall rule"
 msgid_plural "%d firewall rules"
-msgstr[0] "%d κανόνας τείχους προστασίας"
-msgstr[1] "%d κανόνες τείχους προστασίας"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../../web/templates/pages/debug_panel.php:11
 msgid "Close debug panel"
@@ -4501,11 +4501,11 @@ msgstr ""
 
 #: ../../web/generate/ssl/index.php:44
 msgid "State"
-msgstr "Κατάσταση"
+msgstr "Shtet"
 
 #: ../../web/generate/ssl/index.php:47
 msgid "City"
-msgstr "Πόλη"
+msgstr "Qyteti"
 
 #: ../../web/generate/ssl/index.php:69 ../../web/edit/mail/index.php:598
 #: ../../web/edit/firewall/index.php:89 ../../web/edit/web/index.php:863
@@ -4522,21 +4522,21 @@ msgstr "Πόλη"
 #: ../../web/add/user/index.php:45
 #, php-format
 msgid "Field \"%s\" can not be blank."
-msgstr "Το πεδίο \"%s\" δεν επιτρέπεται να είναι κενό."
+msgstr "Fusha \"%s\" nuk mund të jetë bosh."
 
 #: ../../web/generate/ssl/index.php:123 ../../web/inc/main.php:180
 #: ../../web/inc/main.php:195
 #, php-format
 msgid "Error code: %s"
-msgstr "Κωδικός σφάλματος: %s"
+msgstr "Kodi i gabimit: %s"
 
 #: ../../web/generate/ssl/index.php:132
 msgid "Certificate has been generated successfully."
-msgstr ""
+msgstr "Certifikata është krijuar me sukses."
 
 #: ../../web/delete/web/cache/index.php:20
 msgid "NGINX cache has been purged successfully."
-msgstr "Η προσωρινή μνήμη NGINX έχει εκκαθαριστεί με επιτυχία."
+msgstr "Cache NGINX është pastruar me sukses."
 
 #: ../../web/update/hestia/index.php:20
 #, php-format
@@ -4545,7 +4545,7 @@ msgstr ""
 
 #: ../../web/download/backup/index.php:20
 msgid "Download of remote backup file has been scheduled."
-msgstr "Έχει προγραμματιστεί η λήψη απομακρυσμένου αρχείου αντιγράφου ασφαλείας."
+msgstr "Shkarkimi i skedarit Backup në distancë është planifikuar."
 
 #: ../../web/reset/index.php:60
 msgid "Hello {{name}},\n\n"
@@ -4557,45 +4557,45 @@ msgid "Hello {{name}},\n\n"
 "Best regards,\n\n"
 "--\n"
 "{{appname}}"
-msgstr "Γεια σας {{name}},\n\n"
-"Για να επαναφέρετε τον {{appname}} κωδικό πρόσβασής σας, παρακαλώ ακολουθήστε αυτόν τον σύνδεσμο:\n"
-"ņ://{{hostname}}/reset/? ction=confirm&user={{user}}&code={{resetcode}}\n\n"
-"Εναλλακτικά, μπορείτε να μεταβείτε στο {://{{hostname}}/reset/? ction=code&user={{user}} και εισάγετε τον ακόλουθο κωδικό επαναφοράς:\n"
+msgstr "Përshëndetje {{name}},\n\n"
+"Për të rivendosur fjalëkalimin tuaj të {{appname}}, ju lutemi ndiqni këtë lidhje:\n"
+"https://{{hostname}}/reset/?action=confirm&user={{user}}&code={{resetcode}}\n\n"
+"Përndryshe, mund të shkoni te https://{{hostname}}/reset/?action=code&user={{user}} dhe të futni kodin e mëposhtëm të rivendosjes:\n"
 "{{resetcode}}\n\n"
-"Αν δεν ζητήσατε επαναφορά κωδικού πρόσβασης, παρακαλούμε αγνοήστε αυτό το μήνυμα και αποδέχεστε τη συγγνώμη μας.\n\n"
-"Καλύτερους χαιρετισμούς,\n\n"
+"Nëse nuk keni kërkuar rivendosjen e fjalëkalimit, ju lutemi shpërfilleni këtë mesazh dhe pranoni faljen tonë.\n\n"
+"Përshëndetjet më të mira,\n\n"
 "--\n"
 "{{appname}}"
 
 #: ../../web/reset/index.php:84
 #, php-format
 msgid "Password Reset at %s"
-msgstr "Επαναφορά Κωδικού Πρόσβασης στο %s"
+msgstr "Rivendosja e fjalëkalimit në %s"
 
 #: ../../web/reset/index.php:137 ../../web/reset/index.php:141
 #: ../../web/reset/index.php:146 ../../web/reset/index.php:155
 msgid "Password reset instructions have been sent to the email address associated with this account."
-msgstr "Οι οδηγίες επαναφοράς κωδικού πρόσβασης έχουν αποσταλεί στη διεύθυνση ηλεκτρονικού ταχυδρομείου που σχετίζεται με αυτόν τον λογαριασμό."
+msgstr "Udhëzimet e rivendosjes së fjalëkalimit janë dërguar në adresën e emailit të lidhur me këtë llogari."
 
 #: ../../web/reset/index.php:150
 msgid "Please wait 15 minutes before sending a new request."
-msgstr "Παρακαλώ περιμένετε 15 λεπτά πριν στείλετε ένα νέο αίτημα."
+msgstr "Ju lutemi prisni 15 minuta përpara se të dërgoni një kërkesë të re."
 
 #: ../../web/reset/index.php:187
 msgid "An internal error occurred"
-msgstr "Παρουσιάστηκε ένα εσωτερικό σφάλμα"
+msgstr "Ndodhi një gabim i brendshëm"
 
 #: ../../web/reset/index.php:195
 msgid "Code has been expired"
-msgstr "Ο κωδικός έχει λήξει"
+msgstr "Kodi ka skaduar"
 
 #: ../../web/reset/index.php:213 ../../web/reset/index.php:231
 msgid "Invalid username or code"
-msgstr "Λάθος όνομα χρήστη ή κωδικός."
+msgstr "Emër përdoruesi ose kod i pavlefshëm"
 
 #: ../../web/reset/index.php:234
 msgid "Passwords do not match"
-msgstr "Οι κωδικοί πρόσβασης δεν ταιριάζουν"
+msgstr "Fjalëkalimet nuk përputhen"
 
 #: ../../web/edit/server/vsftpd/index.php:44
 #: ../../web/edit/server/php-fpm/index.php:44
@@ -4628,12 +4628,12 @@ msgstr "Οι κωδικοί πρόσβασης δεν ταιριάζουν"
 #: ../../web/edit/backup/exclusions/index.php:124
 #: ../../web/edit/cron/index.php:89 ../../web/edit/user/index.php:561
 msgid "Changes have been saved."
-msgstr "Οι αλλαγές αποθηκεύτηκαν."
+msgstr "Ndryshimet janë ruajtur."
 
 #: ../../web/edit/server/crond/index.php:17
 #: ../../web/edit/server/cron/index.php:17
 msgid "Info (read-only mode): Crontab can only be edited via SSH."
-msgstr "Πληροφορίες (λειτουργία μόνο για ανάγνωση): Το Crontab μπορεί να επεξεργαστεί μόνο μέσω SSH."
+msgstr "Informacion (modaliteti vetëm për lexim): Crontab mund të modifikohet vetëm nëpërmjet SSH."
 
 #: ../../web/edit/server/index.php:1281
 msgid "Repository can not be empty"
@@ -4641,19 +4641,19 @@ msgstr ""
 
 #: ../../web/edit/server/index.php:1377
 msgid "Inactive session timeout can not lower than 1 minute."
-msgstr "Το ανενεργό χρονικό όριο συνεδρίας δεν μπορεί να είναι μικρότερο από 1 λεπτό."
+msgstr "Koha e seancës joaktive nuk mund të jetë më e vogël se 1 minutë."
 
 #: ../../web/edit/mail/index.php:748 ../../web/edit/web/index.php:1173
 #: ../../web/edit/user/index.php:414 ../../web/add/mail/index.php:239
 #: ../../web/add/db/index.php:48 ../../web/add/user/index.php:50
 msgid "Please enter a valid email address."
-msgstr "Παρακαλώ εισάγετε μια ενεργή διεύθυνση email."
+msgstr "Ju lutemi shkruani një adresë të vlefshme emaili."
 
 #: ../../web/edit/mail/index.php:774 ../../web/edit/db/index.php:74
 #: ../../web/edit/user/index.php:161 ../../web/add/mail/index.php:246
 #: ../../web/add/db/index.php:55 ../../web/add/user/index.php:56
 msgid "Password does not match the minimum requirements."
-msgstr "Ο κωδικός πρόσβασης δεν συμφωνεί με τις ελάχιστες απαιτήσεις."
+msgstr "Fjalëkalimi nuk përputhet me kërkesat minimale."
 
 #: ../../web/edit/mail/index.php:1098 ../../web/add/mail/index.php:438
 msgid "Mail account has been created.\n\n"
@@ -4680,35 +4680,35 @@ msgid "Mail account has been created.\n\n"
 "Best regards,\n\n"
 "--\n"
 "{{appname}}"
-msgstr "Ο λογαριασμός αλληλογραφίας δημιουργήθηκε.\n\n"
-"Κοινές ρυθμίσεις λογαριασμού:\n"
-"Όνομα χρήστη: {{account}}@{{domain}}\n"
-"Κωδικός πρόσβασης: {{password}}\n"
-"Ταχυδρομείο Ιστού: {{webmail}}\n"
-"Όνομα κεντρικού υπολογιστή: {{hostname}}\n\n"
-"Ρυθμίσεις IMAP\n"
-"Έλεγχος ταυτότητας: Με κωδικό πρόσβασης\n"
-"SSL/TLS: Θύρα 993\n"
-"STARTTLS: Θύρα 143\n"
-"Χωρίς κρυπτογράφηση: Θύρα 143\n\n"
-"Ρυθμίσεις POP3\n"
-"Έλεγχος ταυτότητας: Με κωδικό πρόσβασης\n"
-"SSL/TLS: Θύρα 995\n"
-"STARTTLS: Θύρα 110\n"
-"Χωρίς κρυπτογράφηση: Θύρα 110\n\n"
-"Ρυθμίσεις SMTP\n"
-"Έλεγχος ταυτότητας: Με κωδικό πρόσβασης\n"
-"SSL/TLS: Θύρα 465\n"
-"STARTTLS: Θύρα 587\n"
-"Χωρίς κρυπτογράφηση: Θύρα 25\n\n"
-"Τις καλύτερες ευχές,\n\n"
+msgstr "Llogaria e postës është krijuar.\n\n"
+"Cilësimet e zakonshme të llogarisë:\n"
+"Emri i përdoruesit: {{account}}@{{domain}}\n"
+"Fjalëkalimi: {{password}}\n"
+"Posta në internet: {{webmail}}\n"
+"Emri i hostit: {{hostname}}\n\n"
+"Cilësimet IMAP\n"
+"Vërtetimi: Fjalëkalim normal\n"
+"SSL/TLS: Porta 993\n"
+"STARTTLS: Porti 143\n"
+"Pa kriptim: Porta 143\n\n"
+"Cilësimet e POP3\n"
+"Vërtetimi: Fjalëkalim normal\n"
+"SSL/TLS: Porta 995\n"
+"STARTTLS: Porta 110\n"
+"Pa kriptim: Porta 110\n\n"
+"Cilësimet SMTP\n"
+"Vërtetimi: Fjalëkalim normal\n"
+"SSL/TLS: Porta 465\n"
+"STARTTLS: Porta 587\n"
+"Pa enkriptim: Porta 25\n\n"
+"Përshëndetjet më të mira,\n\n"
 "--\n"
 "{{appname}}"
 
 #: ../../web/edit/mail/index.php:1135 ../../web/add/mail/index.php:475
 #, php-format
 msgid "Email Credentials: %s@%s"
-msgstr "Πιστοποιητικά Email: %s@%s"
+msgstr "Kredencialet e emailit: %s@%s"
 
 #: ../../web/edit/web/index.php:1246 ../../web/edit/web/index.php:1414
 msgid "FTP account has been created and ready to use.\n\n"
@@ -4718,22 +4718,22 @@ msgid "FTP account has been created and ready to use.\n\n"
 "Best regards,\n\n"
 "--\n"
 "{{appname}}"
-msgstr "Ο λογαριασμός FTP έχει δημιουργηθεί και είναι έτοιμος για χρήση.\n\n"
-"Όνομα υπολογιστή Hostname: {{domain}}\n"
-"Όνομα χρήστη: {{username}}\n"
-"Κωδικός πρόσβασης: {{password}}\n\n"
-"Best regards,\n\n"
+msgstr "Llogaria FTP është krijuar dhe gati për t'u përdorur.\n\n"
+"Emri i hostit: {{domain}}\n"
+"Emri i përdoruesit: {{username}}\n"
+"Fjalëkalimi: {{password}}\n\n"
+"Përshëndetjet më të mira,\n\n"
 "--\n"
 "{{appname}}"
 
 #: ../../web/edit/web/index.php:1263 ../../web/edit/web/index.php:1431
 #, php-format
 msgid "FTP Account Credentials: %s"
-msgstr "Πιστοποιητικά Λογαριασμού FTP: %s"
+msgstr "Kredencialet e llogarisë FTP: %s"
 
 #: ../../web/edit/dns/index.php:347
 msgid "Error: unknown record ID."
-msgstr "Σφάλμα: άγνωστο αναγνωριστικό ID εγγραφής."
+msgstr "Gabim: ID e panjohur e regjistrimit."
 
 #: ../../web/edit/package/index.php:205 ../../web/add/package/index.php:92
 msgid "CPU quota"
@@ -4761,83 +4761,83 @@ msgstr "Nameserver 2"
 
 #: ../../web/edit/user/index.php:430
 msgid "Please enter a valid contact name."
-msgstr "Παρακαλώ εισάγετε ένα έγκυρο όνομα επαφής."
+msgstr "Ju lutemi shkruani një emër kontakti të vlefshëm."
 
 #: ../../web/start/service/index.php:23
 #, php-format
 msgid "Start \"%s\" failed"
-msgstr "Η έναρξη του \"%s\" απέτυχε"
+msgstr "Startimi \"%s\" dështoi"
 
 #: ../../web/stop/service/index.php:24
 #, php-format
 msgid "Stop \"%s\" failed"
-msgstr "Η διακοπή του \"%s\" απέτυχε"
+msgstr "Ndalo \"%s\" dështoi"
 
 #: ../../web/restart/system/index.php:26 ../../web/bulk/service/index.php:40
 msgid "The system is going down for reboot NOW!"
-msgstr "Το σύστημα θα επανεκκινήσει ΤΩΡΑ!"
+msgstr "Sistemi po shkon poshtë për rindezje TANI!"
 
 #: ../../web/restart/service/index.php:23
 #, php-format
 msgid "Restart \"%s\" failed"
-msgstr "Η επανεκκίνηση \"%s\" απέτυχε"
+msgstr "Ristartimi \"%s\" dështoi"
 
 #: ../../web/bulk/restore/incremental/index.php:126
 #: ../../web/bulk/restore/index.php:73 ../../web/schedule/restore/index.php:65
 msgid "Task has been added to the queue. You will receive an email notification when your restore has been completed."
-msgstr "Η εργασία έχει προστεθεί στην ουρά. Θα λάβετε ειδοποίηση μέσω email όταν ολοκληρωθεί η επαναφορά."
+msgstr "Detyra është shtuar në radhë. Ju do të merrni një njoftim me email kur rivendosja juaj të ketë përfunduar."
 
 #: ../../web/bulk/restore/index.php:82 ../../web/schedule/restore/index.php:74
 msgid "An existing restoration task is already running. Please wait for it to finish before launching it again."
-msgstr "Μια υπάρχουσα εργασία αποκατάστασης εκτελείται ήδη. Παρακαλώ περιμένετε να ολοκληρωθεί πριν την επανεκκινήσετε."
+msgstr "Një detyrë ekzistuese restaurimi po ekzekutohet tashmë. Ju lutemi prisni që të përfundojë përpara se ta lëshoni përsëri."
 
 #: ../../web/bulk/cron/index.php:36 ../../web/bulk/cron/index.php:61
 msgid "Cron job email reporting has been successfully disabled."
-msgstr "Η εργασία χρονισμού των email Cron έχει απενεργοποιηθεί επιτυχώς."
+msgstr "Raportimi i email-it të punës Cron është çaktivizuar me sukses."
 
 #: ../../web/bulk/cron/index.php:44 ../../web/bulk/cron/index.php:69
 msgid "Cron job email reporting has been successfully enabled."
-msgstr "Η εργασία χρονισμού των email Cron έχει ενεργοποιηθεί επιτυχώς."
+msgstr "Raportimi i email-it të punës Cron është aktivizuar me sukses."
 
 #: ../../web/add/key/index.php:57 ../../web/add/key/index.php:60
 msgid "SSH Key already exists."
-msgstr ""
+msgstr "SSH Key tashmë ekziston."
 
 #: ../../web/add/key/index.php:73
 msgid "SSH Key has been created successfully."
-msgstr ""
+msgstr "Çelësi SSH është krijuar me sukses."
 
 #: ../../web/add/access-key/index.php:79
 #, php-format
 msgid "Access key {%s} has been created successfully."
-msgstr ""
+msgstr "Çelësi i hyrjes {%s} është krijuar me sukses."
 
 #: ../../web/add/mail/index.php:189
 #, php-format
 msgid "Mail domain {%s} has been created successfully."
-msgstr ""
+msgstr "Domeni i Mail {%s} është krijuar me sukses."
 
 #: ../../web/add/mail/index.php:508
 #, php-format
 msgid "Mail account {%s@%s} has been created successfully."
-msgstr ""
+msgstr "E-Maili {%s@%s} është krijuar me sukses."
 
 #: ../../web/add/firewall/index.php:97
 msgid "Rule has been created successfully."
-msgstr ""
+msgstr "Rregulli është krijuar me sukses."
 
 #: ../../web/add/firewall/ipset/index.php:72
 msgid "IP list has been created successfully."
-msgstr ""
+msgstr "Adresa IP {} është krijuar me sukses."
 
 #: ../../web/add/firewall/banlist/index.php:52
 msgid "IP address has been banned successfully."
-msgstr ""
+msgstr "Adresa IP është ndaluar me sukses."
 
 #: ../../web/add/ip/index.php:93
 #, php-format
 msgid "IP address {%s} has been created successfully."
-msgstr ""
+msgstr "Adresa IP {%s} është krijuar me sukses."
 
 #: ../../web/add/db/index.php:150
 msgid "Database has been created.\n\n"
@@ -4848,56 +4848,63 @@ msgid "Database has been created.\n\n"
 "Best regards,\n\n"
 "--\n"
 "{{appname}}"
-msgstr ""
+msgstr "Baza e të dhënave është krijuar.\n\n"
+"Database: {{database}}\n"
+"Username: {{username}}\n"
+"Password: {{password}}\n"
+"SQL Manager: {{dbadmin}}\n\n"
+"Përshëndetjet më të mira,\n\n"
+"--\n"
+"{{appname}}"
 
 #: ../../web/add/db/index.php:168
 #, php-format
 msgid "Database Credentials: %s"
-msgstr ""
+msgstr "Kredencialet e bazës së të dhënave: %s"
 
 #: ../../web/add/db/index.php:199
 #, php-format
 msgid "Database {%s} has been created successfully. / {Open %s}"
-msgstr ""
+msgstr "Baza e të dhënave {%s} është krijuar me sukses. / {Hap %s}"
 
 #: ../../web/add/webapp/index.php:58
 #, php-format
 msgid "Unable to install %s, %s is not available."
-msgstr ""
+msgstr "%s nuk mund të instalohet, %s nuk disponohet."
 
 #: ../../web/add/webapp/index.php:73
 #, php-format
 msgid "%s installer missing."
-msgstr ""
+msgstr "Mungon instaluesi %s."
 
 #: ../../web/add/webapp/index.php:91
 #, php-format
 msgid "%s installed successfully."
-msgstr ""
+msgstr "%s u instalua me sukses."
 
 #: ../../web/add/web/index.php:128
 #, php-format
 msgid "Domain {%s} has been created successfully."
-msgstr ""
+msgstr "Domeni {%s} është krijuar me sukses."
 
 #: ../../web/add/dns/index.php:199
 #, php-format
 msgid "DNS zone {%s} has been created successfully."
-msgstr ""
+msgstr "DNS zona {%s} është krijuar me sukses."
 
 #: ../../web/add/dns/index.php:280
 #, php-format
 msgid "Record {%s.%s} has been created successfully."
-msgstr ""
+msgstr "Record {%s.%s} është krijuar me sukses."
 
 #: ../../web/add/package/index.php:238
 #, php-format
 msgid "Package {%s} has been created successfully."
-msgstr ""
+msgstr "Paketa {%s} është krijuar me sukses."
 
 #: ../../web/add/cron/index.php:80
 msgid "Cron job has been created successfully."
-msgstr "H εργασία χρονισμού Cron έχει δημιουργηθεί με επιτυχία."
+msgstr "Cron job është krijuar me sukses."
 
 #: ../../web/add/user/index.php:156
 msgid "Hello {{name}},\n\n"
@@ -4908,20 +4915,27 @@ msgid "Hello {{name}},\n\n"
 "Best regards,\n\n"
 "--\n"
 "{{appname}}"
-msgstr ""
+msgstr "Përshëndetje {{name}},\n\n"
+"Llogaria juaj është krijuar dhe gati për t'u përdorur.\n\n"
+"https://{{hostname}}/login/\n"
+"Emri i përdoruesit: {{user}}\n"
+"Fjalëkalimi: {{password}}\n\n"
+"Përshëndetjet më të mira,\n\n"
+"--\n"
+"{{appname}}"
 
 #: ../../web/add/user/index.php:225
 #, php-format
 msgid "User {%s} has been created successfully. / {Log in as %s}"
-msgstr ""
+msgstr "Përdoruesi {%s} është krijuar me sukses. / {Identifikohu si %s}"
 
 #: ../../web/src/app/WebApp/AppWizard.php:126
 msgid "Unable to add database! Limit reached!"
-msgstr "Αδύνατη η προσθήκη βάσης δεδομένων! Περνάει τον ορισμό!"
+msgstr "Nuk mund të shtohet baza e të dhënave! U arrit kufiri!"
 
 #: ../../web/src/app/System/HestiaApp.php:184
 msgid "Unable to add database!"
-msgstr "Αδύνατη η προσθήκη βάσης δεδομένων!"
+msgstr "Nuk mund të shtohet baza e të dhënave!"
 
 #: ../../web/copy/package/index.php:35
 msgid "Error: unable to copy package."
@@ -4929,45 +4943,45 @@ msgstr ""
 
 #: ../../web/login/index.php:150
 msgid "Account has been suspended"
-msgstr ""
+msgstr "Llogaria juaj është pezulluar"
 
 #: ../../web/login/index.php:152
 msgid "Unsupported hash method"
-msgstr ""
+msgstr "Metoda hash e pambështetur"
 
 #: ../../web/login/index.php:154 ../../web/login/index.php:211
 #: ../../web/login/index.php:234 ../../web/login/index.php:258
 msgid "Invalid username or password"
-msgstr "Λάθος όνομα χρήστη ή κωδικός πρόσβασης."
+msgstr "Emër përdoruesi ose fjalëkalim i pavlefshëm"
 
 #: ../../web/login/index.php:293
 msgid "Invalid or missing 2FA token"
-msgstr ""
+msgstr "Shenja 2FA është e pavlefshme ose mungon"
 
 #: ../../web/inc/main.php:273 ../../web/inc/main.php:284
 msgid "You are logged out, please log in again."
-msgstr "Έχετε αποσυνδεθεί, παρακαλώ συνδεθείτε ξανά."
+msgstr "Jeni dalë nga llogaria, ju lutemi identifikohuni përsëri."
 
 #: ../../web/inc/main.php:351
 #, php-format
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%d ημέρα"
-msgstr[1] "%d ημέρες"
+msgstr[0] "%d ditë"
+msgstr[1] "%d ditë"
 
 #: ../../web/inc/main.php:354
 #, php-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] "%d ώρα"
-msgstr[1] "%d ώρες"
+msgstr[0] "%d ore"
+msgstr[1] "%d orë"
 
 #: ../../web/inc/main.php:358
 #, php-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] "%d λεπτό"
-msgstr[1] "%d λεπτά"
+msgstr[0] "%d minutë"
+msgstr[1] "%d minuta"
 
 #: ../../web/schedule/backup/incremental/index.php:17
 msgid "Snapshot has been sheduled"
@@ -4975,15 +4989,15 @@ msgstr ""
 
 #: ../../web/schedule/backup/index.php:12
 msgid "Task has been added to the queue. You will receive an email notification when your backup is ready for download."
-msgstr ""
+msgstr "Detyra është shtuar në radhë. Do të merrni një njoftim me email kur Backuo juaj të jetë gati për shkarkim."
 
 #: ../../web/schedule/backup/index.php:22
 msgid "An existing backup task is already running, please wait for it to complete."
-msgstr ""
+msgstr "Një detyrë ekzistuese Backup po ekzekutohet tashmë, ju lutemi prisni që ajo të përfundojë."
 
 #: ../../web/list/backup/incremental/index.php:14
 msgid "File"
-msgstr "Αρχείο"
+msgstr ""
 
 #: ../../web/list/backup/incremental/index.php:17
 msgid "Symlink"
@@ -4991,7 +5005,7 @@ msgstr ""
 
 #: ../../web/list/backup/incremental/index.php:20
 msgid "Unknown"
-msgstr "Άγνωστο"
+msgstr ""
 
 #: ../../bin/v-list-sys-hestia-updates:110
 msgid "Hestia core package"
@@ -5007,11 +5021,11 @@ msgstr ""
 
 #: ../../bin/v-list-sys-services:167
 msgid "web server"
-msgstr "Διακομιστής"
+msgstr ""
 
 #: ../../bin/v-list-sys-services:178
 msgid "php interpreter"
-msgstr ""
+msgstr "përkthyes php"
 
 #: ../../bin/v-list-sys-services:186
 msgid "reverse proxy"
@@ -5019,11 +5033,11 @@ msgstr ""
 
 #: ../../bin/v-list-sys-services:195
 msgid "dns server"
-msgstr "Διακομιστής DNS"
+msgstr ""
 
 #: ../../bin/v-list-sys-services:202
 msgid "mail server"
-msgstr "Διακομιστής αλληλογραφίας"
+msgstr ""
 
 #: ../../bin/v-list-sys-services:209
 msgid "imap/pop3 server"
@@ -5039,11 +5053,11 @@ msgstr ""
 
 #: ../../bin/v-list-sys-services:281
 msgid "database server"
-msgstr "Διακομιστής Βάσης Δεδομένων"
+msgstr ""
 
 #: ../../bin/v-list-sys-services:290
 msgid "ftp server"
-msgstr "Διακομιστής ftp"
+msgstr ""
 
 #: ../../bin/v-list-sys-services:297
 msgid "job scheduler"
@@ -5063,5 +5077,5 @@ msgstr ""
 
 #: ../../bin/v-list-sys-services:336
 msgid "web terminal backend"
-msgstr ""
+msgstr "web terminal backend"
 

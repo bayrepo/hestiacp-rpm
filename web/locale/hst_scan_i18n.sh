@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 if [ ! -x /usr/bin/xgettext ]; then
 	echo " **********************************************************"

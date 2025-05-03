@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/ruby
 
 if ARGV.length()<2
   puts "Use: #{$0} path_to_pure_po po|pot"

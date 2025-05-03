@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 if [ ! -e /usr/bin/xgettext ]; then
 	echo " **********************************************************"
 	echo " * Unable to find xgettext please install gettext package *"
