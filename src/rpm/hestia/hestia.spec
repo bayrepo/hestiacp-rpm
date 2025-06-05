@@ -3,7 +3,7 @@
 
 Name:              hestia
 Version:           1.9.5
-Release:           2%{dist}
+Release:           3%{dist}
 Summary:           Hestia Control Panel
 Group:             System Environment/Base
 License:           GPLv3
@@ -184,6 +184,13 @@ fi
 %{_tmpfilesdir}/%{name}.conf
 
 %changelog
+* Sun Jun 01 2025 Alexey Berezhok <a@bayrepo.ru> - 1.9.5-3
+- Added documentation fixes
+- Change download path to github
+- Added devel option to install script
+- Added fixes of installation process
+- Added fixes created by user hestiacn
+
 * Sun Apr 27 2025 Alexey Berezhok <a@bayrepo.ru> - 1.9.5-2
 - Added clamav default config
 

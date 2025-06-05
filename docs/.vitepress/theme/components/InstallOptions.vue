@@ -13,6 +13,8 @@ export default {
 		return {
 			pageloader: false,
 			hestia_wget:
+				"wget https://raw.githubusercontent.com/bayrepo/hestiacp-rpm/refs/heads/rhel-version/install/hst-install.sh",
+			hestia_wget_devel:
 				"wget https://dev.brepo.ru/bayrepo/hestiacp/raw/branch/master/install/hst-install.sh",
 			hestia_install: "sudo bash hst-install.sh",
 			installStr: "",
@@ -27,10 +29,7 @@ export default {
 			if (item.selectField) {
 				return item.selected ? `${item.param} '${item.text}'` : "";
 			}
-
-			return item.param.includes("force") && item.selected
-				? item.param
-				: `${item.param}${item.selected ? " yes" : " no"}`;
+			return `${item.param}${item.selected ? " yes" : " no"}`;
 		},
 		generateString() {
 			const installStr = this.items.map(this.getOptionString).filter(Boolean);
@@ -150,6 +149,23 @@ export default {
 					<button
 						class="button-positioned"
 						@click="copyToClipboard(hestia_wget, $event.target)"
+						type="button"
+						title="Copy to Clipboard"
+					>
+						Copy
+					</button>
+				</div>
+				<p class="u-mb10">For downloading devel version use:</p>
+				<div class="u-pos-relative">
+					<input
+						type="text"
+						class="form-control u-monospace u-mb10"
+						v-model="hestia_wget_devel"
+						readonly
+					/>
+					<button
+						class="button-positioned"
+						@click="copyToClipboard(hestia_wget_devel, $event.target)"
 						type="button"
 						title="Copy to Clipboard"
 					>

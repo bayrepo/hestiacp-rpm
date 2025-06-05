@@ -2,8 +2,8 @@
 %global _prefix         /usr/local/hestia/php
 
 Name:           hestia-php
-Version:        8.2.23
-Release:        2%{dist}
+Version:        8.2.28
+Release:        1%{dist}
 Summary:        Hestia internal PHP
 Group:          System Environment/Base
 URL:            https://www.hestiacp.com
@@ -103,6 +103,9 @@ cp %{SOURCE3} %{buildroot}/usr/local/hestia/php/lib/
 %{_unitdir}/hestia-php.service
 
 %changelog
+* Tue Jun 3 2025 Alexey Berezhok <a@bayrepo.ru> - 8.2.28-1
+- Update PHP version up to 8.2.28
+
 * Sat Jul 22 2023 Raven <raven@sysadmins.ws> - 8.2.8-1
 - update PHP version to 8.2.8
 

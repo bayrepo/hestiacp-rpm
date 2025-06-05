@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 - Added support installation of alternative php not only remi
 - Fixed separate edition of php.ini in multiphp mode
+- Added usemirrorclamav for install script for uieng Russian mirror for Clamav databases
+- Added devel mode of installation for installing not from github by default. With this parameter installation will be from devel repo dev.brepo.ru
 
 ## [1.9.4.rpm] - Release
 

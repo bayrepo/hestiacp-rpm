@@ -136,6 +136,14 @@ export const options = [
 		desc: 'Сканировать почту на вирусы.',
 		selected: true,
 		depends: 'exim',
+	},	
+	{
+		name: ' --usemirrorclamav',
+		id: 'usemirrorclamav',
+		param: '--usemirrorclamav',
+		desc: 'Использовать русское зеркало баз данных ClamaV',
+		selected: false,
+		depends: 'clamav',
 	},
 	{
 		name: ' --spamassassin',
