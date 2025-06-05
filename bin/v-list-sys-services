@@ -34,7 +34,8 @@ json_list() {
         "STATE": "'$STATE'",
         "CPU": "'$CPU'",
         "MEM": "'$MEM'",
-        "RTIME": "'$RTIME'"
+        "RTIME": "'$RTIME'",
+        "PMEM": "'$PHM'"
     }'
 		if [ "$i" -lt "$objects" ]; then
 			echo ','
@@ -49,11 +50,11 @@ json_list() {
 # SHELL list function
 shell_list() {
 	IFS=$'\n'
-	echo "NAME   STATE   CPU   MEM   UPTIME"
-	echo "----   -----   ---   ---   ------"
+	echo "NAME   STATE   CPU   MEM   UPTIME   PMEM"
+	echo "----   -----   ---   ---   ------   ----"
 	while read str; do
 		parse_object_kv_list "$str"
-		echo "$NAME $STATE $CPU $MEM $RTIME"
+		echo "$NAME $STATE $CPU $MEM $RTIME $PHM"
 	done < <(echo -e "$data" | grep NAME)
 }
 
@@ -62,17 +63,17 @@ plain_list() {
 	IFS=$'\n'
 	while read str; do
 		parse_object_kv_list "$str"
-		echo -e "$NAME\t$SYSTEM\t$STATE\t$CPU\t$MEM\t$RTIME"
+		echo -e "$NAME\t$SYSTEM\t$STATE\t$CPU\t$MEM\t$RTIME\t$PHM"
 	done < <(echo -e "$data" | grep NAME)
 }
 
 # CSV list function
 csv_list() {
 	IFS=$'\n'
-	echo "NAME,SYSTEM,STATE,CPU,MEM,RTIME"
+	echo "NAME,SYSTEM,STATE,CPU,MEM,RTIME,PMEM"
 	while read str; do
 		parse_object_kv_list "$str"
-		echo "$NAME,\"$SYSTEM\",$STATE,$CPU,$MEM,$RTIME"
+		echo "$NAME,\"$SYSTEM\",$STATE,$CPU,$MEM,$RTIME,$PHM"
 	done < <(echo -e "$data" | grep NAME)
 }
 
@@ -84,6 +85,7 @@ get_srv_state() {
 	mem=0
 	cpu=0
 	rtime="0"
+	pmem=0
 
 	# Searching related pids
 	if [ "$name" = "php-fpm" ]; then
@@ -91,7 +93,11 @@ get_srv_state() {
 		for php_pid in $(pidof php-fpm); do
 			process_info=$(ps -p "$php_pid" -o args | tail -n1 | grep "$srv")
 			if [ -n "$process_info" ]; then
-				pids="${pids}|${php_pid}"
+				if [ -z "$pids" ];then
+					pids="${php_pid}"
+				else
+					pids="${pids}|${php_pid}"
+				fi
 			fi
 		done
 	else
@@ -123,6 +129,9 @@ get_srv_state() {
 		mem=$(echo "$pids" | awk '{sum += $3} END {print sum/1024 }')
 		mem=$(echo "${mem%%.*}")
 
+		pmem=$(echo "$pids" | awk '{sum += $4} END {print sum/1024 }')
+		pmem=$(echo "${pmem%%.*}")
+
 		# Searching pid file
 		pid_file=''
 		if [ -e "/run/$srv.pid" ]; then
@@ -151,6 +160,7 @@ get_srv_state() {
 		mem=0
 		cpu=0
 		rtime="0"
+		pmem=0
 	fi
 }
 
@@ -160,7 +170,7 @@ get_srv_state() {
 
 # Saving current proccess list
 tmp_file=$(mktemp)
-ps -eo pid,pcpu,size > $tmp_file
+ps -eo pid,pcpu,size,rss > $tmp_file
 
 # Checking current time
 ctime=$(date +%s)
@@ -169,7 +179,7 @@ ctime=$(date +%s)
 if [ -n "$WEB_SYSTEM" ] && [ "$WEB_SYSTEM" != 'remote' ]; then
 	get_srv_state $WEB_SYSTEM
 	data="NAME='$WEB_SYSTEM' SYSTEM='web server' STATE='$state' CPU='$cpu'"
-	data="$data MEM='$mem' RTIME='$rtime'"
+	data="$data MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # Checking PHP intepreter
@@ -179,18 +189,18 @@ if [ -n "$WEB_BACKEND" ] && [ "$WEB_BACKEND" != 'remote' ]; then
 		for version in $php_versions; do
 			proc_name="php-fpm"
 			service_name="fpm${version}"
-			get_srv_state "$proc_name"
+			get_srv_state "/opt/brepo/php${version}" "$proc_name"
 			data="$data\nNAME='brepo-php-$service_name' SYSTEM='php interpreter' STATE='$state'"
-			data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+			data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 		done
 	else
 		php_versions=$(ls /opt/remi/php*/root/sbin/php-fpm | cut -d'/' -f4 | sed 's|php||')
 		for version in $php_versions; do
 			proc_name="php-fpm"
 			service_name="php${version}"
-			get_srv_state "$proc_name"
+			get_srv_state "/opt/remi/php${version}" "$proc_name"
 			data="$data\nNAME='$service_name-php-fpm' SYSTEM='php interpreter' STATE='$state'"
-			data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+			data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 		done
 	fi
 fi
@@ -199,7 +209,7 @@ fi
 if [ -n "$PROXY_SYSTEM" ] && [ "$PROXY_SYSTEM" != 'remote' ]; then
 	get_srv_state "$PROXY_SYSTEM"
 	data="$data\nNAME='$PROXY_SYSTEM' SYSTEM='reverse proxy' STATE='$state'"
-	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # DNS
@@ -208,21 +218,21 @@ if [ -n "$service" ] && [ "$service" != 'remote' ]; then
 	proc_name='named'
 	get_srv_state $service $proc_name
 	data="$data\nNAME='$service' SYSTEM='dns server' STATE='$state'"
-	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # Checking MAIL system
 if [ -n "$MAIL_SYSTEM" ] && [ "$MAIL_SYSTEM" != 'remote' ]; then
 	get_srv_state "$MAIL_SYSTEM"
 	data="$data\nNAME='$MAIL_SYSTEM' SYSTEM='mail server' STATE='$state'"
-	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # Checking MAIL IMAP
 if [ -n "$IMAP_SYSTEM" ] && [ "$IMAP_SYSTEM" != 'remote' ]; then
 	get_srv_state "$IMAP_SYSTEM"
 	data="$data\nNAME='$IMAP_SYSTEM' SYSTEM='imap/pop3 server' STATE='$state'"
-	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # Checking MAIL ANTIVIRUS
@@ -244,7 +254,7 @@ if [ -n "$ANTIVIRUS_SYSTEM" ] && [ "$ANTIVIRUS_SYSTEM" != 'remote' ]; then
 		get_srv_state "$ANTIVIRUS_SYSTEM" "$proc_name"
 	fi
 	data="$data\nNAME='$ANTIVIRUS_SYSTEM' SYSTEM='email anti-virus'"
-	data="$data STATE='$state' CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data STATE='$state' CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 	proc_name=''
 fi
 
@@ -252,7 +262,7 @@ fi
 if [ -n "$ANTISPAM_SYSTEM" ] && [ "$ANTISPAM_SYSTEM" != 'remote' ]; then
 	get_srv_state "$ANTISPAM_SYSTEM" "spamd"
 	data="$data\nNAME='$ANTISPAM_SYSTEM' SYSTEM='email spam filter'"
-	data="$data STATE='$state' CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data STATE='$state' CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # Checking DB system
@@ -299,7 +309,7 @@ if [ -n "$DB_SYSTEM" ] && [ "$DB_SYSTEM" != 'remote' ]; then
 		fi
 		get_srv_state "$service" "$proc_name"
 		data="$data\nNAME='$service' SYSTEM='database server' STATE='$state'"
-		data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+		data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 		proc_name=''
 	done
 fi
@@ -308,21 +318,21 @@ fi
 if [ -n "$FTP_SYSTEM" ] && [ "$FTP_SYSTEM" != 'remote' ]; then
 	get_srv_state "$FTP_SYSTEM"
 	data="$data\nNAME='$FTP_SYSTEM' SYSTEM='ftp server' STATE='$state'"
-	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # Checking CRON system
 if [ -n "$CRON_SYSTEM" ] && [ "$CRON_SYSTEM" != 'remote' ]; then
 	get_srv_state "$CRON_SYSTEM"
 	data="$data\nNAME='$CRON_SYSTEM' SYSTEM='job scheduler' STATE='$state'"
-	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # Checking SSH daemon
 if [ -e "/etc/ssh/sshd_config" ]; then
 	get_srv_state ssh
 	data="$data\nNAME='ssh' SYSTEM='ssh server' STATE='$state'"
-	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # Checking FIREWALL system
@@ -339,7 +349,7 @@ if [ -n "$FIREWALL_SYSTEM" ] && [ "$FIREWALL_SYSTEM" != 'remote' ]; then
 		fi
 	fi
 	data="$data\nNAME='$FIREWALL_SYSTEM' SYSTEM='firewall'"
-	data="$data STATE='$state' CPU='0' MEM='0' RTIME='0'"
+	data="$data STATE='$state' CPU='0' MEM='0' RTIME='0' PHM='0'"
 fi
 
 # Checking FIREWALL Fail2ban extention
@@ -354,7 +364,7 @@ if [ -n "$FIREWALL_EXTENSION" ]; then
 		get_srv_state "$FIREWALL_EXTENSION" fail2ban-server script
 	fi
 	data="$data\nNAME='$FIREWALL_EXTENSION' SYSTEM='brute-force protection'"
-	data="$data STATE='$state' CPU='$cpu' MEM='$mem' RTIME='$rtime'"
+	data="$data STATE='$state' CPU='$cpu' MEM='$mem' RTIME='$rtime' PHM='$pmem'"
 fi
 
 # Listing data

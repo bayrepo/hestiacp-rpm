@@ -1,8 +1,10 @@
-commit 9eea39db23ebd10eb8c171f64c233038bb4ecfe9 (HEAD -> master, origin/master, origin/devel, origin/HEAD, devel)
-Author: <a@bayrepo.ru>
-Date:   Sun Apr 27 23:32:25 2025 +0300
+commit cc59572a595833dfca246c24683f092e7a65462d
+Author: alexey
+Date:   Thu Jun 5 23:14:09 2025 +0300
 
-    Force fix
+    Added fix for memory calculation
+
+
 
 
 

@@ -3,7 +3,7 @@
 
 Name:              hestia
 Version:           1.9.5
-Release:           3%{dist}
+Release:           4%{dist}
 Summary:           Hestia Control Panel
 Group:             System Environment/Base
 License:           GPLv3
@@ -184,6 +184,9 @@ fi
 %{_tmpfilesdir}/%{name}.conf
 
 %changelog
+* Thu Jun 05 2025 Alexey Berezhok <a@bayrepo.ru> - 1.9.5-4
+- Fixed memory calculation in service list
+
 * Sun Jun 01 2025 Alexey Berezhok <a@bayrepo.ru> - 1.9.5-3
 - Added documentation fixes
 - Change download path to github

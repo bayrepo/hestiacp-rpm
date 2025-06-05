@@ -104,7 +104,7 @@
 			<div class="units-table-cell"><?= _("Description") ?></div>
 			<div class="units-table-cell u-text-center"><?= _("Uptime") ?></div>
 			<div class="units-table-cell u-text-center"><?= _("CPU") ?></div>
-			<div class="units-table-cell u-text-center"><?= _("Memory") ?></div>
+			<div class="units-table-cell u-text-center"><?= _("Memory(Physical memory)") ?></div>
 		</div>
 
 		<!-- Begin services status list item loop -->
@@ -219,7 +219,7 @@
 				</div>
 				<div class="units-table-cell u-text-bold u-text-center-desktop">
 					<span class="u-hide-desktop"><?= _("Memory") ?>:</span>
-					<?= $data[$key]["MEM"] ?> <?= _("MB") ?>
+					<?= $data[$key]["MEM"] ?> <?= _("MB") ?> (<?= $data[$key]["PMEM"] ?> <?= _("MB") ?>)
 				</div>
 			</div>
 		<?php } ?>

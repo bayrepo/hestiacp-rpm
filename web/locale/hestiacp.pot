@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-02 21:50+0300\n"
+"POT-Creation-Date: 2025-06-05 22:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -921,7 +921,6 @@ msgstr ""
 #: ../../web/edit/server/exim4/index.php:44
 #: ../../web/edit/server/fail2ban/index.php:44
 #: ../../web/edit/server/httpd/index.php:44
-#: ../../web/edit/server/index.php:1748 ../../web/edit/server/index.php:1752
 #: ../../web/edit/server/mariadb/index.php:44
 #: ../../web/edit/server/mysql/index.php:44
 #: ../../web/edit/server/mysqld/index.php:44
@@ -935,8 +934,9 @@ msgstr ""
 #: ../../web/edit/server/spamassassin/index.php:44
 #: ../../web/edit/server/spamd/index.php:44
 #: ../../web/edit/server/ssh/index.php:44
-#: ../../web/edit/server/vsftpd/index.php:44 ../../web/edit/user/index.php:558
-#: ../../web/edit/web/index.php:1689
+#: ../../web/edit/server/vsftpd/index.php:44
+#: ../../web/edit/server/index.php:1748 ../../web/edit/server/index.php:1752
+#: ../../web/edit/user/index.php:558 ../../web/edit/web/index.php:1689
 msgid "Changes have been saved."
 msgstr ""
 
@@ -4349,10 +4349,10 @@ msgstr ""
 
 #: ../../web/templates/pages/list_updates.php:34
 #: ../../web/templates/pages/list_updates.php:58
-#: ../../web/templates/pages/list_services.php:104
-#: ../../web/templates/pages/list_services.php:209
 #: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:39
 #: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:69
+#: ../../web/templates/pages/list_services.php:104
+#: ../../web/templates/pages/list_services.php:209
 msgid "Description"
 msgstr ""
 
@@ -4756,6 +4756,40 @@ msgstr ""
 msgid "Ruby available list"
 msgstr ""
 
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:27
+msgid "Available PHP list"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:31
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:40
+msgid "PHP version"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:45
+msgid "Change modules list"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:46
+msgid "Change modules list for PHP"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:59
+msgid "PHP modules tunning"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:32
+msgid "Available modules list for version PHP"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:38
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:47
+msgid "PHP module name"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:82
+msgid "PHP modules list"
+msgstr ""
+
 #: ../../web/templates/pages/list_services.php:9
 msgid "Task Monitor"
 msgstr ""
@@ -4808,8 +4842,7 @@ msgid "Service"
 msgstr ""
 
 #: ../../web/templates/pages/list_services.php:107
-#: ../../web/templates/pages/list_services.php:221
-msgid "Memory"
+msgid "Memory(Physical memory)"
 msgstr ""
 
 #: ../../web/templates/pages/list_services.php:200
@@ -4822,42 +4855,12 @@ msgstr ""
 msgid "Are you sure you want to start service %s?"
 msgstr ""
 
+#: ../../web/templates/pages/list_services.php:221
+msgid "Memory"
+msgstr ""
+
 #: ../../web/templates/pages/list_services.php:222
 msgid "MB"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:27
-msgid "Available PHP list"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:31
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:40
-msgid "PHP version"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:45
-msgid "Change modules list"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:46
-msgid "Change modules list for PHP"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:59
-msgid "PHP modules tunning"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:32
-msgid "Available modules list for version PHP"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:38
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:47
-msgid "PHP module name"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:82
-msgid "PHP modules list"
 msgstr ""
 
 #: ../../web/update/hestia/index.php:20
@@ -4877,59 +4880,59 @@ msgstr ""
 msgid "Hestia internal web server"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:171
+#: ../../bin/v-list-sys-services:181
 msgid "web server"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:183
-192
+#: ../../bin/v-list-sys-services:193
+202
 msgid "php interpreter"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:201
+#: ../../bin/v-list-sys-services:211
 msgid "reverse proxy"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:210
+#: ../../bin/v-list-sys-services:220
 msgid "dns server"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:217
+#: ../../bin/v-list-sys-services:227
 msgid "mail server"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:224
+#: ../../bin/v-list-sys-services:234
 msgid "imap/pop3 server"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:246
+#: ../../bin/v-list-sys-services:256
 msgid "email anti-virus"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:254
+#: ../../bin/v-list-sys-services:264
 msgid "email spam filter"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:301
+#: ../../bin/v-list-sys-services:311
 msgid "database server"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:310
+#: ../../bin/v-list-sys-services:320
 msgid "ftp server"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:317
+#: ../../bin/v-list-sys-services:327
 msgid "job scheduler"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:324
+#: ../../bin/v-list-sys-services:334
 msgid "ssh server"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:341
+#: ../../bin/v-list-sys-services:351
 msgid "firewall"
 msgstr ""
 
-#: ../../bin/v-list-sys-services:356
+#: ../../bin/v-list-sys-services:366
 msgid "brute-force protection"
 msgstr ""
