@@ -128,6 +128,12 @@ if ($passenger_state == "enabled") {
 				</div>
 			</div>
 			<div class="form-check u-mb10">
+				<input class="form-check-input" type="checkbox" name="v-default-domain" id="v-default-domain" <?php if ($v_is_default == true) echo 'checked'; ?>>
+				<label for="v-default-domain">
+					<?= _("Set this domain as default for server") ?>
+				</label>
+			</div>
+			<div class="form-check u-mb10">
 				<input x-model="redirectEnabled" class="form-check-input" type="checkbox" name="v-redirect-checkbox" id="v-redirect-checkbox">
 				<label for="v-redirect-checkbox">
 					<?= _("Enable domain redirection") ?>

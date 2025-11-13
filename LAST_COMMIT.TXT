@@ -1,8 +1,8 @@
-commit cc59572a595833dfca246c24683f092e7a65462d
-Author: alexey
-Date:   Thu Jun 5 23:14:09 2025 +0300
+commit bb547d1d9a5c95a135606dfb5ea12aacad846f59
+Author: Alexey Berezhok <a@bayrepo.ru>
+Date:   Tue Nov 11 23:46:20 2025 +0300
 
-    Added fix for memory calculation
+    Added local path of phpmyadmin
 
 
 

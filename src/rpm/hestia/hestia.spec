@@ -2,8 +2,8 @@
 %global _hardened_build 1
 
 Name:              hestia
-Version:           1.9.5
-Release:           4%{dist}
+Version:           1.9.6
+Release:           1%{dist}
 Summary:           Hestia Control Panel
 Group:             System Environment/Base
 License:           GPLv3
@@ -184,6 +184,9 @@ fi
 %{_tmpfilesdir}/%{name}.conf
 
 %changelog
+* Thu Oct 09 2025 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-1
+- Fix error on all web and mail domains after Apache 2.4.64 update
+
 * Thu Jun 05 2025 Alexey Berezhok <a@bayrepo.ru> - 1.9.5-4
 - Fixed memory calculation in service list
 

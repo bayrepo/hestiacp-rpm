@@ -38,7 +38,7 @@ HESTIA_COMMON_DIR="$HESTIA/install/common"
 VERBOSE='no'
 
 # Define software versions
-HESTIA_INSTALL_VER='1.9.5.rpm-alpha'
+HESTIA_INSTALL_VER='1.9.6.rpm-alpha'
 
 # Dependencies
 mariadb_v="10.11"
@@ -164,7 +164,9 @@ set_default_port() {
 write_config_value() {
 	local key="$1"
 	local value="$2"
-	echo "$key='$value'" >> $HESTIA/conf/hestia.conf
+	if [ -e $HESTIA/conf/hestia.conf ]; then
+		echo "$key='$value'" >> $HESTIA/conf/hestia.conf
+	fi
 }
 
 # Sort configuration file values
@@ -1664,7 +1666,7 @@ if [ "$mysql" = 'yes' ] || [ "$mysql8" = 'yes' ]; then
 	echo "[ * ] Installing phpMyAdmin version v$pma_v..."
 
 	# Download latest phpmyadmin release
-	wget --quiet --retry-connrefused https://files.phpmyadmin.net/phpMyAdmin/$pma_v/phpMyAdmin-$pma_v-all-languages.tar.gz
+	wget --quiet --retry-connrefused https://data.brepo.ru/hestiacp/phpMyAdmin/$pma_v/phpMyAdmin-$pma_v-all-languages.zip
 
 	# Unpack files
 	tar xzf phpMyAdmin-$pma_v-all-languages.tar.gz

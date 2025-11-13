@@ -32,9 +32,9 @@ msgstr "Права доступа"
 #: ../../web/add/mail/index.php:233 ../../web/add/package/index.php:103
 #: ../../web/add/user/index.php:45 ../../web/add/web/index.php:31
 #: ../../web/edit/firewall/index.php:89 ../../web/edit/mail/index.php:598
-#: ../../web/edit/package/index.php:213 ../../web/edit/web/index.php:949
-#: ../../web/edit/web/index.php:1170 ../../web/edit/web/index.php:1210
-#: ../../web/edit/web/index.php:1272 ../../web/edit/web/index.php:1426
+#: ../../web/edit/package/index.php:213 ../../web/edit/web/index.php:959
+#: ../../web/edit/web/index.php:1180 ../../web/edit/web/index.php:1220
+#: ../../web/edit/web/index.php:1282 ../../web/edit/web/index.php:1436
 #: ../../web/generate/ssl/index.php:69
 #, php-format
 msgid "Field \"%s\" can not be blank."
@@ -116,8 +116,8 @@ msgid "Database"
 msgstr "База данных"
 
 #: ../../web/add/db/index.php:20 ../../web/add/user/index.php:23
-#: ../../web/edit/web/index.php:1160 ../../web/edit/web/index.php:1200
-#: ../../web/edit/web/index.php:1416 ../../web/templates/pages/add_db.php:71
+#: ../../web/edit/web/index.php:1170 ../../web/edit/web/index.php:1210
+#: ../../web/edit/web/index.php:1426 ../../web/templates/pages/add_db.php:71
 #: ../../web/templates/pages/add_mail.php:113
 #: ../../web/templates/pages/add_mail_acc.php:123
 #: ../../web/templates/pages/add_user.php:35
@@ -127,6 +127,9 @@ msgstr "База данных"
 #: ../../web/templates/pages/edit_server.php:470
 #: ../../web/templates/pages/edit_server.php:817
 #: ../../web/templates/pages/edit_user.php:64
+#: ../../web/templates/pages/edit_web.php:114
+#: ../../web/templates/pages/edit_web.php:435
+#: ../../web/templates/pages/edit_web.php:542
 #: ../../web/templates/pages/list_db.php:65
 #: ../../web/templates/pages/list_db.php:113
 #: ../../web/templates/pages/list_db.php:247
@@ -134,9 +137,6 @@ msgstr "База данных"
 #: ../../web/templates/pages/login/login_a.php:14
 #: ../../web/templates/pages/login/reset2fa.php:27
 #: ../../web/templates/pages/login/reset_1.php:14
-#: ../../web/templates/pages/edit_web.php:114
-#: ../../web/templates/pages/edit_web.php:429
-#: ../../web/templates/pages/edit_web.php:536
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -154,11 +154,11 @@ msgstr "Имя пользователя"
 #: ../../web/templates/pages/edit_server.php:577
 #: ../../web/templates/pages/edit_server.php:829
 #: ../../web/templates/pages/edit_user.php:84
+#: ../../web/templates/pages/edit_web.php:119
+#: ../../web/templates/pages/edit_web.php:444
+#: ../../web/templates/pages/edit_web.php:550
 #: ../../web/templates/pages/login/login_1.php:12
 #: ../../web/templates/pages/login/login_a.php:19
-#: ../../web/templates/pages/edit_web.php:119
-#: ../../web/templates/pages/edit_web.php:438
-#: ../../web/templates/pages/edit_web.php:544
 msgid "Password"
 msgstr "Пароль"
 
@@ -219,7 +219,7 @@ msgstr "Кодировка"
 
 #: ../../web/add/db/index.php:48 ../../web/add/mail/index.php:239
 #: ../../web/add/user/index.php:50 ../../web/edit/mail/index.php:748
-#: ../../web/edit/user/index.php:411 ../../web/edit/web/index.php:1259
+#: ../../web/edit/user/index.php:411 ../../web/edit/web/index.php:1269
 msgid "Please enter a valid email address."
 msgstr "Пожалуйста, введите правильный адрес электронной почты."
 
@@ -265,8 +265,8 @@ msgstr "База данных {%s} успешно создана. / {Откры�
 #: ../../web/templates/pages/edit_dns.php:28
 #: ../../web/templates/pages/edit_dns_rec.php:28
 #: ../../web/templates/pages/edit_mail.php:38
-#: ../../web/templates/pages/generate_ssl.php:18
 #: ../../web/templates/pages/edit_web.php:59
+#: ../../web/templates/pages/generate_ssl.php:18
 msgid "Domain"
 msgstr "Домен"
 
@@ -279,6 +279,7 @@ msgstr "Домен"
 #: ../../web/templates/pages/add_web.php:47
 #: ../../web/templates/pages/edit_dns.php:33
 #: ../../web/templates/pages/edit_ip.php:35
+#: ../../web/templates/pages/edit_web.php:76
 #: ../../web/templates/pages/list_dns.php:28
 #: ../../web/templates/pages/list_firewall.php:39
 #: ../../web/templates/pages/list_firewall.php:75
@@ -293,7 +294,6 @@ msgstr "Домен"
 #: ../../web/templates/pages/list_web.php:34
 #: ../../web/templates/pages/list_web.php:80
 #: ../../web/templates/pages/list_web.php:311
-#: ../../web/templates/pages/edit_web.php:76
 msgid "IP Address"
 msgstr "IP адрес"
 
@@ -350,12 +350,12 @@ msgstr "IP-адрес успешно заблокирован."
 #: ../../web/add/firewall/index.php:42 ../../web/edit/firewall/index.php:70
 #: ../../web/templates/pages/add_firewall.php:28
 #: ../../web/templates/pages/edit_firewall.php:28
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:32
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:44
 #: ../../web/templates/pages/list_firewall.php:25
 #: ../../web/templates/pages/list_firewall.php:30
 #: ../../web/templates/pages/list_firewall.php:70
 #: ../../web/templates/pages/list_firewall.php:111
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:32
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:44
 msgid "Action"
 msgstr "Реакция"
 
@@ -570,21 +570,21 @@ msgstr "Пакет"
 #: ../../web/add/package/index.php:26 ../../web/edit/package/index.php:140
 #: ../../web/templates/pages/add_package.php:98
 #: ../../web/templates/pages/edit_package.php:100
-#: ../../web/templates/pages/edit_web.php:273
+#: ../../web/templates/pages/edit_web.php:279
 msgid "Web Template"
 msgstr "Веб-шаблон"
 
 #: ../../web/add/package/index.php:30 ../../web/edit/package/index.php:144
 #: ../../web/templates/pages/add_package.php:115
 #: ../../web/templates/pages/edit_package.php:117
-#: ../../web/templates/pages/edit_web.php:310
+#: ../../web/templates/pages/edit_web.php:316
 msgid "Backend Template"
 msgstr "Шаблон панели управления"
 
 #: ../../web/add/package/index.php:38 ../../web/edit/package/index.php:149
 #: ../../web/templates/pages/add_package.php:134
 #: ../../web/templates/pages/edit_package.php:135
-#: ../../web/templates/pages/edit_web.php:340
+#: ../../web/templates/pages/edit_web.php:346
 msgid "Proxy Template"
 msgstr "Шаблон прокси"
 
@@ -922,6 +922,7 @@ msgstr "Загрузка файла удаленного резервного к
 #: ../../web/edit/server/exim4/index.php:44
 #: ../../web/edit/server/fail2ban/index.php:44
 #: ../../web/edit/server/httpd/index.php:44
+#: ../../web/edit/server/index.php:1748 ../../web/edit/server/index.php:1752
 #: ../../web/edit/server/mariadb/index.php:44
 #: ../../web/edit/server/mysql/index.php:44
 #: ../../web/edit/server/mysqld/index.php:44
@@ -935,9 +936,8 @@ msgstr "Загрузка файла удаленного резервного к
 #: ../../web/edit/server/spamassassin/index.php:44
 #: ../../web/edit/server/spamd/index.php:44
 #: ../../web/edit/server/ssh/index.php:44
-#: ../../web/edit/server/vsftpd/index.php:44
-#: ../../web/edit/server/index.php:1748 ../../web/edit/server/index.php:1752
-#: ../../web/edit/user/index.php:558 ../../web/edit/web/index.php:1689
+#: ../../web/edit/server/vsftpd/index.php:44 ../../web/edit/user/index.php:558
+#: ../../web/edit/web/index.php:1733
 msgid "Changes have been saved."
 msgstr "Изменения были сохранены."
 
@@ -958,7 +958,7 @@ msgstr "Тайм-аут неактивного сеанса не может бы
 msgid "Please enter a valid contact name."
 msgstr "Пожалуйста, введите правильные контактные данные."
 
-#: ../../web/edit/web/index.php:1331 ../../web/edit/web/index.php:1479
+#: ../../web/edit/web/index.php:1341 ../../web/edit/web/index.php:1489
 msgid ""
 "FTP account has been created and ready to use.\n"
 "\n"
@@ -972,7 +972,7 @@ msgid ""
 "{{appname}}"
 msgstr ""
 
-#: ../../web/edit/web/index.php:1348 ../../web/edit/web/index.php:1496
+#: ../../web/edit/web/index.php:1358 ../../web/edit/web/index.php:1506
 #, php-format
 msgid "FTP Account Credentials: %s"
 msgstr "Данные учётной записи FTP: %s"
@@ -1401,10 +1401,10 @@ msgstr "Домены"
 #: ../../web/templates/includes/panel.php:294
 #: ../../web/templates/pages/add_mail_acc.php:82
 #: ../../web/templates/pages/edit_mail_acc.php:82
+#: ../../web/templates/pages/edit_web.php:64
 #: ../../web/templates/pages/generate_ssl.php:22
 #: ../../web/templates/pages/list_mail_acc.php:89
 #: ../../web/templates/pages/list_mail_acc.php:268
-#: ../../web/templates/pages/edit_web.php:64
 msgid "Aliases"
 msgstr "Алиасы"
 
@@ -1515,7 +1515,12 @@ msgstr "РЕЗЕРВНОЕ КОПИРОВАНИЕ"
 #: ../../web/templates/pages/edit_server_php.php:6
 #: ../../web/templates/pages/edit_server_service.php:6
 #: ../../web/templates/pages/edit_user.php:6
+#: ../../web/templates/pages/edit_web.php:6
 #: ../../web/templates/pages/edit_whitelabel.php:6
+#: ../../web/templates/pages/extmodules.php:6
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:6
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:6
+#: ../../web/templates/pages/extmodules_passenger_manager.php:6
 #: ../../web/templates/pages/list_access_key.php:16
 #: ../../web/templates/pages/list_access_keys.php:7
 #: ../../web/templates/pages/list_access_keys.php:11
@@ -1553,11 +1558,6 @@ msgstr "РЕЗЕРВНОЕ КОПИРОВАНИЕ"
 #: ../../web/templates/pages/login/reset_2.php:27
 #: ../../web/templates/pages/login/reset_3.php:29
 #: ../../web/templates/pages/setup_webapp.php:6
-#: ../../web/templates/pages/edit_web.php:6
-#: ../../web/templates/pages/extmodules.php:6
-#: ../../web/templates/pages/extmodules_passenger_manager.php:6
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:6
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:6
 msgid "Back"
 msgstr "Назад"
 
@@ -1596,11 +1596,11 @@ msgstr "Назад"
 #: ../../web/templates/pages/edit_server_php.php:11
 #: ../../web/templates/pages/edit_server_service.php:11
 #: ../../web/templates/pages/edit_user.php:37
-#: ../../web/templates/pages/edit_whitelabel.php:11
-#: ../../web/templates/pages/setup_webapp.php:11
 #: ../../web/templates/pages/edit_web.php:19
-#: ../../web/templates/pages/extmodules_passenger_manager.php:11
+#: ../../web/templates/pages/edit_whitelabel.php:11
 #: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:11
+#: ../../web/templates/pages/extmodules_passenger_manager.php:11
+#: ../../web/templates/pages/setup_webapp.php:11
 msgid "Save"
 msgstr "Сохранить"
 
@@ -1636,9 +1636,9 @@ msgstr "Коментарий"
 #: ../../web/templates/pages/edit_ip.php:69
 #: ../../web/templates/pages/edit_ip.php:75
 #: ../../web/templates/pages/edit_mail.php:132
+#: ../../web/templates/pages/edit_web.php:221
+#: ../../web/templates/pages/edit_web.php:404
 #: ../../web/templates/pages/generate_ssl.php:28
-#: ../../web/templates/pages/edit_web.php:215
-#: ../../web/templates/pages/edit_web.php:398
 msgid "Optional"
 msgstr "Опционально"
 
@@ -1724,11 +1724,11 @@ msgstr "Каждые %s минут"
 #: ../../web/templates/pages/edit_db.php:43
 #: ../../web/templates/pages/edit_mail_acc.php:46
 #: ../../web/templates/pages/edit_user.php:85
+#: ../../web/templates/pages/edit_web.php:120
+#: ../../web/templates/pages/edit_web.php:445
+#: ../../web/templates/pages/edit_web.php:551
 #: ../../web/templates/pages/generate_ssl.php:59
 #: ../../web/templates/pages/setup_webapp.php:63
-#: ../../web/templates/pages/edit_web.php:120
-#: ../../web/templates/pages/edit_web.php:439
-#: ../../web/templates/pages/edit_web.php:545
 msgid "Generate"
 msgstr "Создать"
 
@@ -2002,7 +2002,7 @@ msgstr "Отправить учетные данные для входа на а
 #: ../../web/templates/pages/edit_server_nginx.php:73
 #: ../../web/templates/pages/edit_server_php.php:58
 #: ../../web/templates/pages/edit_user.php:210
-#: ../../web/templates/pages/edit_web.php:266
+#: ../../web/templates/pages/edit_web.php:272
 msgid "Advanced Options"
 msgstr "Расширенные настройки"
 
@@ -2069,6 +2069,8 @@ msgstr "Серверы имен"
 #: ../../web/templates/pages/add_dns.php:140
 #: ../../web/templates/pages/add_dns.php:146
 #: ../../web/templates/pages/add_dns.php:152
+#: ../../web/templates/pages/edit_web.php:429
+#: ../../web/templates/pages/edit_web.php:536
 #: ../../web/templates/pages/list_access_keys.php:41
 #: ../../web/templates/pages/list_access_keys.php:101
 #: ../../web/templates/pages/list_access_keys.php:102
@@ -2136,8 +2138,6 @@ msgstr "Серверы имен"
 #: ../../web/templates/pages/list_web.php:299
 #: ../../web/templates/pages/list_web.php:300
 #: ../../web/templates/pages/list_web.php:304
-#: ../../web/templates/pages/edit_web.php:423
-#: ../../web/templates/pages/edit_web.php:530
 msgid "Delete"
 msgstr "Удалить"
 
@@ -2218,8 +2218,8 @@ msgid "SSH"
 msgstr "SSH"
 
 #: ../../web/templates/pages/add_firewall_banlist.php:38
-#: ../../web/templates/pages/edit_web.php:422
-#: ../../web/templates/pages/edit_web.php:529
+#: ../../web/templates/pages/edit_web.php:428
+#: ../../web/templates/pages/edit_web.php:535
 msgid "FTP"
 msgstr "FTP"
 
@@ -2708,12 +2708,12 @@ msgid "email / hour / account"
 msgstr "почта / час / учётная запись"
 
 #: ../../web/templates/pages/edit_mail.php:99
-#: ../../web/templates/pages/edit_web.php:176
+#: ../../web/templates/pages/edit_web.php:182
 msgid "Enable SSL for this domain"
 msgstr "Включить SSL для этого домена"
 
 #: ../../web/templates/pages/edit_mail.php:106
-#: ../../web/templates/pages/edit_web.php:183
+#: ../../web/templates/pages/edit_web.php:189
 msgid "Use Let's Encrypt to obtain SSL certificate"
 msgstr "Использовать Let’s Encrypt для получения SSL-сертификата"
 
@@ -2726,70 +2726,70 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:121
 #: ../../web/templates/pages/edit_server.php:930
+#: ../../web/templates/pages/edit_web.php:210
 #: ../../web/templates/pages/list_ssl.php:28
-#: ../../web/templates/pages/edit_web.php:204
 msgid "SSL Certificate"
 msgstr "SSL сертификат"
 
 #: ../../web/templates/pages/edit_mail.php:122
 #: ../../web/templates/pages/edit_server.php:938
+#: ../../web/templates/pages/edit_web.php:211
 #: ../../web/templates/pages/generate_ssl.php:16
 #: ../../web/templates/pages/list_ssl.php:16
-#: ../../web/templates/pages/edit_web.php:205
 msgid "Generate Self-Signed SSL Certificate"
 msgstr "Создать самозаверяющий SSL-сертификат"
 
 #: ../../web/templates/pages/edit_mail.php:127
 #: ../../web/templates/pages/edit_server.php:950
+#: ../../web/templates/pages/edit_web.php:216
 #: ../../web/templates/pages/list_ssl.php:55
-#: ../../web/templates/pages/edit_web.php:210
 msgid "SSL Private Key"
 msgstr "Закрытый ключ SSL"
 
 #: ../../web/templates/pages/edit_mail.php:132
-#: ../../web/templates/pages/edit_web.php:215
+#: ../../web/templates/pages/edit_web.php:221
 msgid "SSL Certificate Authority / Intermediate"
 msgstr "Центр сертификации SSL / Промежуточный"
 
 #: ../../web/templates/pages/edit_mail.php:140
 #: ../../web/templates/pages/edit_server.php:960
-#: ../../web/templates/pages/edit_web.php:223
+#: ../../web/templates/pages/edit_web.php:229
 msgid "Issued To"
 msgstr "Адресован к"
 
 #: ../../web/templates/pages/edit_mail.php:145
 #: ../../web/templates/pages/edit_server.php:965
-#: ../../web/templates/pages/edit_web.php:228
+#: ../../web/templates/pages/edit_web.php:234
 msgid "Alternate"
 msgstr "Альтернативный"
 
 #: ../../web/templates/pages/edit_mail.php:150
 #: ../../web/templates/pages/edit_server.php:970
-#: ../../web/templates/pages/edit_web.php:233
+#: ../../web/templates/pages/edit_web.php:239
 msgid "Not Before"
 msgstr "действителен от"
 
 #: ../../web/templates/pages/edit_mail.php:154
 #: ../../web/templates/pages/edit_server.php:974
-#: ../../web/templates/pages/edit_web.php:237
+#: ../../web/templates/pages/edit_web.php:243
 msgid "Not After"
 msgstr "действителен до"
 
 #: ../../web/templates/pages/edit_mail.php:158
 #: ../../web/templates/pages/edit_server.php:978
-#: ../../web/templates/pages/edit_web.php:241
+#: ../../web/templates/pages/edit_web.php:247
 msgid "Signature"
 msgstr "Сигнатура"
 
 #: ../../web/templates/pages/edit_mail.php:162
 #: ../../web/templates/pages/edit_server.php:982
-#: ../../web/templates/pages/edit_web.php:245
+#: ../../web/templates/pages/edit_web.php:251
 msgid "Key Size"
 msgstr "Размер ключа"
 
 #: ../../web/templates/pages/edit_mail.php:166
 #: ../../web/templates/pages/edit_server.php:986
-#: ../../web/templates/pages/edit_web.php:249
+#: ../../web/templates/pages/edit_web.php:255
 msgid "Issued By"
 msgstr "Издатель"
 
@@ -2878,8 +2878,8 @@ msgid "Enable debug mode"
 msgstr "Включить режим отладки"
 
 #: ../../web/templates/pages/edit_server.php:147
-#: ../../web/templates/pages/list_updates.php:29
 #: ../../web/templates/pages/list_services.php:12
+#: ../../web/templates/pages/list_updates.php:29
 msgid "Updates"
 msgstr "Обновления"
 
@@ -3048,7 +3048,7 @@ msgstr "только zstd "
 #: ../../web/templates/pages/edit_server.php:728
 #: ../../web/templates/pages/edit_server.php:843
 #: ../../web/templates/pages/edit_server.php:907
-#: ../../web/templates/pages/edit_web.php:398
+#: ../../web/templates/pages/edit_web.php:404
 msgid "Directory"
 msgstr "Каталог"
 
@@ -3281,7 +3281,7 @@ msgid "Use IP address allow list for login attempts"
 msgstr "Использовать список IP, разрешенных для входа"
 
 #: ../../web/templates/pages/edit_user.php:135
-#: ../../web/templates/pages/edit_web.php:301
+#: ../../web/templates/pages/edit_web.php:307
 msgid "For example"
 msgstr "Например"
 
@@ -3339,6 +3339,144 @@ msgstr "Версия PHP для CLI"
 msgid "Default Name Servers"
 msgstr "Серверы имен по умолчанию"
 
+#: ../../web/templates/pages/edit_web.php:11
+msgid "Purge NGINX Cache"
+msgstr "Очистить кэш памяти NGINX"
+
+#: ../../web/templates/pages/edit_web.php:15
+#: ../../web/templates/pages/list_webapps.php:16
+msgid "Quick Install App"
+msgstr "Быстрая установка приложения"
+
+#: ../../web/templates/pages/edit_web.php:56
+msgid "Edit Web Domain"
+msgstr "Изменить веб-домен"
+
+#: ../../web/templates/pages/edit_web.php:71
+msgid ""
+"If the aliases changes, Let's Encrypt will obtain a new SSL certificate."
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:88
+msgid "Web Statistics"
+msgstr "Веб-статистика"
+
+#: ../../web/templates/pages/edit_web.php:107
+msgid "Statistics Authorization"
+msgstr "Авторизация статистики"
+
+#: ../../web/templates/pages/edit_web.php:133
+msgid "Set this domain as default for server"
+msgstr "Установить текущий домен как домент по умолчанию при обращении к серверу по IP"
+
+#: ../../web/templates/pages/edit_web.php:139
+msgid "Enable domain redirection"
+msgstr "Включить переадресацию домена"
+
+#: ../../web/templates/pages/edit_web.php:146
+#: ../../web/templates/pages/edit_web.php:152
+#, php-format
+msgid "Redirect visitors to %s"
+msgstr "Перенаправлять посетителей на %s"
+
+#: ../../web/templates/pages/edit_web.php:158
+msgid "Redirect visitors to a custom domain or web address"
+msgstr "Перенаправить посетителей на пользовательский домен или веб-адрес"
+
+#: ../../web/templates/pages/edit_web.php:163
+msgid "Target domain or URL"
+msgstr "Целевой домен или URL"
+
+#: ../../web/templates/pages/edit_web.php:167
+msgid "Status code"
+msgstr "Статус-код"
+
+#: ../../web/templates/pages/edit_web.php:195
+msgid "Enable automatic HTTPS redirection"
+msgstr "Включить автоматическое перенаправление на HTTPS"
+
+#: ../../web/templates/pages/edit_web.php:201
+msgid "Enable HTTP Strict Transport Security (HSTS)"
+msgstr "Включить строгую транспортную безопасность HTTP (HSTS)"
+
+#: ../../web/templates/pages/edit_web.php:263
+msgid "Hide Certificate"
+msgstr "Скрыть сертификат"
+
+#: ../../web/templates/pages/edit_web.php:263
+#: ../../web/templates/pages/edit_web.php:264
+msgid "Show Certificate"
+msgstr "Показать сертификат"
+
+#: ../../web/templates/pages/edit_web.php:298
+msgid "Enable FastCGI cache"
+msgstr "Включить кеш FastCGI"
+
+#: ../../web/templates/pages/edit_web.php:307
+msgid "Cache Duration"
+msgstr "Время жизни кеша"
+
+#: ../../web/templates/pages/edit_web.php:340
+msgid "Proxy Support"
+msgstr "Поддержка Proxy"
+
+#: ../../web/templates/pages/edit_web.php:371
+msgid "Set port for internal service"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:377
+msgid "Proxy Extensions"
+msgstr "Расширения прокси"
+
+#: ../../web/templates/pages/edit_web.php:386
+msgid "Custom document root"
+msgstr "Пользовательский document root"
+
+#: ../../web/templates/pages/edit_web.php:391
+msgid "Point to"
+msgstr "Указывает на "
+
+#: ../../web/templates/pages/edit_web.php:414
+msgid "Additional FTP account(s)"
+msgstr "Дополнительные учетные записи FTP"
+
+#: ../../web/templates/pages/edit_web.php:436
+#: ../../web/templates/pages/edit_web.php:543
+#, php-format
+msgid "Prefix %s will be added to username automatically"
+msgstr "Префикс %s будет добавлен к имени пользователя автоматически"
+
+#: ../../web/templates/pages/edit_web.php:452
+#: ../../web/templates/pages/edit_web.php:558
+#: ../../web/templates/pages/extmodules_passenger_manager.php:43
+msgid "Path"
+msgstr "Путь"
+
+#: ../../web/templates/pages/edit_web.php:460
+#: ../../web/templates/pages/edit_web.php:564
+msgid "Send FTP credentials to email"
+msgstr "Отправить данные FTP аккаунта на эл. почту"
+
+#: ../../web/templates/pages/edit_web.php:469
+msgid "Add FTP account"
+msgstr "Добавить учетную запись FTP"
+
+#: ../../web/templates/pages/edit_web.php:478
+msgid "Passenger options"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:491
+msgid "Enable passenger for domain"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:496
+msgid "Set ruby path for domain"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:518
+msgid "Enable logging to browser for domain"
+msgstr ""
+
 #: ../../web/templates/pages/edit_whitelabel.php:33
 msgid "White Label Options"
 msgstr "Настройки \"Белой Этикетки\""
@@ -3392,6 +3530,130 @@ msgstr "Загрузить файлы на %s"
 #: ../../web/templates/pages/edit_whitelabel.php:141
 msgid "Update logo"
 msgstr "Обновить логотип"
+
+#: ../../web/templates/pages/extmodules.php:27
+msgid "List modules"
+msgstr "Список модулей"
+
+#: ../../web/templates/pages/extmodules.php:31
+#: ../../web/templates/pages/extmodules.php:62
+msgid "Module ID"
+msgstr "ID модуля"
+
+#: ../../web/templates/pages/extmodules.php:32
+#: ../../web/templates/pages/extmodules.php:66
+msgid "Module name"
+msgstr "Название модуля"
+
+#: ../../web/templates/pages/extmodules.php:34
+#: ../../web/templates/pages/extmodules.php:90
+msgid "Module description"
+msgstr "Описание модуля"
+
+#: ../../web/templates/pages/extmodules.php:35
+#: ../../web/templates/pages/extmodules.php:94
+msgid "Module state"
+msgstr "Состояние модуля"
+
+#: ../../web/templates/pages/extmodules.php:36
+#: ../../web/templates/pages/extmodules.php:98
+msgid "Requirements"
+msgstr "Зависимости"
+
+#: ../../web/templates/pages/extmodules.php:37
+#: ../../web/templates/pages/extmodules.php:102
+msgid "Configuration"
+msgstr "Конфигурация"
+
+#: ../../web/templates/pages/extmodules.php:47
+msgid "Enable module"
+msgstr "Включить модуль"
+
+#: ../../web/templates/pages/extmodules.php:50
+#, php-format
+msgid "Are you sure you want to enable module %s?"
+msgstr "Вы уверены, что хотите включить модуль %s?"
+
+#: ../../web/templates/pages/extmodules.php:54
+msgid "Disable module"
+msgstr "Отключить модуль"
+
+#: ../../web/templates/pages/extmodules.php:57
+#, php-format
+msgid "Are you sure you want to disable module %s?"
+msgstr "Вы уверены, что хотите отключить модуль %s?"
+
+#: ../../web/templates/pages/extmodules.php:107
+#: ../../web/templates/pages/list_cron.php:133
+#: ../../web/templates/pages/list_cron.php:136
+#: ../../web/templates/pages/list_services.php:163
+#: ../../web/templates/pages/list_services.php:177
+#: ../../web/templates/pages/list_services.php:180
+msgid "Edit"
+msgstr "Изменить"
+
+#: ../../web/templates/pages/extmodules.php:126
+msgid "Extended modules list"
+msgstr "Список расширенных модулей"
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:27
+msgid "Available PHP list"
+msgstr "Доступные версии PHP"
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:31
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:40
+msgid "PHP version"
+msgstr "Версия PHP"
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:45
+msgid "Change modules list"
+msgstr "Изменить список модулей"
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:46
+msgid "Change modules list for PHP"
+msgstr "Изменить список модулей PHP"
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:59
+msgid "PHP modules tunning"
+msgstr "Настройка модулей PHP"
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:32
+msgid "Available modules list for version PHP"
+msgstr "Доступные модули для версии PHP"
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:38
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:47
+msgid "PHP module name"
+msgstr "Название модуля PHP"
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:39
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:69
+#: ../../web/templates/pages/list_services.php:104
+#: ../../web/templates/pages/list_services.php:209
+#: ../../web/templates/pages/list_updates.php:34
+#: ../../web/templates/pages/list_updates.php:58
+msgid "Description"
+msgstr "Описание"
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:82
+msgid "PHP modules list"
+msgstr "Список модулей PHP"
+
+#: ../../web/templates/pages/extmodules_passenger_manager.php:31
+msgid "Passenger manager"
+msgstr "Менеджер Passenger"
+
+#: ../../web/templates/pages/extmodules_passenger_manager.php:38
+msgid "Add new ruby path"
+msgstr "Добавить новый путь Ruby"
+
+#: ../../web/templates/pages/extmodules_passenger_manager.php:60
+msgid "Are you sure you want to delete item?"
+msgstr "Вы уверены, что хотите удалить этот элемент?"
+
+#: ../../web/templates/pages/extmodules_passenger_manager.php:71
+msgid "Ruby available list"
+msgstr "Доступные версии Ruby"
 
 #: ../../web/templates/pages/generate_ssl.php:35
 msgid "ISO 3166-1 alpha-2 two-letter code"
@@ -3485,13 +3747,13 @@ msgstr "Сортировать по"
 #: ../../web/templates/pages/list_mail_acc.php:56
 #: ../../web/templates/pages/list_packages.php:32
 #: ../../web/templates/pages/list_packages.php:35
+#: ../../web/templates/pages/list_services.php:38
+#: ../../web/templates/pages/list_services.php:43
 #: ../../web/templates/pages/list_stats.php:29
 #: ../../web/templates/pages/list_user.php:41
 #: ../../web/templates/pages/list_user.php:54
 #: ../../web/templates/pages/list_web.php:41
 #: ../../web/templates/pages/list_web.php:49
-#: ../../web/templates/pages/list_services.php:38
-#: ../../web/templates/pages/list_services.php:43
 msgid "Apply to selected"
 msgstr "Применить к выбранному"
 
@@ -3509,9 +3771,9 @@ msgstr "Применить к выбранному"
 #: ../../web/templates/pages/list_mail.php:73
 #: ../../web/templates/pages/list_mail_acc.php:83
 #: ../../web/templates/pages/list_packages.php:52
+#: ../../web/templates/pages/list_services.php:100
 #: ../../web/templates/pages/list_user.php:80
 #: ../../web/templates/pages/list_web.php:76
-#: ../../web/templates/pages/list_services.php:100
 msgid "Select all"
 msgstr "Выбрать все"
 
@@ -3560,12 +3822,12 @@ msgstr "Время"
 #: ../../web/templates/pages/list_mail_acc.php:164
 #: ../../web/templates/pages/list_packages.php:118
 #: ../../web/templates/pages/list_packages.php:119
+#: ../../web/templates/pages/list_services.php:152
+#: ../../web/templates/pages/list_services.php:153
 #: ../../web/templates/pages/list_user.php:144
 #: ../../web/templates/pages/list_user.php:145
 #: ../../web/templates/pages/list_web.php:194
 #: ../../web/templates/pages/list_web.php:195
-#: ../../web/templates/pages/list_services.php:152
-#: ../../web/templates/pages/list_services.php:153
 msgid "Select"
 msgstr "Выбрать"
 
@@ -3779,15 +4041,6 @@ msgstr "Вы уверены, что хотите восстановить дей
 #: ../../web/templates/pages/list_cron.php:103
 msgid "Are you sure you want to suspend this cron job?"
 msgstr "Вы уверены, что хотите заморозить действие данного правила?"
-
-#: ../../web/templates/pages/list_cron.php:133
-#: ../../web/templates/pages/list_cron.php:136
-#: ../../web/templates/pages/extmodules.php:107
-#: ../../web/templates/pages/list_services.php:163
-#: ../../web/templates/pages/list_services.php:177
-#: ../../web/templates/pages/list_services.php:180
-msgid "Edit"
-msgstr "Изменить"
 
 #: ../../web/templates/pages/list_cron.php:158
 #, php-format
@@ -4287,6 +4540,79 @@ msgstr "Ограничение"
 msgid "Partially implemented"
 msgstr "Частично реализовано"
 
+#: ../../web/templates/pages/list_services.php:9
+msgid "Task Monitor"
+msgstr "Монитор задач"
+
+#: ../../web/templates/pages/list_services.php:26
+#: ../../web/templates/pages/list_services.php:189
+#, php-format
+msgid "Are you sure you want to restart %s?"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:31
+msgid "ExtModules"
+msgstr "Расширенные модули"
+
+#: ../../web/templates/pages/list_services.php:39
+#: ../../web/templates/pages/list_services.php:117
+msgid "Stop"
+msgstr "Остановить"
+
+#: ../../web/templates/pages/list_services.php:40
+#: ../../web/templates/pages/list_services.php:124
+msgid "Start"
+msgstr "Запустить"
+
+#: ../../web/templates/pages/list_services.php:68
+msgid "Production Release"
+msgstr "Версия продукта"
+
+#: ../../web/templates/pages/list_services.php:74
+msgid "Operating System"
+msgstr "Операционная система"
+
+#: ../../web/templates/pages/list_services.php:80
+msgid "Load Average"
+msgstr "Средняя загрузка"
+
+#: ../../web/templates/pages/list_services.php:86
+#: ../../web/templates/pages/list_services.php:105
+#: ../../web/templates/pages/list_services.php:213
+msgid "Uptime"
+msgstr "Запущен"
+
+#: ../../web/templates/pages/list_services.php:95
+msgid "Services"
+msgstr "Службы"
+
+#: ../../web/templates/pages/list_services.php:102
+#: ../../web/templates/pages/list_services.php:157
+msgid "Service"
+msgstr "Служба"
+
+#: ../../web/templates/pages/list_services.php:107
+msgid "Memory(Physical memory)"
+msgstr "Память(Физическая память)"
+
+#: ../../web/templates/pages/list_services.php:200
+#, php-format
+msgid "Are you sure you want to stop service %s?"
+msgstr "Вы уверены, что хотите остановить службу %s"
+
+#: ../../web/templates/pages/list_services.php:200
+#, php-format
+msgid "Are you sure you want to start service %s?"
+msgstr "Вы уверены, что хотите запустить службу %s"
+
+#: ../../web/templates/pages/list_services.php:221
+msgid "Memory"
+msgstr "Память"
+
+#: ../../web/templates/pages/list_services.php:222
+msgid "MB"
+msgstr "МБ"
+
 #: ../../web/templates/pages/list_ssl.php:82
 msgid "SSL CSR"
 msgstr "SSL CSR запрос"
@@ -4327,15 +4653,6 @@ msgstr "Включить автоматические обновления"
 #: ../../web/templates/pages/list_updates.php:54
 msgid "Package Names"
 msgstr "Имена пакетов"
-
-#: ../../web/templates/pages/list_updates.php:34
-#: ../../web/templates/pages/list_updates.php:58
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:39
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:69
-#: ../../web/templates/pages/list_services.php:104
-#: ../../web/templates/pages/list_services.php:209
-msgid "Description"
-msgstr "Описание"
 
 #: ../../web/templates/pages/list_user.php:43
 msgid "Rebuild User Profile"
@@ -4414,11 +4731,6 @@ msgstr ""
 msgid "%d web domain"
 msgid_plural "%d web domains"
 msgstr[0] ""
-
-#: ../../web/templates/pages/list_webapps.php:16
-#: ../../web/templates/pages/edit_web.php:15
-msgid "Quick Install App"
-msgstr "Быстрая установка приложения"
 
 #: ../../web/templates/pages/list_webapps.php:29
 msgid "Setup"
@@ -4533,314 +4845,6 @@ msgstr ""
 #, php-format
 msgid "Please make sure ~/web/%s/public_html is empty!"
 msgstr "Убедитесь, что ~/web/%s/public_html пуста!"
-
-#: ../../web/templates/pages/edit_web.php:11
-msgid "Purge NGINX Cache"
-msgstr "Очистить кэш памяти NGINX"
-
-#: ../../web/templates/pages/edit_web.php:56
-msgid "Edit Web Domain"
-msgstr "Изменить веб-домен"
-
-#: ../../web/templates/pages/edit_web.php:71
-msgid ""
-"If the aliases changes, Let's Encrypt will obtain a new SSL certificate."
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:88
-msgid "Web Statistics"
-msgstr "Веб-статистика"
-
-#: ../../web/templates/pages/edit_web.php:107
-msgid "Statistics Authorization"
-msgstr "Авторизация статистики"
-
-#: ../../web/templates/pages/edit_web.php:133
-msgid "Enable domain redirection"
-msgstr "Включить переадресацию домена"
-
-#: ../../web/templates/pages/edit_web.php:140
-#: ../../web/templates/pages/edit_web.php:146
-#, php-format
-msgid "Redirect visitors to %s"
-msgstr "Перенаправлять посетителей на %s"
-
-#: ../../web/templates/pages/edit_web.php:152
-msgid "Redirect visitors to a custom domain or web address"
-msgstr "Перенаправить посетителей на пользовательский домен или веб-адрес"
-
-#: ../../web/templates/pages/edit_web.php:157
-msgid "Target domain or URL"
-msgstr "Целевой домен или URL"
-
-#: ../../web/templates/pages/edit_web.php:161
-msgid "Status code"
-msgstr "Статус-код"
-
-#: ../../web/templates/pages/edit_web.php:189
-msgid "Enable automatic HTTPS redirection"
-msgstr "Включить автоматическое перенаправление на HTTPS"
-
-#: ../../web/templates/pages/edit_web.php:195
-msgid "Enable HTTP Strict Transport Security (HSTS)"
-msgstr "Включить строгую транспортную безопасность HTTP (HSTS)"
-
-#: ../../web/templates/pages/edit_web.php:257
-msgid "Hide Certificate"
-msgstr "Скрыть сертификат"
-
-#: ../../web/templates/pages/edit_web.php:257
-#: ../../web/templates/pages/edit_web.php:258
-msgid "Show Certificate"
-msgstr "Показать сертификат"
-
-#: ../../web/templates/pages/edit_web.php:292
-msgid "Enable FastCGI cache"
-msgstr "Включить кеш FastCGI"
-
-#: ../../web/templates/pages/edit_web.php:301
-msgid "Cache Duration"
-msgstr "Время жизни кеша"
-
-#: ../../web/templates/pages/edit_web.php:334
-msgid "Proxy Support"
-msgstr "Поддержка Proxy"
-
-#: ../../web/templates/pages/edit_web.php:365
-msgid "Set port for internal service"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:371
-msgid "Proxy Extensions"
-msgstr "Расширения прокси"
-
-#: ../../web/templates/pages/edit_web.php:380
-msgid "Custom document root"
-msgstr "Пользовательский document root"
-
-#: ../../web/templates/pages/edit_web.php:385
-msgid "Point to"
-msgstr "Указывает на "
-
-#: ../../web/templates/pages/edit_web.php:408
-msgid "Additional FTP account(s)"
-msgstr "Дополнительные учетные записи FTP"
-
-#: ../../web/templates/pages/edit_web.php:430
-#: ../../web/templates/pages/edit_web.php:537
-#, php-format
-msgid "Prefix %s will be added to username automatically"
-msgstr "Префикс %s будет добавлен к имени пользователя автоматически"
-
-#: ../../web/templates/pages/edit_web.php:446
-#: ../../web/templates/pages/edit_web.php:552
-#: ../../web/templates/pages/extmodules_passenger_manager.php:43
-msgid "Path"
-msgstr "Путь"
-
-#: ../../web/templates/pages/edit_web.php:454
-#: ../../web/templates/pages/edit_web.php:558
-msgid "Send FTP credentials to email"
-msgstr "Отправить данные FTP аккаунта на эл. почту"
-
-#: ../../web/templates/pages/edit_web.php:463
-msgid "Add FTP account"
-msgstr "Добавить учетную запись FTP"
-
-#: ../../web/templates/pages/edit_web.php:472
-msgid "Passenger options"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:485
-msgid "Enable passenger for domain"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:490
-msgid "Set ruby path for domain"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:512
-msgid "Enable logging to browser for domain"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:27
-msgid "List modules"
-msgstr "Список модулей"
-
-#: ../../web/templates/pages/extmodules.php:31
-#: ../../web/templates/pages/extmodules.php:62
-msgid "Module ID"
-msgstr "ID модуля"
-
-#: ../../web/templates/pages/extmodules.php:32
-#: ../../web/templates/pages/extmodules.php:66
-msgid "Module name"
-msgstr "Название модуля"
-
-#: ../../web/templates/pages/extmodules.php:34
-#: ../../web/templates/pages/extmodules.php:90
-msgid "Module description"
-msgstr "Описание модуля"
-
-#: ../../web/templates/pages/extmodules.php:35
-#: ../../web/templates/pages/extmodules.php:94
-msgid "Module state"
-msgstr "Состояние модуля"
-
-#: ../../web/templates/pages/extmodules.php:36
-#: ../../web/templates/pages/extmodules.php:98
-msgid "Requirements"
-msgstr "Зависимости"
-
-#: ../../web/templates/pages/extmodules.php:37
-#: ../../web/templates/pages/extmodules.php:102
-msgid "Configuration"
-msgstr "Конфигурация"
-
-#: ../../web/templates/pages/extmodules.php:47
-msgid "Enable module"
-msgstr "Включить модуль"
-
-#: ../../web/templates/pages/extmodules.php:50
-#, php-format
-msgid "Are you sure you want to enable module %s?"
-msgstr "Вы уверены, что хотите включить модуль %s?"
-
-#: ../../web/templates/pages/extmodules.php:54
-msgid "Disable module"
-msgstr "Отключить модуль"
-
-#: ../../web/templates/pages/extmodules.php:57
-#, php-format
-msgid "Are you sure you want to disable module %s?"
-msgstr "Вы уверены, что хотите отключить модуль %s?"
-
-#: ../../web/templates/pages/extmodules.php:126
-msgid "Extended modules list"
-msgstr "Список расширенных модулей"
-
-#: ../../web/templates/pages/extmodules_passenger_manager.php:31
-msgid "Passenger manager"
-msgstr "Менеджер Passenger"
-
-#: ../../web/templates/pages/extmodules_passenger_manager.php:38
-msgid "Add new ruby path"
-msgstr "Добавить новый путь Ruby"
-
-#: ../../web/templates/pages/extmodules_passenger_manager.php:60
-msgid "Are you sure you want to delete item?"
-msgstr "Вы уверены, что хотите удалить этот элемент?"
-
-#: ../../web/templates/pages/extmodules_passenger_manager.php:71
-msgid "Ruby available list"
-msgstr "Доступные версии Ruby"
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:27
-msgid "Available PHP list"
-msgstr "Доступные версии PHP"
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:31
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:40
-msgid "PHP version"
-msgstr "Версия PHP"
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:45
-msgid "Change modules list"
-msgstr "Изменить список модулей"
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:46
-msgid "Change modules list for PHP"
-msgstr "Изменить список модулей PHP"
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:59
-msgid "PHP modules tunning"
-msgstr "Настройка модулей PHP"
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:32
-msgid "Available modules list for version PHP"
-msgstr "Доступные модули для версии PHP"
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:38
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:47
-msgid "PHP module name"
-msgstr "Название модуля PHP"
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:82
-msgid "PHP modules list"
-msgstr "Список модулей PHP"
-
-#: ../../web/templates/pages/list_services.php:9
-msgid "Task Monitor"
-msgstr "Монитор задач"
-
-#: ../../web/templates/pages/list_services.php:26
-#: ../../web/templates/pages/list_services.php:189
-#, php-format
-msgid "Are you sure you want to restart %s?"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:31
-msgid "ExtModules"
-msgstr "Расширенные модули"
-
-#: ../../web/templates/pages/list_services.php:39
-#: ../../web/templates/pages/list_services.php:117
-msgid "Stop"
-msgstr "Остановить"
-
-#: ../../web/templates/pages/list_services.php:40
-#: ../../web/templates/pages/list_services.php:124
-msgid "Start"
-msgstr "Запустить"
-
-#: ../../web/templates/pages/list_services.php:68
-msgid "Production Release"
-msgstr "Версия продукта"
-
-#: ../../web/templates/pages/list_services.php:74
-msgid "Operating System"
-msgstr "Операционная система"
-
-#: ../../web/templates/pages/list_services.php:80
-msgid "Load Average"
-msgstr "Средняя загрузка"
-
-#: ../../web/templates/pages/list_services.php:86
-#: ../../web/templates/pages/list_services.php:105
-#: ../../web/templates/pages/list_services.php:213
-msgid "Uptime"
-msgstr "Запущен"
-
-#: ../../web/templates/pages/list_services.php:95
-msgid "Services"
-msgstr "Службы"
-
-#: ../../web/templates/pages/list_services.php:102
-#: ../../web/templates/pages/list_services.php:157
-msgid "Service"
-msgstr "Служба"
-
-#: ../../web/templates/pages/list_services.php:107
-msgid "Memory(Physical memory)"
-msgstr "Память(Физическая память)"
-
-#: ../../web/templates/pages/list_services.php:200
-#, php-format
-msgid "Are you sure you want to stop service %s?"
-msgstr "Вы уверены, что хотите остановить службу %s"
-
-#: ../../web/templates/pages/list_services.php:200
-#, php-format
-msgid "Are you sure you want to start service %s?"
-msgstr "Вы уверены, что хотите запустить службу %s"
-
-#: ../../web/templates/pages/list_services.php:221
-msgid "Memory"
-msgstr "Память"
-
-#: ../../web/templates/pages/list_services.php:222
-msgid "MB"
-msgstr "МБ"
 
 #: ../../web/update/hestia/index.php:20
 #, php-format

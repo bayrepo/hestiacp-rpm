@@ -1,0 +1,105 @@
+#!/bin/bash
+# info: add web/dns/mail domain
+# options: USER DOMAIN COMMAND
+#
+# example: v-default-domain admin example.com set
+#          v-default-domain admin example.com delete
+#          v-default-domain admin example.com check
+#          v-default-domain admin example.com check-default
+#
+# This function set user's domain as default or reset it or get default domain or check is domain default.
+
+#----------------------------------------------------------#
+#                Variables & Functions                     #
+#----------------------------------------------------------#
+
+# Argument definition
+user=$1
+domain=$2
+command=$3
+
+# Includes
+# shellcheck source=/etc/hestiacp/hestia.conf
+source /etc/hestiacp/hestia.conf
+# shellcheck source=/usr/local/hestia/func/main.sh
+source $HESTIA/func/main.sh
+# load config file
+source_conf "$HESTIA/conf/hestia.conf"
+
+#----------------------------------------------------------#
+#                    Verifications                         #
+#----------------------------------------------------------#
+check_args '3' "$#" 'USER DOMAIN COMMAND'
+is_format_valid 'user' 'domain'
+if [ -n "$ip" ]; then
+    is_format_valid 'ip'
+fi
+is_object_valid 'user' 'USER' "$user"
+is_object_unsuspended 'user' 'USER' "$user"
+
+# Perform verification if read-only mode is enabled
+check_hestia_demo_mode
+
+#----------------------------------------------------------#
+#                       Action                             #
+#----------------------------------------------------------#
+
+confd="conf.h.d"
+
+if [[ $command == check* ]]; then
+    default_conf="/etc/httpd/$confd/domains/00000000000000000_default.conf"
+    if [ -e "$default_conf" ]; then
+        file_name=$(readlink -f "$default_conf")
+        s_username=$(echo "$file_name" | cut -d"/" -f3 )
+        s_domain=$(echo "$file_name" | rev | cut -d"/" -f2 | rev )
+        if [ "$command" == "check-default" ]; then
+            echo "$s_username:$s_domain"
+        else
+            if [ "$user" == "$s_username" ] && [ "$domain" == "$s_domain" ]; then
+                echo "true"
+            else
+                echo "false"
+            fi
+        fi
+    else
+        echo "no default domain"
+    fi
+else
+    # Working on web domain
+    if [ -n "$WEB_SYSTEM" ] && [ "$WEB_SYSTEM" == "httpd" ]; then
+        domain_path="/etc/httpd/$confd/domains/$domain.conf"
+        domain_ssl_path="/etc/httpd/$confd/domains/$domain.ssl.conf"
+        if [ -e "$domain_ssl_path" ] || [ -e "$domain_path" ]; then
+            path_name="$domain_path"
+            if [ -e  "$domain_ssl_path" ]; then
+                path_name="$domain_ssl_path"
+            fi
+            if [ "$command" == "delete" ]; then
+                if [ -e "/etc/httpd/$confd/domains/00000000000000000_default.conf" ]; then
+                    mv -f "/etc/httpd/$confd/domains/00000000000000000_default.conf" "/etc/httpd/$confd/domains/00000000000000000_default.conf.trash"
+                fi
+            else
+                ln -sf "${path_name}" "/etc/httpd/$confd/domains/00000000000000000_default.conf"
+            fi
+            echo "true"
+        else
+            echo "false"
+        fi
+    fi
+    
+    # Restarting services
+    $BIN/v-restart-web "yes"
+    check_result $? "can't restart web" > /dev/null
+    
+    $BIN/v-restart-proxy "yes"
+    check_result $? "can't restart proxy" > /dev/null
+    
+    $BIN/v-restart-dns "yes"
+    check_result $? "can't restart dns" > /dev/null
+fi
+
+#----------------------------------------------------------#
+#                       Hestia                             #
+#----------------------------------------------------------#
+
+exit

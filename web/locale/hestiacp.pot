@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-05 22:46+0300\n"
+"POT-Creation-Date: 2025-10-18 23:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,9 +33,9 @@ msgstr ""
 #: ../../web/add/mail/index.php:233 ../../web/add/package/index.php:103
 #: ../../web/add/user/index.php:45 ../../web/add/web/index.php:31
 #: ../../web/edit/firewall/index.php:89 ../../web/edit/mail/index.php:598
-#: ../../web/edit/package/index.php:213 ../../web/edit/web/index.php:949
-#: ../../web/edit/web/index.php:1170 ../../web/edit/web/index.php:1210
-#: ../../web/edit/web/index.php:1272 ../../web/edit/web/index.php:1426
+#: ../../web/edit/package/index.php:213 ../../web/edit/web/index.php:959
+#: ../../web/edit/web/index.php:1180 ../../web/edit/web/index.php:1220
+#: ../../web/edit/web/index.php:1282 ../../web/edit/web/index.php:1436
 #: ../../web/generate/ssl/index.php:69
 #, php-format
 msgid "Field \"%s\" can not be blank."
@@ -117,8 +117,8 @@ msgid "Database"
 msgstr ""
 
 #: ../../web/add/db/index.php:20 ../../web/add/user/index.php:23
-#: ../../web/edit/web/index.php:1160 ../../web/edit/web/index.php:1200
-#: ../../web/edit/web/index.php:1416 ../../web/templates/pages/add_db.php:71
+#: ../../web/edit/web/index.php:1170 ../../web/edit/web/index.php:1210
+#: ../../web/edit/web/index.php:1426 ../../web/templates/pages/add_db.php:71
 #: ../../web/templates/pages/add_mail.php:113
 #: ../../web/templates/pages/add_mail_acc.php:123
 #: ../../web/templates/pages/add_user.php:35
@@ -128,6 +128,9 @@ msgstr ""
 #: ../../web/templates/pages/edit_server.php:470
 #: ../../web/templates/pages/edit_server.php:817
 #: ../../web/templates/pages/edit_user.php:64
+#: ../../web/templates/pages/edit_web.php:114
+#: ../../web/templates/pages/edit_web.php:435
+#: ../../web/templates/pages/edit_web.php:542
 #: ../../web/templates/pages/list_db.php:65
 #: ../../web/templates/pages/list_db.php:113
 #: ../../web/templates/pages/list_db.php:247
@@ -135,9 +138,6 @@ msgstr ""
 #: ../../web/templates/pages/login/login_a.php:14
 #: ../../web/templates/pages/login/reset2fa.php:27
 #: ../../web/templates/pages/login/reset_1.php:14
-#: ../../web/templates/pages/edit_web.php:114
-#: ../../web/templates/pages/edit_web.php:429
-#: ../../web/templates/pages/edit_web.php:536
 msgid "Username"
 msgstr ""
 
@@ -155,11 +155,11 @@ msgstr ""
 #: ../../web/templates/pages/edit_server.php:577
 #: ../../web/templates/pages/edit_server.php:829
 #: ../../web/templates/pages/edit_user.php:84
+#: ../../web/templates/pages/edit_web.php:119
+#: ../../web/templates/pages/edit_web.php:444
+#: ../../web/templates/pages/edit_web.php:550
 #: ../../web/templates/pages/login/login_1.php:12
 #: ../../web/templates/pages/login/login_a.php:19
-#: ../../web/templates/pages/edit_web.php:119
-#: ../../web/templates/pages/edit_web.php:438
-#: ../../web/templates/pages/edit_web.php:544
 msgid "Password"
 msgstr ""
 
@@ -220,7 +220,7 @@ msgstr ""
 
 #: ../../web/add/db/index.php:48 ../../web/add/mail/index.php:239
 #: ../../web/add/user/index.php:50 ../../web/edit/mail/index.php:748
-#: ../../web/edit/user/index.php:411 ../../web/edit/web/index.php:1259
+#: ../../web/edit/user/index.php:411 ../../web/edit/web/index.php:1269
 msgid "Please enter a valid email address."
 msgstr ""
 
@@ -266,8 +266,8 @@ msgstr ""
 #: ../../web/templates/pages/edit_dns.php:28
 #: ../../web/templates/pages/edit_dns_rec.php:28
 #: ../../web/templates/pages/edit_mail.php:38
-#: ../../web/templates/pages/generate_ssl.php:18
 #: ../../web/templates/pages/edit_web.php:59
+#: ../../web/templates/pages/generate_ssl.php:18
 msgid "Domain"
 msgstr ""
 
@@ -280,6 +280,7 @@ msgstr ""
 #: ../../web/templates/pages/add_web.php:47
 #: ../../web/templates/pages/edit_dns.php:33
 #: ../../web/templates/pages/edit_ip.php:35
+#: ../../web/templates/pages/edit_web.php:76
 #: ../../web/templates/pages/list_dns.php:28
 #: ../../web/templates/pages/list_firewall.php:39
 #: ../../web/templates/pages/list_firewall.php:75
@@ -294,7 +295,6 @@ msgstr ""
 #: ../../web/templates/pages/list_web.php:34
 #: ../../web/templates/pages/list_web.php:80
 #: ../../web/templates/pages/list_web.php:311
-#: ../../web/templates/pages/edit_web.php:76
 msgid "IP Address"
 msgstr ""
 
@@ -351,12 +351,12 @@ msgstr ""
 #: ../../web/add/firewall/index.php:42 ../../web/edit/firewall/index.php:70
 #: ../../web/templates/pages/add_firewall.php:28
 #: ../../web/templates/pages/edit_firewall.php:28
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:32
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:44
 #: ../../web/templates/pages/list_firewall.php:25
 #: ../../web/templates/pages/list_firewall.php:30
 #: ../../web/templates/pages/list_firewall.php:70
 #: ../../web/templates/pages/list_firewall.php:111
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:32
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:44
 msgid "Action"
 msgstr ""
 
@@ -571,21 +571,21 @@ msgstr ""
 #: ../../web/add/package/index.php:26 ../../web/edit/package/index.php:140
 #: ../../web/templates/pages/add_package.php:98
 #: ../../web/templates/pages/edit_package.php:100
-#: ../../web/templates/pages/edit_web.php:273
+#: ../../web/templates/pages/edit_web.php:279
 msgid "Web Template"
 msgstr ""
 
 #: ../../web/add/package/index.php:30 ../../web/edit/package/index.php:144
 #: ../../web/templates/pages/add_package.php:115
 #: ../../web/templates/pages/edit_package.php:117
-#: ../../web/templates/pages/edit_web.php:310
+#: ../../web/templates/pages/edit_web.php:316
 msgid "Backend Template"
 msgstr ""
 
 #: ../../web/add/package/index.php:38 ../../web/edit/package/index.php:149
 #: ../../web/templates/pages/add_package.php:134
 #: ../../web/templates/pages/edit_package.php:135
-#: ../../web/templates/pages/edit_web.php:340
+#: ../../web/templates/pages/edit_web.php:346
 msgid "Proxy Template"
 msgstr ""
 
@@ -921,6 +921,7 @@ msgstr ""
 #: ../../web/edit/server/exim4/index.php:44
 #: ../../web/edit/server/fail2ban/index.php:44
 #: ../../web/edit/server/httpd/index.php:44
+#: ../../web/edit/server/index.php:1748 ../../web/edit/server/index.php:1752
 #: ../../web/edit/server/mariadb/index.php:44
 #: ../../web/edit/server/mysql/index.php:44
 #: ../../web/edit/server/mysqld/index.php:44
@@ -934,9 +935,8 @@ msgstr ""
 #: ../../web/edit/server/spamassassin/index.php:44
 #: ../../web/edit/server/spamd/index.php:44
 #: ../../web/edit/server/ssh/index.php:44
-#: ../../web/edit/server/vsftpd/index.php:44
-#: ../../web/edit/server/index.php:1748 ../../web/edit/server/index.php:1752
-#: ../../web/edit/user/index.php:558 ../../web/edit/web/index.php:1689
+#: ../../web/edit/server/vsftpd/index.php:44 ../../web/edit/user/index.php:558
+#: ../../web/edit/web/index.php:1733
 msgid "Changes have been saved."
 msgstr ""
 
@@ -957,7 +957,7 @@ msgstr ""
 msgid "Please enter a valid contact name."
 msgstr ""
 
-#: ../../web/edit/web/index.php:1331 ../../web/edit/web/index.php:1479
+#: ../../web/edit/web/index.php:1341 ../../web/edit/web/index.php:1489
 msgid ""
 "FTP account has been created and ready to use.\n"
 "\n"
@@ -971,7 +971,7 @@ msgid ""
 "{{appname}}"
 msgstr ""
 
-#: ../../web/edit/web/index.php:1348 ../../web/edit/web/index.php:1496
+#: ../../web/edit/web/index.php:1358 ../../web/edit/web/index.php:1506
 #, php-format
 msgid "FTP Account Credentials: %s"
 msgstr ""
@@ -1402,10 +1402,10 @@ msgstr ""
 #: ../../web/templates/includes/panel.php:294
 #: ../../web/templates/pages/add_mail_acc.php:82
 #: ../../web/templates/pages/edit_mail_acc.php:82
+#: ../../web/templates/pages/edit_web.php:64
 #: ../../web/templates/pages/generate_ssl.php:22
 #: ../../web/templates/pages/list_mail_acc.php:89
 #: ../../web/templates/pages/list_mail_acc.php:268
-#: ../../web/templates/pages/edit_web.php:64
 msgid "Aliases"
 msgstr ""
 
@@ -1516,7 +1516,12 @@ msgstr ""
 #: ../../web/templates/pages/edit_server_php.php:6
 #: ../../web/templates/pages/edit_server_service.php:6
 #: ../../web/templates/pages/edit_user.php:6
+#: ../../web/templates/pages/edit_web.php:6
 #: ../../web/templates/pages/edit_whitelabel.php:6
+#: ../../web/templates/pages/extmodules.php:6
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:6
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:6
+#: ../../web/templates/pages/extmodules_passenger_manager.php:6
 #: ../../web/templates/pages/list_access_key.php:16
 #: ../../web/templates/pages/list_access_keys.php:7
 #: ../../web/templates/pages/list_access_keys.php:11
@@ -1554,11 +1559,6 @@ msgstr ""
 #: ../../web/templates/pages/login/reset_2.php:27
 #: ../../web/templates/pages/login/reset_3.php:29
 #: ../../web/templates/pages/setup_webapp.php:6
-#: ../../web/templates/pages/edit_web.php:6
-#: ../../web/templates/pages/extmodules.php:6
-#: ../../web/templates/pages/extmodules_passenger_manager.php:6
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:6
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:6
 msgid "Back"
 msgstr ""
 
@@ -1597,11 +1597,11 @@ msgstr ""
 #: ../../web/templates/pages/edit_server_php.php:11
 #: ../../web/templates/pages/edit_server_service.php:11
 #: ../../web/templates/pages/edit_user.php:37
-#: ../../web/templates/pages/edit_whitelabel.php:11
-#: ../../web/templates/pages/setup_webapp.php:11
 #: ../../web/templates/pages/edit_web.php:19
-#: ../../web/templates/pages/extmodules_passenger_manager.php:11
+#: ../../web/templates/pages/edit_whitelabel.php:11
 #: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:11
+#: ../../web/templates/pages/extmodules_passenger_manager.php:11
+#: ../../web/templates/pages/setup_webapp.php:11
 msgid "Save"
 msgstr ""
 
@@ -1637,9 +1637,9 @@ msgstr ""
 #: ../../web/templates/pages/edit_ip.php:69
 #: ../../web/templates/pages/edit_ip.php:75
 #: ../../web/templates/pages/edit_mail.php:132
+#: ../../web/templates/pages/edit_web.php:221
+#: ../../web/templates/pages/edit_web.php:404
 #: ../../web/templates/pages/generate_ssl.php:28
-#: ../../web/templates/pages/edit_web.php:215
-#: ../../web/templates/pages/edit_web.php:398
 msgid "Optional"
 msgstr ""
 
@@ -1725,11 +1725,11 @@ msgstr ""
 #: ../../web/templates/pages/edit_db.php:43
 #: ../../web/templates/pages/edit_mail_acc.php:46
 #: ../../web/templates/pages/edit_user.php:85
+#: ../../web/templates/pages/edit_web.php:120
+#: ../../web/templates/pages/edit_web.php:445
+#: ../../web/templates/pages/edit_web.php:551
 #: ../../web/templates/pages/generate_ssl.php:59
 #: ../../web/templates/pages/setup_webapp.php:63
-#: ../../web/templates/pages/edit_web.php:120
-#: ../../web/templates/pages/edit_web.php:439
-#: ../../web/templates/pages/edit_web.php:545
 msgid "Generate"
 msgstr ""
 
@@ -2003,7 +2003,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_server_nginx.php:73
 #: ../../web/templates/pages/edit_server_php.php:58
 #: ../../web/templates/pages/edit_user.php:210
-#: ../../web/templates/pages/edit_web.php:266
+#: ../../web/templates/pages/edit_web.php:272
 msgid "Advanced Options"
 msgstr ""
 
@@ -2070,6 +2070,8 @@ msgstr ""
 #: ../../web/templates/pages/add_dns.php:140
 #: ../../web/templates/pages/add_dns.php:146
 #: ../../web/templates/pages/add_dns.php:152
+#: ../../web/templates/pages/edit_web.php:429
+#: ../../web/templates/pages/edit_web.php:536
 #: ../../web/templates/pages/list_access_keys.php:41
 #: ../../web/templates/pages/list_access_keys.php:101
 #: ../../web/templates/pages/list_access_keys.php:102
@@ -2137,8 +2139,6 @@ msgstr ""
 #: ../../web/templates/pages/list_web.php:299
 #: ../../web/templates/pages/list_web.php:300
 #: ../../web/templates/pages/list_web.php:304
-#: ../../web/templates/pages/edit_web.php:423
-#: ../../web/templates/pages/edit_web.php:530
 msgid "Delete"
 msgstr ""
 
@@ -2219,8 +2219,8 @@ msgid "SSH"
 msgstr ""
 
 #: ../../web/templates/pages/add_firewall_banlist.php:38
-#: ../../web/templates/pages/edit_web.php:422
-#: ../../web/templates/pages/edit_web.php:529
+#: ../../web/templates/pages/edit_web.php:428
+#: ../../web/templates/pages/edit_web.php:535
 msgid "FTP"
 msgstr ""
 
@@ -2709,12 +2709,12 @@ msgid "email / hour / account"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:99
-#: ../../web/templates/pages/edit_web.php:176
+#: ../../web/templates/pages/edit_web.php:182
 msgid "Enable SSL for this domain"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:106
-#: ../../web/templates/pages/edit_web.php:183
+#: ../../web/templates/pages/edit_web.php:189
 msgid "Use Let's Encrypt to obtain SSL certificate"
 msgstr ""
 
@@ -2727,70 +2727,70 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:121
 #: ../../web/templates/pages/edit_server.php:930
+#: ../../web/templates/pages/edit_web.php:210
 #: ../../web/templates/pages/list_ssl.php:28
-#: ../../web/templates/pages/edit_web.php:204
 msgid "SSL Certificate"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:122
 #: ../../web/templates/pages/edit_server.php:938
+#: ../../web/templates/pages/edit_web.php:211
 #: ../../web/templates/pages/generate_ssl.php:16
 #: ../../web/templates/pages/list_ssl.php:16
-#: ../../web/templates/pages/edit_web.php:205
 msgid "Generate Self-Signed SSL Certificate"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:127
 #: ../../web/templates/pages/edit_server.php:950
+#: ../../web/templates/pages/edit_web.php:216
 #: ../../web/templates/pages/list_ssl.php:55
-#: ../../web/templates/pages/edit_web.php:210
 msgid "SSL Private Key"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:132
-#: ../../web/templates/pages/edit_web.php:215
+#: ../../web/templates/pages/edit_web.php:221
 msgid "SSL Certificate Authority / Intermediate"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:140
 #: ../../web/templates/pages/edit_server.php:960
-#: ../../web/templates/pages/edit_web.php:223
+#: ../../web/templates/pages/edit_web.php:229
 msgid "Issued To"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:145
 #: ../../web/templates/pages/edit_server.php:965
-#: ../../web/templates/pages/edit_web.php:228
+#: ../../web/templates/pages/edit_web.php:234
 msgid "Alternate"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:150
 #: ../../web/templates/pages/edit_server.php:970
-#: ../../web/templates/pages/edit_web.php:233
+#: ../../web/templates/pages/edit_web.php:239
 msgid "Not Before"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:154
 #: ../../web/templates/pages/edit_server.php:974
-#: ../../web/templates/pages/edit_web.php:237
+#: ../../web/templates/pages/edit_web.php:243
 msgid "Not After"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:158
 #: ../../web/templates/pages/edit_server.php:978
-#: ../../web/templates/pages/edit_web.php:241
+#: ../../web/templates/pages/edit_web.php:247
 msgid "Signature"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:162
 #: ../../web/templates/pages/edit_server.php:982
-#: ../../web/templates/pages/edit_web.php:245
+#: ../../web/templates/pages/edit_web.php:251
 msgid "Key Size"
 msgstr ""
 
 #: ../../web/templates/pages/edit_mail.php:166
 #: ../../web/templates/pages/edit_server.php:986
-#: ../../web/templates/pages/edit_web.php:249
+#: ../../web/templates/pages/edit_web.php:255
 msgid "Issued By"
 msgstr ""
 
@@ -2879,8 +2879,8 @@ msgid "Enable debug mode"
 msgstr ""
 
 #: ../../web/templates/pages/edit_server.php:147
-#: ../../web/templates/pages/list_updates.php:29
 #: ../../web/templates/pages/list_services.php:12
+#: ../../web/templates/pages/list_updates.php:29
 msgid "Updates"
 msgstr ""
 
@@ -3049,7 +3049,7 @@ msgstr ""
 #: ../../web/templates/pages/edit_server.php:728
 #: ../../web/templates/pages/edit_server.php:843
 #: ../../web/templates/pages/edit_server.php:907
-#: ../../web/templates/pages/edit_web.php:398
+#: ../../web/templates/pages/edit_web.php:404
 msgid "Directory"
 msgstr ""
 
@@ -3282,7 +3282,7 @@ msgid "Use IP address allow list for login attempts"
 msgstr ""
 
 #: ../../web/templates/pages/edit_user.php:135
-#: ../../web/templates/pages/edit_web.php:301
+#: ../../web/templates/pages/edit_web.php:307
 msgid "For example"
 msgstr ""
 
@@ -3340,6 +3340,144 @@ msgstr ""
 msgid "Default Name Servers"
 msgstr ""
 
+#: ../../web/templates/pages/edit_web.php:11
+msgid "Purge NGINX Cache"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:15
+#: ../../web/templates/pages/list_webapps.php:16
+msgid "Quick Install App"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:56
+msgid "Edit Web Domain"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:71
+msgid ""
+"If the aliases changes, Let's Encrypt will obtain a new SSL certificate."
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:88
+msgid "Web Statistics"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:107
+msgid "Statistics Authorization"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:133
+msgid "Set this domain as default for server"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:139
+msgid "Enable domain redirection"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:146
+#: ../../web/templates/pages/edit_web.php:152
+#, php-format
+msgid "Redirect visitors to %s"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:158
+msgid "Redirect visitors to a custom domain or web address"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:163
+msgid "Target domain or URL"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:167
+msgid "Status code"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:195
+msgid "Enable automatic HTTPS redirection"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:201
+msgid "Enable HTTP Strict Transport Security (HSTS)"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:263
+msgid "Hide Certificate"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:263
+#: ../../web/templates/pages/edit_web.php:264
+msgid "Show Certificate"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:298
+msgid "Enable FastCGI cache"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:307
+msgid "Cache Duration"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:340
+msgid "Proxy Support"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:371
+msgid "Set port for internal service"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:377
+msgid "Proxy Extensions"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:386
+msgid "Custom document root"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:391
+msgid "Point to"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:414
+msgid "Additional FTP account(s)"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:436
+#: ../../web/templates/pages/edit_web.php:543
+#, php-format
+msgid "Prefix %s will be added to username automatically"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:452
+#: ../../web/templates/pages/edit_web.php:558
+#: ../../web/templates/pages/extmodules_passenger_manager.php:43
+msgid "Path"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:460
+#: ../../web/templates/pages/edit_web.php:564
+msgid "Send FTP credentials to email"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:469
+msgid "Add FTP account"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:478
+msgid "Passenger options"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:491
+msgid "Enable passenger for domain"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:496
+msgid "Set ruby path for domain"
+msgstr ""
+
+#: ../../web/templates/pages/edit_web.php:518
+msgid "Enable logging to browser for domain"
+msgstr ""
+
 #: ../../web/templates/pages/edit_whitelabel.php:33
 msgid "White Label Options"
 msgstr ""
@@ -3392,6 +3530,130 @@ msgstr ""
 
 #: ../../web/templates/pages/edit_whitelabel.php:141
 msgid "Update logo"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:27
+msgid "List modules"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:31
+#: ../../web/templates/pages/extmodules.php:62
+msgid "Module ID"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:32
+#: ../../web/templates/pages/extmodules.php:66
+msgid "Module name"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:34
+#: ../../web/templates/pages/extmodules.php:90
+msgid "Module description"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:35
+#: ../../web/templates/pages/extmodules.php:94
+msgid "Module state"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:36
+#: ../../web/templates/pages/extmodules.php:98
+msgid "Requirements"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:37
+#: ../../web/templates/pages/extmodules.php:102
+msgid "Configuration"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:47
+msgid "Enable module"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:50
+#, php-format
+msgid "Are you sure you want to enable module %s?"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:54
+msgid "Disable module"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:57
+#, php-format
+msgid "Are you sure you want to disable module %s?"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:107
+#: ../../web/templates/pages/list_cron.php:133
+#: ../../web/templates/pages/list_cron.php:136
+#: ../../web/templates/pages/list_services.php:163
+#: ../../web/templates/pages/list_services.php:177
+#: ../../web/templates/pages/list_services.php:180
+msgid "Edit"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules.php:126
+msgid "Extended modules list"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:27
+msgid "Available PHP list"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:31
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:40
+msgid "PHP version"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:45
+msgid "Change modules list"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:46
+msgid "Change modules list for PHP"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:59
+msgid "PHP modules tunning"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:32
+msgid "Available modules list for version PHP"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:38
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:47
+msgid "PHP module name"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:39
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:69
+#: ../../web/templates/pages/list_services.php:104
+#: ../../web/templates/pages/list_services.php:209
+#: ../../web/templates/pages/list_updates.php:34
+#: ../../web/templates/pages/list_updates.php:58
+msgid "Description"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:82
+msgid "PHP modules list"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules_passenger_manager.php:31
+msgid "Passenger manager"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules_passenger_manager.php:38
+msgid "Add new ruby path"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules_passenger_manager.php:60
+msgid "Are you sure you want to delete item?"
+msgstr ""
+
+#: ../../web/templates/pages/extmodules_passenger_manager.php:71
+msgid "Ruby available list"
 msgstr ""
 
 #: ../../web/templates/pages/generate_ssl.php:35
@@ -3486,13 +3748,13 @@ msgstr ""
 #: ../../web/templates/pages/list_mail_acc.php:56
 #: ../../web/templates/pages/list_packages.php:32
 #: ../../web/templates/pages/list_packages.php:35
+#: ../../web/templates/pages/list_services.php:38
+#: ../../web/templates/pages/list_services.php:43
 #: ../../web/templates/pages/list_stats.php:29
 #: ../../web/templates/pages/list_user.php:41
 #: ../../web/templates/pages/list_user.php:54
 #: ../../web/templates/pages/list_web.php:41
 #: ../../web/templates/pages/list_web.php:49
-#: ../../web/templates/pages/list_services.php:38
-#: ../../web/templates/pages/list_services.php:43
 msgid "Apply to selected"
 msgstr ""
 
@@ -3510,9 +3772,9 @@ msgstr ""
 #: ../../web/templates/pages/list_mail.php:73
 #: ../../web/templates/pages/list_mail_acc.php:83
 #: ../../web/templates/pages/list_packages.php:52
+#: ../../web/templates/pages/list_services.php:100
 #: ../../web/templates/pages/list_user.php:80
 #: ../../web/templates/pages/list_web.php:76
-#: ../../web/templates/pages/list_services.php:100
 msgid "Select all"
 msgstr ""
 
@@ -3561,12 +3823,12 @@ msgstr ""
 #: ../../web/templates/pages/list_mail_acc.php:164
 #: ../../web/templates/pages/list_packages.php:118
 #: ../../web/templates/pages/list_packages.php:119
+#: ../../web/templates/pages/list_services.php:152
+#: ../../web/templates/pages/list_services.php:153
 #: ../../web/templates/pages/list_user.php:144
 #: ../../web/templates/pages/list_user.php:145
 #: ../../web/templates/pages/list_web.php:194
 #: ../../web/templates/pages/list_web.php:195
-#: ../../web/templates/pages/list_services.php:152
-#: ../../web/templates/pages/list_services.php:153
 msgid "Select"
 msgstr ""
 
@@ -3782,15 +4044,6 @@ msgstr ""
 
 #: ../../web/templates/pages/list_cron.php:103
 msgid "Are you sure you want to suspend this cron job?"
-msgstr ""
-
-#: ../../web/templates/pages/list_cron.php:133
-#: ../../web/templates/pages/list_cron.php:136
-#: ../../web/templates/pages/extmodules.php:107
-#: ../../web/templates/pages/list_services.php:163
-#: ../../web/templates/pages/list_services.php:177
-#: ../../web/templates/pages/list_services.php:180
-msgid "Edit"
 msgstr ""
 
 #: ../../web/templates/pages/list_cron.php:158
@@ -4305,6 +4558,79 @@ msgstr ""
 msgid "Partially implemented"
 msgstr ""
 
+#: ../../web/templates/pages/list_services.php:9
+msgid "Task Monitor"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:26
+#: ../../web/templates/pages/list_services.php:189
+#, php-format
+msgid "Are you sure you want to restart %s?"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:31
+msgid "ExtModules"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:39
+#: ../../web/templates/pages/list_services.php:117
+msgid "Stop"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:40
+#: ../../web/templates/pages/list_services.php:124
+msgid "Start"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:68
+msgid "Production Release"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:74
+msgid "Operating System"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:80
+msgid "Load Average"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:86
+#: ../../web/templates/pages/list_services.php:105
+#: ../../web/templates/pages/list_services.php:213
+msgid "Uptime"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:95
+msgid "Services"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:102
+#: ../../web/templates/pages/list_services.php:157
+msgid "Service"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:107
+msgid "Memory(Physical memory)"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:200
+#, php-format
+msgid "Are you sure you want to stop service %s?"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:200
+#, php-format
+msgid "Are you sure you want to start service %s?"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:221
+msgid "Memory"
+msgstr ""
+
+#: ../../web/templates/pages/list_services.php:222
+msgid "MB"
+msgstr ""
+
 #: ../../web/templates/pages/list_ssl.php:82
 msgid "SSL CSR"
 msgstr ""
@@ -4345,15 +4671,6 @@ msgstr ""
 #: ../../web/templates/pages/list_updates.php:33
 #: ../../web/templates/pages/list_updates.php:54
 msgid "Package Names"
-msgstr ""
-
-#: ../../web/templates/pages/list_updates.php:34
-#: ../../web/templates/pages/list_updates.php:58
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:39
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:69
-#: ../../web/templates/pages/list_services.php:104
-#: ../../web/templates/pages/list_services.php:209
-msgid "Description"
 msgstr ""
 
 #: ../../web/templates/pages/list_user.php:43
@@ -4435,11 +4752,6 @@ msgid "%d web domain"
 msgid_plural "%d web domains"
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../../web/templates/pages/list_webapps.php:16
-#: ../../web/templates/pages/edit_web.php:15
-msgid "Quick Install App"
-msgstr ""
 
 #: ../../web/templates/pages/list_webapps.php:29
 msgid "Setup"
@@ -4553,314 +4865,6 @@ msgstr ""
 #: ../../web/templates/pages/setup_webapp.php:35
 #, php-format
 msgid "Please make sure ~/web/%s/public_html is empty!"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:11
-msgid "Purge NGINX Cache"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:56
-msgid "Edit Web Domain"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:71
-msgid ""
-"If the aliases changes, Let's Encrypt will obtain a new SSL certificate."
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:88
-msgid "Web Statistics"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:107
-msgid "Statistics Authorization"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:133
-msgid "Enable domain redirection"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:140
-#: ../../web/templates/pages/edit_web.php:146
-#, php-format
-msgid "Redirect visitors to %s"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:152
-msgid "Redirect visitors to a custom domain or web address"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:157
-msgid "Target domain or URL"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:161
-msgid "Status code"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:189
-msgid "Enable automatic HTTPS redirection"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:195
-msgid "Enable HTTP Strict Transport Security (HSTS)"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:257
-msgid "Hide Certificate"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:257
-#: ../../web/templates/pages/edit_web.php:258
-msgid "Show Certificate"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:292
-msgid "Enable FastCGI cache"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:301
-msgid "Cache Duration"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:334
-msgid "Proxy Support"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:365
-msgid "Set port for internal service"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:371
-msgid "Proxy Extensions"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:380
-msgid "Custom document root"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:385
-msgid "Point to"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:408
-msgid "Additional FTP account(s)"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:430
-#: ../../web/templates/pages/edit_web.php:537
-#, php-format
-msgid "Prefix %s will be added to username automatically"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:446
-#: ../../web/templates/pages/edit_web.php:552
-#: ../../web/templates/pages/extmodules_passenger_manager.php:43
-msgid "Path"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:454
-#: ../../web/templates/pages/edit_web.php:558
-msgid "Send FTP credentials to email"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:463
-msgid "Add FTP account"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:472
-msgid "Passenger options"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:485
-msgid "Enable passenger for domain"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:490
-msgid "Set ruby path for domain"
-msgstr ""
-
-#: ../../web/templates/pages/edit_web.php:512
-msgid "Enable logging to browser for domain"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:27
-msgid "List modules"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:31
-#: ../../web/templates/pages/extmodules.php:62
-msgid "Module ID"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:32
-#: ../../web/templates/pages/extmodules.php:66
-msgid "Module name"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:34
-#: ../../web/templates/pages/extmodules.php:90
-msgid "Module description"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:35
-#: ../../web/templates/pages/extmodules.php:94
-msgid "Module state"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:36
-#: ../../web/templates/pages/extmodules.php:98
-msgid "Requirements"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:37
-#: ../../web/templates/pages/extmodules.php:102
-msgid "Configuration"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:47
-msgid "Enable module"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:50
-#, php-format
-msgid "Are you sure you want to enable module %s?"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:54
-msgid "Disable module"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:57
-#, php-format
-msgid "Are you sure you want to disable module %s?"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules.php:126
-msgid "Extended modules list"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules_passenger_manager.php:31
-msgid "Passenger manager"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules_passenger_manager.php:38
-msgid "Add new ruby path"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules_passenger_manager.php:60
-msgid "Are you sure you want to delete item?"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules_passenger_manager.php:71
-msgid "Ruby available list"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:27
-msgid "Available PHP list"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:31
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:40
-msgid "PHP version"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:45
-msgid "Change modules list"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:46
-msgid "Change modules list for PHP"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules.php:59
-msgid "PHP modules tunning"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:32
-msgid "Available modules list for version PHP"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:38
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:47
-msgid "PHP module name"
-msgstr ""
-
-#: ../../web/templates/pages/extmodules/extmodules_php_brepo_modules_list.php:82
-msgid "PHP modules list"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:9
-msgid "Task Monitor"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:26
-#: ../../web/templates/pages/list_services.php:189
-#, php-format
-msgid "Are you sure you want to restart %s?"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:31
-msgid "ExtModules"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:39
-#: ../../web/templates/pages/list_services.php:117
-msgid "Stop"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:40
-#: ../../web/templates/pages/list_services.php:124
-msgid "Start"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:68
-msgid "Production Release"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:74
-msgid "Operating System"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:80
-msgid "Load Average"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:86
-#: ../../web/templates/pages/list_services.php:105
-#: ../../web/templates/pages/list_services.php:213
-msgid "Uptime"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:95
-msgid "Services"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:102
-#: ../../web/templates/pages/list_services.php:157
-msgid "Service"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:107
-msgid "Memory(Physical memory)"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:200
-#, php-format
-msgid "Are you sure you want to stop service %s?"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:200
-#, php-format
-msgid "Are you sure you want to start service %s?"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:221
-msgid "Memory"
-msgstr ""
-
-#: ../../web/templates/pages/list_services.php:222
-msgid "MB"
 msgstr ""
 
 #: ../../web/update/hestia/index.php:20

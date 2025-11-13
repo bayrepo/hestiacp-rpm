@@ -130,6 +130,16 @@ if (!in_array($v_redirect, ["www." . $v_domain, $v_domain])) {
 	$v_redirect_custom = $v_redirect;
 }
 
+//Is default domain
+$v_is_default = false;
+exec(HESTIA_CMD . "v-default-domain " . $user . " " . quoteshellarg($v_domain). " check", $output, $return_var);
+if ($return_var == 0) {
+	if (strpos(implode("", $output), 'true') !== false) {
+		$v_is_default = true;		
+	}
+}
+unset($output);
+
 $v_ftp_user = $data[$v_domain]["FTP_USER"];
 $v_ftp_path = $data[$v_domain]["FTP_PATH"];
 if (!empty($v_ftp_user)) {
@@ -1591,6 +1601,40 @@ if (!empty($_POST["save"])) {
 		$restart_proxy = "yes";
 	} else {
 		unset($v_custom_doc_root);
+	}
+
+	if (!empty($_POST["v-default-domain"])) {
+		if ($v_is_default == false) {
+			exec(
+					HESTIA_CMD .
+						"v-default-domain " .
+						$user .
+						" " .
+						quoteshellarg($v_domain) .
+						" set",
+					$output,
+					$return_var,
+				);
+			check_return_code($return_var, $output);
+			unset($output);
+			$v_is_default = true;
+		}
+	} else {
+		if ($v_is_default == true) {
+			exec(
+					HESTIA_CMD .
+						"v-default-domain " .
+						$user .
+						" " .
+						quoteshellarg($v_domain) .
+						" delete",
+					$output,
+					$return_var,
+				);
+			check_return_code($return_var, $output);
+			unset($output);
+			$v_is_default = false;
+		}
 	}
 
 	if (!empty($v_redirect) && empty($_POST["v-redirect-checkbox"])) {
