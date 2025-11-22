@@ -22,6 +22,7 @@ export const webDomains = [
 			{ text: 'PHP 8.2' },
 			{ text: 'PHP 8.3' },
 			{ text: 'PHP 8.4' },
+			{ text: 'PHP 8.5' },
 		],
 	},
 ];

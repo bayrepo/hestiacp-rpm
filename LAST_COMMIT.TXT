@@ -1,8 +1,8 @@
-commit bb547d1d9a5c95a135606dfb5ea12aacad846f59
+commit 8b2c076e2eeb660af0a2fea20c7e6c453a462c68
 Author: Alexey Berezhok <a@bayrepo.ru>
-Date:   Tue Nov 11 23:46:20 2025 +0300
+Date:   Tue Nov 18 23:14:29 2025 +0300
 
-    Added local path of phpmyadmin
+    Added php versions to upgrade.conf, fixed errors
 
 
 

@@ -39,6 +39,8 @@ $v_php_versions = [
 	"php-81",
 	"php-82",
 	"php-83",
+	"php-84",
+	"php-85",
 ];
 
 

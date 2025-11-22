@@ -42,7 +42,7 @@ HESTIA_INSTALL_VER='1.9.6.rpm-alpha'
 
 # Dependencies
 mariadb_v="10.11"
-multiphp_v=("74" "80" "81" "82" "83")
+multiphp_v=("74" "80" "81" "82" "83" "84" "85")
 
 # default PHP version
 php_v="82"
@@ -61,7 +61,7 @@ software="nginx
   hestia hestia-nginx hestia-php
   rrdtool quota e2fsprogs fail2ban dnsutils util-linux cronie expect perl-Mail-DKIM unrar vim acl sysstat
   rsyslog openssh-clients util-linux ipset zstd systemd-timesyncd jq awstats perl-Switch net-tools mc flex
-  whois git idn2 unzip zip sudo bc ftp lsof"
+  whois git idn2 unzip zip sudo bc ftp lsof unzip"
 
 
 installer_dependencies="gnupg2 policycoreutils wget ca-certificates"
@@ -1499,6 +1499,10 @@ fi
 #                     Configure PHP-FPM                    #
 #----------------------------------------------------------#
 
+if [ "$uselocalphp" == "no" ]; then
+	multiphp_v=("74" "80" "81" "82" "83" "84")
+fi
+
 if [ "$phpfpm" = "yes" ]; then
 	if [ "$multiphp" = 'yes' ]; then
 		for v in "${multiphp_v[@]}"; do
@@ -1669,7 +1673,7 @@ if [ "$mysql" = 'yes' ] || [ "$mysql8" = 'yes' ]; then
 	wget --quiet --retry-connrefused https://data.brepo.ru/hestiacp/phpMyAdmin/$pma_v/phpMyAdmin-$pma_v-all-languages.zip
 
 	# Unpack files
-	tar xzf phpMyAdmin-$pma_v-all-languages.tar.gz
+	unzip phpMyAdmin-$pma_v-all-languages.zip
 
 	# Create folders
 	mkdir -p /usr/share/phpmyadmin
