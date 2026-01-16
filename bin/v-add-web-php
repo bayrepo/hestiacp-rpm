@@ -130,10 +130,10 @@ echo
 
 if [ "$LOCAL_PHP" == "yes" ]; then
 	for mod in $php_modules_install; do
-		enable_local_php_extension "$version" "$mod"
+		fn_enable_local_php_extension "$version" "$mod"
 	done
 	for mod in $php_modules_disable; do
-		disable_local_php_extension "$version" "$mod"
+		fn_disable_local_php_extension "$version" "$mod"
 	done
 fi
 

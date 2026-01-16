@@ -335,7 +335,7 @@ if [ "$dontinstalldeps" != 'true' ]; then
 		echo "Installing dependencies for compilation..."
 		dnf install -y -q $SOFTWARE
 
-		mock -r msvsphere+epel-${release}-$BUILD_ARCH --clean
+		mock -r alma+epel-${release}-$BUILD_ARCH --clean
 	else
 		# Set package dependencies for compiling
 		SOFTWARE='wget tar git curl build-essential libxml2-dev libz-dev libzip-dev libgmp-dev libcurl4-gnutls-dev unzip openssl libssl-dev pkg-config libsqlite3-dev libonig-dev rpm lsb-release'
@@ -536,7 +536,7 @@ if [ "$NGINX_B" = true ]; then
 
 		# Build the package
 		echo Building Nginx RPM
-		mock -r msvsphere+epel-${release}-$BUILD_ARCH --sources $BUILD_DIR --spec $BUILD_DIR/hestia-nginx.spec --resultdir $RPM_DIR
+		mock -r alma+epel-${release}-$BUILD_ARCH --sources $BUILD_DIR --spec $BUILD_DIR/hestia-nginx.spec --resultdir $RPM_DIR
 		rm -f $BUILD_DIR/*
 	fi
 fi
@@ -674,7 +674,7 @@ if [ "$PHP_B" = true ]; then
 
 		# Build RPM package
 		echo Building PHP RPM
-		mock -r msvsphere+epel-${release}-$BUILD_ARCH --sources $BUILD_DIR --spec $BUILD_DIR/hestia-php.spec --resultdir $RPM_DIR
+		mock -r alma+epel-${release}-$BUILD_ARCH --sources $BUILD_DIR --spec $BUILD_DIR/hestia-php.spec --resultdir $RPM_DIR
 		rm -f $BUILD_DIR/*
 	fi
 fi
@@ -792,7 +792,7 @@ if [ "$HESTIA_B" = true ]; then
 
 			# Build RPM package
 			echo Building Hestia RPM
-			mock -r msvsphere+epel-${release}-$BUILD_ARCH --sources $BUILD_DIR --spec $BUILD_DIR/hestia.spec --resultdir $RPM_DIR
+			mock -r alma+epel-${release}-$BUILD_ARCH --sources $BUILD_DIR --spec $BUILD_DIR/hestia.spec --resultdir $RPM_DIR
 			rm -f $BUILD_DIR/*
 		fi
 

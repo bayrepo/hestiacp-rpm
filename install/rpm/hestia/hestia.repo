@@ -1,5 +1,5 @@
 [hectiacp]
-name=msvsphere9 hestia repo on repo.brepo.ru
+name=RPM Alma Rocky 9 hestia repo on repo.brepo.ru
 baseurl=https://repo.brepo.ru/hestia/
 enabled=1
 gpgkey=https://repo.brepo.ru/hestia/brepo_projects-gpg-key

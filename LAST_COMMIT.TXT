@@ -1,9 +1,8 @@
-commit 8b2c076e2eeb660af0a2fea20c7e6c453a462c68
+commit ae8b90d66ecba9017e7fe6691fb46ab7bea3e783
 Author: Alexey Berezhok <a@bayrepo.ru>
-Date:   Tue Nov 18 23:14:29 2025 +0300
+Date:   Fri Jan 16 12:33:14 2026 +0300
 
-    Added php versions to upgrade.conf, fixed errors
-
+    Rename default rpm repository
 
 
 

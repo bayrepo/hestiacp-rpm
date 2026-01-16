@@ -3,7 +3,7 @@
 
 Name:              hestia
 Version:           1.9.6
-Release:           2%{dist}
+Release:           3%{dist}
 Summary:           Hestia Control Panel
 Group:             System Environment/Base
 License:           GPLv3
@@ -184,6 +184,9 @@ fi
 %{_tmpfilesdir}/%{name}.conf
 
 %changelog
+* Thu Jan 15 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-3
+- Fix error on local php installation and extension activation
+
 * Thu Oct 09 2025 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-2
 - Fix error on all web and mail domains after Apache 2.4.64 update
 
