@@ -1,8 +1,8 @@
-commit ae8b90d66ecba9017e7fe6691fb46ab7bea3e783
+commit e37e8a0d1e55cd4dff8310be00ca8e33121a68d0
 Author: Alexey Berezhok <a@bayrepo.ru>
-Date:   Fri Jan 16 12:33:14 2026 +0300
+Date:   Sat Mar 21 23:17:24 2026 +0300
 
-    Rename default rpm repository
+    Fixed nginx mod_rewrite templates
 
 
 

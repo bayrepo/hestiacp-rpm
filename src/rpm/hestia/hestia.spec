@@ -3,7 +3,7 @@
 
 Name:              hestia
 Version:           1.9.6
-Release:           3%{dist}
+Release:           5%{dist}
 Summary:           Hestia Control Panel
 Group:             System Environment/Base
 License:           GPLv3
@@ -184,6 +184,10 @@ fi
 %{_tmpfilesdir}/%{name}.conf
 
 %changelog
+* Thu Mar 19 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-5
+- Added nginx with mod_rewrite
+- Added templates for nginx mod_rewrite activation
+
 * Thu Jan 15 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-3
 - Fix error on local php installation and extension activation
 
