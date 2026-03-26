@@ -1,9 +1,7 @@
-commit e37e8a0d1e55cd4dff8310be00ca8e33121a68d0
+commit ec4bb73609f443007bd99e9d2ae76b1915f577d1
 Author: Alexey Berezhok <a@bayrepo.ru>
-Date:   Sat Mar 21 23:17:24 2026 +0300
+Date:   Thu Mar 26 22:52:45 2026 +0300
 
-    Fixed nginx mod_rewrite templates
-
-
+    Fixed database size usage and disk usage output on the info pages
 
 

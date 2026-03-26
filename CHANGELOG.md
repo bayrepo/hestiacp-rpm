@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.6.rpm] - Release
+
+- Fix error on all web and mail domains after Apache 2.4.64 update
+- Fix error on local php installation and extension activation
+- Added templates for nginx mod_rewrite activation
+- Added nginx with mod_rewrite
+- Fixed database size usage and disk usage output on the info pages
+
 ## [1.9.5.rpm] - Release
 
 - Added support installation of alternative php not only remi

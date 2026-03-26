@@ -3,7 +3,7 @@
 
 Name:              hestia
 Version:           1.9.6
-Release:           5%{dist}
+Release:           6%{dist}
 Summary:           Hestia Control Panel
 Group:             System Environment/Base
 License:           GPLv3
@@ -184,6 +184,9 @@ fi
 %{_tmpfilesdir}/%{name}.conf
 
 %changelog
+* Thu Mar 26 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-6
+- Fixed database size usage and disk usage output on the info pages
+
 * Thu Mar 19 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-5
 - Added nginx with mod_rewrite
 - Added templates for nginx mod_rewrite activation
