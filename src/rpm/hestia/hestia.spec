@@ -3,7 +3,7 @@
 
 Name:              hestia
 Version:           1.9.6
-Release:           6%{dist}
+Release:           8%{dist}
 Summary:           Hestia Control Panel
 Group:             System Environment/Base
 License:           GPLv3
@@ -184,6 +184,10 @@ fi
 %{_tmpfilesdir}/%{name}.conf
 
 %changelog
+* Fri Mar 27 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-8
+- Fixed installation of panel without PHP-FPM
+- Fixed mod_php, fcgid, fcgi mode
+
 * Thu Mar 26 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-6
 - Fixed database size usage and disk usage output on the info pages
 

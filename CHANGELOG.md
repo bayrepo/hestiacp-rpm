@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 - Added templates for nginx mod_rewrite activation
 - Added nginx with mod_rewrite
 - Fixed database size usage and disk usage output on the info pages
+- Fixed installation of panel without PHP-FPM
+- Fixed mod_php, fcgid, fcgi mode
 
 ## [1.9.5.rpm] - Release
 

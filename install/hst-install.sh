@@ -753,7 +753,7 @@ if [ "$uselocalphp" == "yes" ]; then
 	php_pkgs_lst="brepo-php${php_v} brepo-php${php_v}-mod-apache"
 else
 	write_config_value "LOCAL_PHP" "no"
-	php_pkgs_lst="php${php_v}-php.${arch} php${php_v}-php-cgi.${arch} php${php_v}-php-mysqlnd.${arch} php${php_v}-php-pgsql.${arch}
+	php_pkgs_lst="php${php_v}-php php${php_v}-php-cgi php${php_v}-php-mysqlnd php${php_v}-php-pgsql
   php${php_v}-php-pdo php${php_v}-php-common php${php_v}-php-pecl-imagick php${php_v}-php-imap php${php_v}-php-ldap
   php${php_v}-php-pecl-apcu php${php_v}-php-pecl-zip php${php_v}-php-cli php${php_v}-php-opcache php${php_v}-php-xml
   php${php_v}-php-gd php${php_v}-php-intl php${php_v}-php-mbstring php${php_v}-php-pspell php${php_v}-php-readline"
@@ -911,7 +911,7 @@ if [ "$apache" = 'no' ]; then
 	software=$(echo "$software" | sed -e "s/mod_suphp//")
 	software=$(echo "$software" | sed -e "s/mod_fcgid//")
 	software=$(echo "$software" | sed -e "s/mod_ssl//")
-	software=$(echo "$software" | sed -e "s/php${php_v}-php.${arch}//")
+	software=$(echo "$software" | sed -e "s/php${php_v}-php//")
 	software=$(echo "$software" | sed -e "s/brepo-php${php_v}-mod-apache//")
 	mod_php="disable"
 fi
@@ -956,11 +956,11 @@ if [ "$mysql8" = 'no' ]; then
 	software=$(echo "$software" | sed -e "s/mysql-common//")
 fi
 if [ "$mysql" = 'no' ] && [ "$mysql8" = 'no' ]; then
-	software=$(echo "$software" | sed -e "s/php${php_v}-php-mysql.${arch}//")
+	software=$(echo "$software" | sed -e "s/php${php_v}-php-mysql//")
 fi
 if [ "$postgresql" = 'no' ]; then
 	software=$(echo "$software" | sed -e "s/postgresql-server//")
-	software=$(echo "$software" | sed -e "s/php${php_v}-php-pgsql.${arch}//")
+	software=$(echo "$software" | sed -e "s/php${php_v}-php-pgsql//")
 	software=$(echo "$software" | sed -e "s/phppgadmin//")
 	php_modules_install=$(echo "$php_modules_install" | sed -e "s/pgsql//")
 	php_modules_install=$(echo "$php_modules_install" | sed -e "s/pdo_pgsql//")
@@ -974,12 +974,12 @@ if [ "$iptables" = 'no' ]; then
 	software=$(echo "$software" | sed -e "s/fail2ban//")
 fi
 if [ "$phpfpm" = 'yes' ]; then
-	software=$(echo "$software" | sed -e "s/php${php_v}-php-cgi.${arch}//")
+	software=$(echo "$software" | sed -e "s/php${php_v}-php-cgi//")
 	software=$(echo "$software" | sed -e "s/httpd-itk//")
 	software=$(echo "$software" | sed -e "s/mod_ruid2 //")
 	software=$(echo "$software" | sed -e "s/mod_suphp//")
 	software=$(echo "$software" | sed -e "s/mod_fcgid//")
-	software=$(echo "$software" | sed -e "s/php${php_v}-php.${arch}//")
+	software=$(echo "$software" | sed -e "s/php${php_v}-php//")
 	software=$(echo "$software" | sed -e "s/brepo-php${php_v}-mod-apache//")
 	mod_php="disable"
 fi
@@ -1456,11 +1456,32 @@ if [ "$apache" = 'yes' ]; then
 
 	# IDK why those modules still here, but ok. if they are disabled by default
 
-	if [ -e /etc/httpd/conf.modules.d/01-suexec.conf ]; then
-		sed 's/^LoadModule suexec_module/#LoadModule suexec_module/' -i /etc/httpd/conf.modules.d/01-suexec.conf
-	fi
-	if [ -e /etc/httpd/conf.modules.d/10-fcgid.conf ]; then
-		sed 's/^LoadModule fcgid_module/#LoadModule fcgid_module/' -i /etc/httpd/conf.modules.d/10-fcgid.conf
+	if [ "$phpfpm" = 'yes' ]; then
+    	if [ -e /etc/httpd/conf.modules.d/01-suexec.conf ]; then
+    		sed 's/^LoadModule suexec_module/#LoadModule suexec_module/' -i /etc/httpd/conf.modules.d/01-suexec.conf
+    	fi
+    	if [ -e /etc/httpd/conf.modules.d/10-fcgid.conf ]; then
+    		sed 's/^LoadModule fcgid_module/#LoadModule fcgid_module/' -i /etc/httpd/conf.modules.d/10-fcgid.conf
+    	fi
+    else
+        cp -f $HESTIA_INSTALL_DIR/httpd/01-mpm-itk.conf /etc/httpd/conf.modules.d/
+        if [ -e /etc/httpd/conf.modules.d/01-suexec.conf ]; then
+       		sed 's/#LoadModule suexec_module/LoadModule suexec_module/' -i /etc/httpd/conf.modules.d/01-suexec.conf
+       	fi
+        echo "LoadModule suphp_module modules/mod_suphp.so" > /etc/httpd/conf.modules.d/10-suphp.conf
+       	if [ -e /etc/httpd/conf.modules.d/10-fcgid.conf ]; then
+       		sed 's/#LoadModule fcgid_module/LoadModule fcgid_module/' -i /etc/httpd/conf.modules.d/10-fcgid.conf
+       	fi
+        if [ -e /etc/httpd/conf.d/fcgid.conf ]; then
+            cp /etc/httpd/conf.d/fcgid.conf /etc/httpd/conf.h.d/fcgid.conf
+        fi
+        if [ -e /etc/httpd/conf.dmod_suphp.conf ]; then
+            cp /etc/httpd/conf.d/mod_suphp.conf /etc/httpd/conf.h.d/mod_suphp.conf
+        fi
+        if [ -e "/etc/httpd/conf.d.prep/php${php_v}.conf" ]; then
+            ln -s "/etc/httpd/conf.d.prep/php${php_v}.conf" /etc/httpd/conf.modules.d/09-mod-php.conf
+        fi
+
 	fi
 
 	# Switch status loader to custom one
@@ -1474,6 +1495,10 @@ if [ "$apache" = 'yes' ]; then
 		sed 's/LoadModule mpm_prefork_module/#LoadModule mpm_prefork_module/' -i /etc/httpd/conf.modules.d/00-mpm.conf
 		sed 's/#LoadModule mpm_event_module/LoadModule mpm_event_module/' -i /etc/httpd/conf.modules.d/00-mpm.conf
 		cp -f $HESTIA_INSTALL_DIR/httpd/hestia-event.conf /etc/httpd/conf.h.d/
+	else
+        sed 's/LoadModule mpm_worker_module/#LoadModule mpm_worker_module/' -i /etc/httpd/conf.modules.d/00-mpm.conf
+        sed 's/LoadModule mpm_event_module/#LoadModule mpm_event_module/' -i /etc/httpd/conf.modules.d/00-mpm.conf
+        sed 's/#LoadModule mpm_prefork_module/LoadModule mpm_prefork_module/' -i /etc/httpd/conf.modules.d/00-mpm.conf
 	fi
 
 	if [ ! -d /etc/httpd/sites-available ]; then

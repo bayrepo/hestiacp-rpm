@@ -1,7 +1,8 @@
-commit ec4bb73609f443007bd99e9d2ae76b1915f577d1
-Author: Alexey Berezhok <a@bayrepo.ru>
-Date:   Thu Mar 26 22:52:45 2026 +0300
+commit 75df7a25548b5dbf98ba9b329cd3af650b0aa43b
+Author: alexey <a@bayrepo.ru>
+Date:   Sat Mar 28 20:16:08 2026 +0300
 
-    Fixed database size usage and disk usage output on the info pages
+    Fixes for php remi
+
 
 

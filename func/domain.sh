@@ -102,7 +102,7 @@ prepare_web_backend() {
 	# Accept first function argument as backend template otherwise fallback to $template global variable
 	local backend_template=${1:-$template}
 	php_type=$(cat "$HESTIA/conf/hestia.conf" | grep "LOCAL_PHP" | grep "yes")
-	
+
 	if [ -n "$php_type" ]; then
 		pool=$(find -L /opt/brepo/ -name "$domain.conf" -exec dirname {} \; 2>/dev/null)
 	else
@@ -359,7 +359,7 @@ add_web_config() {
 			-e "s|%ssl_ca%|$ssl_ca|g" \
 			-e "s|%docrtpriv%|$docrtpriv|g" \
 			> $conf
-	
+
 	if [ "$TPLNM" == "srvproxy.tpl" -o "$TPLNM" == "srvproxy.stpl" ];then
 		proxy_backend_port_internal=$(convert_proxy_ngix_internal_redirect "$3")
 		cat "$conf" \
@@ -419,11 +419,37 @@ add_web_config() {
 		done
 	fi
 
+	#----
+
+	php_type=$(cat "$HESTIA/conf/hestia.conf" | grep "LOCAL_PHP" | grep "yes")
+
+	MOD_CONF="/etc/httpd/conf.modules.d/09-mod-php.conf"
+	PHP_DEFAULT="/usr/bin/php-cgi"
+	php_ver=$(grep -m1 '^LoadModule php_module ' "$MOD_CONF" | grep -oP 'php\d{2}')
+	php_cgi_path=$PHP_DEFAULT
+
+	if [ -n "$php_ver" ]; then
+    	if [ -n "$php_type" ]; then
+    		php_cgi_path="/opt/brepo/${php_ver}/bin/php-cgi"
+    	else
+    		php_cgi_path="/opt/remi/php${php_ver}/root/bin/php-cgi"
+    	fi
+	fi
+
+	if [[ -x "$php_cgi_path" ]]; then
+        :
+	else
+	    php_cgi_path=$PHP_DEFAULT
+	fi
+
+	#----
+
 	trigger="${TPLNM/.*pl/.sh}"
 	if [ -x "${WEBTPL_LOCATION}/$trigger" ]; then
 		$WEBTPL_LOCATION/$trigger \
 			$user $domain $local_ip $HOMEDIR \
-			$HOMEDIR/$user/web/$domain/public_html
+			$HOMEDIR/$user/web/$domain/public_html \
+			$php_cgi_path
 	fi
 }
 

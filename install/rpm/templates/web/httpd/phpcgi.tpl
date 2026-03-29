@@ -10,7 +10,8 @@
     %alias_string%
     ServerAdmin %email%
     DocumentRoot %docroot%
-    ScriptAlias /cgi-bin/ %home%/%user%/web/%domain%/cgi-bin/
+    #ScriptAlias /cgi-bin/ %home%/%user%/web/%domain%/cgi-bin/
+    ScriptAlias /cgi-bin/ /var/www/%user%/%domain%/cgi-bin/
     Alias /vstats/ %home%/%user%/web/%domain%/stats/
     Alias /error/ %home%/%user%/web/%domain%/document_errors/
     SuexecUserGroup %user% %group%

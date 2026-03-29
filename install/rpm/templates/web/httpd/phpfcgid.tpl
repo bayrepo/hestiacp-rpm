@@ -30,11 +30,20 @@
         <Files *.php>
           SetHandler fcgid-script
         </Files>
-        FCGIWrapper %home%/%user%/web/%domain%/cgi-bin/fcgi-starter .php
+        #FCGIWrapper %home%/%user%/web/%domain%/cgi-bin/fcgi-starter .php
+        FCGIWrapper /var/www/%user%/%domain%/cgi-bin/fcgi-starter .php
     </Directory>
     <Directory %home%/%user%/web/%domain%/stats>
         AllowOverride All
     </Directory>
     IncludeOptional %home%/%user%/conf/web/%domain%/%web_system%.conf_*
     IncludeOptional /etc/httpd/conf.h.d/*.inc
+    <IfModule mod_ruid2.c>
+        RMode config
+        RUidGid %user% %group%
+        RGroups apache
+    </IfModule>
+    <IfModule mpm_itk.c>
+        AssignUserID %user% %group%
+    </IfModule>
 </VirtualHost>

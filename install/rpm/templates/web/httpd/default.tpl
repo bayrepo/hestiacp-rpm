@@ -21,6 +21,13 @@
     IncludeOptional %home%/%user%/conf/web/%domain%/forcessl.apache2.conf*
 
     <Directory %docroot%>
+        <FilesMatch ".+\.ph(ar|p|tml)$">
+	    SetHandler application/x-httpd-php
+	</FilesMatch>
+	<FilesMatch ".+\.phps$">
+	    SetHandler application/x-httpd-php-source
+	    Require all denied
+	</FilesMatch>
         AllowOverride All
         Options +Includes -Indexes +ExecCGI
         php_admin_value open_basedir %docroot%:%home%/%user%/tmp

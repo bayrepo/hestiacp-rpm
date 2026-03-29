@@ -4,7 +4,6 @@
 # https://hestiacp.com/docs/server-administration/web-templates.html      #
 #=========================================================================#
 
-# phpMyAdmin and phpPgAdmin require access as apache instead of user for security reasons
 <VirtualHost %ip%:%web_port%>
 
     ServerName %domain_idn%
@@ -19,26 +18,12 @@
     CustomLog /var/log/%web_system%/domains/%domain%.log combined
     ErrorLog /var/log/%web_system%/domains/%domain%.error.log
 
-    IncludeOptional %home%/%user%/conf/web/%domain%/forcessl.apache2.conf*
+    IncludeOptional %home%/%user%/conf/web/%domain%/apache2.forcessl.conf*
 
-    <Directory %docroot%>
-        <FilesMatch ".+\.ph(ar|p|tml)$">
-	    SetHandler application/x-httpd-php
-	</FilesMatch>
-	<FilesMatch ".+\.phps$">
-	    SetHandler application/x-httpd-php-source
-	    Require all denied
-	</FilesMatch>
-        AllowOverride All
-        Options +Includes -Indexes +ExecCGI
-        php_admin_value open_basedir %docroot%:%home%/%user%/tmp
-        php_admin_value upload_tmp_dir %home%/%user%/tmp
-        php_admin_value session.save_path %home%/%user%/tmp
-        php_admin_value sys_temp_dir %home%/%user%/tmp
-    </Directory>
-    <Directory %home%/%user%/web/%domain%/stats>
-        AllowOverride All
-    </Directory>
+    <Location />
+        Require all denied
+    </Location>
+
 
     IncludeOptional %home%/%user%/conf/web/%domain%/%web_system%.conf_*
     IncludeOptional /etc/httpd/conf.h.d/*.inc
