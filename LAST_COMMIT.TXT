@@ -1,8 +1,7 @@
-commit 75df7a25548b5dbf98ba9b329cd3af650b0aa43b
+commit 27b237a3c7061b6e58befb114a131e6f42f3ee91
 Author: alexey <a@bayrepo.ru>
-Date:   Sat Mar 28 20:16:08 2026 +0300
+Date:   Sun Mar 29 12:21:10 2026 +0300
 
-    Fixes for php remi
-
+    Added support ansible instead of puppet
 
 

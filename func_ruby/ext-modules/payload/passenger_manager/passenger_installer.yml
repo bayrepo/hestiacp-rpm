@@ -1,0 +1,69 @@
+---
+- name: Install Passenger and configure Nginx on localhost
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: false
+  environment:
+    LANG: en_US.UTF-8
+    LC_ALL: en_US.UTF-8
+  tasks:
+    # Устанавливаем Ruby и зависимости
+    - name: Install rubygems-devel
+      ansible.builtin.dnf:
+        name: rubygems-devel
+        state: present
+    - name: Install rubygem-rake
+      ansible.builtin.dnf:
+        name: rubygem-rake
+        state: present
+    - name: Install ruby-devel
+      ansible.builtin.dnf:
+        name: ruby-devel
+        state: present
+    - name: Install rubygem-rack
+      ansible.builtin.dnf:
+        name: rubygem-rack
+        state: present
+    - name: Install alt-brepo-ruby33-devel
+      ansible.builtin.dnf:
+        name: alt-brepo-ruby33-devel
+        state: present
+    - name: Install alt-brepo-ruby33-rubygem-rake
+      ansible.builtin.dnf:
+        name: alt-brepo-ruby33-rubygem-rake
+        state: present
+    # Устанавливаем Passenger и модуль Nginx
+    - name: Install passenger-devel
+      ansible.builtin.dnf:
+        name: passenger-devel
+        state: present
+    - name: Install passenger
+      ansible.builtin.dnf:
+        name: passenger
+        state: present
+    - name: Install nginx-mod-http-passenger
+      ansible.builtin.dnf:
+        name: nginx-mod-http-passenger
+        state: present
+    # Конфигурируем Nginx для Passenger
+    - name: Create passenger.conf
+      ansible.builtin.copy:
+        dest: /etc/nginx/conf.d/passenger.conf
+        content: |
+          passenger_root /usr/share/ruby/vendor_ruby/phusion_passenger/locations.ini;
+          passenger_ruby /usr/bin/ruby;
+          passenger_instance_registry_dir /var/run/passenger-instreg;
+          passenger_user_switching on;
+          passenger_env_var PASSENGER_COMPILE_NATIVE_SUPPORT_BINARY 0;
+          passenger_env_var PASSENGER_DOWNLOAD_NATIVE_SUPPORT_BINARY 0;
+    - name: Create passenger_includer.conf
+      ansible.builtin.copy:
+        dest: /etc/nginx/conf.d/main/passenger.conf
+        content: |
+          load_module modules/ngx_http_passenger_module.so;
+    # Перезапускаем Nginx
+    - name: Restart nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: restarted

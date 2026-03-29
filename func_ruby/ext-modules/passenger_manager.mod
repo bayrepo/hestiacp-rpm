@@ -20,15 +20,15 @@ class PassengerWorker < Kernel::ModuleCoreWorker
       ID: 2,
       NAME: MODULE_ID,
       DESCR: "Added passenger support for nginx",
-      REQ: "puppet_installer",
+      REQ: "",
       CONF: "yes",
     }
   end
 
   def enable
     log_file = get_log
-    f_inst_pp = get_module_paydata("passenger_installer.pp")
-    f_uninst_pp = get_module_paydata("passenger_uninstaller.pp")
+    f_inst_pp = get_module_paydata("passenger_installer.yml")
+    f_uninst_pp = get_module_paydata("passenger_uninstaller.yml")
     if !check
       inf = info
       log("Req error, needed #{inf[:REQ]}")
@@ -36,16 +36,16 @@ class PassengerWorker < Kernel::ModuleCoreWorker
     else
       begin
         prepare_default_ruby_conf
-        log("install packages for passenger + nginx support: /usr/bin/puppet apply --detailed-exitcodes #{f_inst_pp}")
-        result_action = `/usr/bin/puppet apply --detailed-exitcodes "#{f_inst_pp}" 2>&1`
+        log("install packages for passenger + nginx support: /usr/bin/ansible-playbook -vv #{f_inst_pp}")
+        result_action = `LC_ALL=C.UTF-8 /usr/bin/ansible-playbook -vv "#{f_inst_pp}" 2>&1`
         ex_status = $?.exitstatus
         if ex_status.to_i == 0 || ex_status.to_i == 2
           log(result_action)
           super
         else
           log(result_action)
-          log("Try to disable action: /usr/bin/puppet apply --detailed-exitcodes #{f_uninst_pp}")
-          result_action = `/usr/bin/puppet apply --detailed-exitcodes "#{f_uninst_pp}" 2>&1`
+          log("Try to disable action: /usr/bin/ansible-playbook -vv #{f_uninst_pp}")
+          result_action = `LC_ALL=C.UTF-8 /usr/bin/ansible-playbook -vv "#{f_uninst_pp}" 2>&1`
           "module installation error. See log #{log_file}"
         end
       rescue => e
@@ -57,14 +57,14 @@ class PassengerWorker < Kernel::ModuleCoreWorker
 
   def disable
     log_file = get_log
-    f_uninst_pp = get_module_paydata("passenger_uninstaller.pp")
+    f_uninst_pp = get_module_paydata("passenger_uninstaller.yml")
     if !check_domains_with_passenger
       return log_return("Presents domains with passenger support disable it first")
     end
     begin
       log("uninstall packages for passenger + nginx support")
-      log("Try to disable action: /usr/bin/puppet apply --detailed-exitcodes #{f_uninst_pp}")
-      result_action = `/usr/bin/puppet apply --detailed-exitcodes "#{f_uninst_pp}" 2>&1`
+      log("Try to disable action: /usr/bin/ansible-playbook -vv #{f_uninst_pp}")
+      result_action = `LC_ALL=C.UTF-8 /usr/bin/ansible-playbook -vv "#{f_uninst_pp}" 2>&1`
       ex_status = $?.exitstatus
       if ex_status.to_i == 0 || ex_status.to_i == 2
         log(result_action)

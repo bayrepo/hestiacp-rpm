@@ -3,7 +3,7 @@
 
 Name:              hestia
 Version:           1.9.6
-Release:           8%{dist}
+Release:           9%{dist}
 Summary:           Hestia Control Panel
 Group:             System Environment/Base
 License:           GPLv3
@@ -36,8 +36,7 @@ Requires(post):    systemd
 Requires(preun):   systemd
 Requires(postun):  systemd
 Requires:          ruby
-Requires:          puppet
-Requires:          puppet-stdlib
+Requires:          ansible-core
 
 Provides:          hestia = %{version}-%{release}
 Conflicts:         redhat-release < 8
@@ -184,6 +183,9 @@ fi
 %{_tmpfilesdir}/%{name}.conf
 
 %changelog
+* Sun Mar 29 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-9
+- Added support ansible instead of puppet
+
 * Fri Mar 27 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-8
 - Fixed installation of panel without PHP-FPM
 - Fixed mod_php, fcgid, fcgi mode

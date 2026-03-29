@@ -1,0 +1,38 @@
+---
+- name: Uninstall Passenger and configure Nginx on localhost
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: false
+  environment:
+    LANG: en_US.UTF-8
+    LC_ALL: en_US.UTF-8
+  tasks:
+    # Удалаем модуль nginx-passenger
+    - name: Remove nginx-mod-http-passenger package
+      ansible.builtin.dnf:
+        name: nginx-mod-http-passenger
+        state: absent
+    # Удалаем passenger и зависимости
+    - name: Remove passenger-devel package
+      ansible.builtin.dnf:
+        name: passenger-devel
+        state: absent
+    - name: Remove passenger package
+      ansible.builtin.dnf:
+        name: passenger
+        state: absent
+    # Удаляем конфигурационные файлы Nginx
+    - name: Remove passenger.conf
+      ansible.builtin.file:
+        path: /etc/nginx/conf.d/passenger.conf
+        state: absent
+    - name: Remove passenger_includer.conf
+      ansible.builtin.file:
+        path: /etc/nginx/conf.d/main/passenger.conf
+        state: absent
+    # Перезапускаем Nginx (необязательно, но полезно)
+    - name: Restart nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: restarted

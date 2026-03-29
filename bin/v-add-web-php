@@ -84,10 +84,10 @@ if [ "$LOCAL_PHP" == "yes" ]; then
 	fi
 else
 	# Packages in Remi repo have names with php$version-php- prefixes
-	mph="php$version-php-fpm php$version-php-cgi php$version-php-mysqlnd php$version-php-pgsql 
-		php$version-php-pdo php$version-php-common php$version-php-pecl-imagick php$version-php-imap 
-		php$version-php-ldap php$version-php-pecl-apcu php$version-php-pecl-zip php$version-php-cli 
-		php$version-php-opcache php$version-php-xml php$version-php-gd php$version-php-intl 
+	mph="php$version-php-fpm php$version-php-cgi php$version-php-mysqlnd php$version-php-pgsql
+		php$version-php-pdo php$version-php-common php$version-php-pecl-imagick php$version-php-imap
+		php$version-php-ldap php$version-php-pecl-apcu php$version-php-pecl-zip php$version-php-cli
+		php$version-php-opcache php$version-php-xml php$version-php-gd php$version-php-intl
 		php$version-php-mbstring php$version-php-pspell php$version-php-readline"
 	if [ "$version" = "56" ]; then
 		mph=$(sed -e "s/php$version-php-pecl-apcu//")
@@ -156,23 +156,15 @@ else
 fi
 
 # Check if required modules for apache2 are enabled
-if [ "$WEB_SYSTEM" = "apache2" ]; then
-	if [ -f /etc/redhat-release ]; then
-		if ! httpd -M | grep 'proxy_fcgi_module' ; then
-			sed 's/#LoadModule proxy_fcgi_module/LoadModule proxy_fcgi_module/' -i /etc/httpd/conf.modules.d/00-proxy.conf
-			sed 's/#LoadModule proxy_module/LoadModule proxy_module/' -i /etc/httpd/conf.modules.d/00-proxy.conf
-		fi
-		if ! httpd -M | grep 'setenvif_module' ; then
-			sed 's/#LoadModule setenvif_module/LoadModule setenvif_module/' -i /etc/httpd/conf.modules.d/00-base.conf
-		fi
-	else
-		if ! a2query -q -m proxy_fcgi; then
-			a2enmod -q proxy_fcgi
-		fi
-		if ! a2query -q -m setenvif; then
-			a2enmod -q setenvif
-		fi
+if [ "$WEB_SYSTEM" = "httpd" ]; then
+	if ! httpd -M | grep 'proxy_fcgi_module' ; then
+		sed 's/#LoadModule proxy_fcgi_module/LoadModule proxy_fcgi_module/' -i /etc/httpd/conf.modules.d/00-proxy.conf
+		sed 's/#LoadModule proxy_module/LoadModule proxy_module/' -i /etc/httpd/conf.modules.d/00-proxy.conf
 	fi
+	if ! httpd -M | grep 'setenvif_module' ; then
+		sed 's/#LoadModule setenvif_module/LoadModule setenvif_module/' -i /etc/httpd/conf.modules.d/00-base.conf
+	fi
+
 	$BIN/v-restart-web "yes"
 fi
 
