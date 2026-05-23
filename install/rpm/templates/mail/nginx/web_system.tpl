@@ -27,7 +27,7 @@ server {
 		}
 
 		location ~ ^/(.*\.php)$ {
-			include /etc/nginx/fastcgi_params;
+			include /usr/local/hestia/nginx-system/etc/nginx/fastcgi_paramsystem/etc/nginx/fastcgi_params;
 
 			fastcgi_index index.php;
 			fastcgi_param SCRIPT_FILENAME $request_filename;

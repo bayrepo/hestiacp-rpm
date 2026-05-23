@@ -40,7 +40,7 @@ server {
 	# This rule should only be placed on your development environment
 	# In production, don't include this and don't deploy app_dev.php or config.php
 	location ~ ^/(app_dev|config)\.php(/|$) {
-		include /etc/nginx/fastcgi_params;
+		include /usr/local/hestia/nginx-system/etc/nginx/fastcgi_paramsystem/etc/nginx/fastcgi_params;
 
 		# When you are using symlinks to link the document root to the
 		# current version of your application, you should pass the real
@@ -60,7 +60,7 @@ server {
 
 	# PROD
 	location ~ ^/app\.php(/|$) {
-		include /etc/nginx/fastcgi_params;
+		include /usr/local/hestia/nginx-system/etc/nginx/fastcgi_paramsystem/etc/nginx/fastcgi_params;
 
 		# When you are using symlinks to link the document root to the
 		# current version of your application, you should pass the real

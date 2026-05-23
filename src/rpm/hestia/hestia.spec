@@ -3,7 +3,7 @@
 
 Name:              hestia
 Version:           1.9.6
-Release:           9%{dist}
+Release:           11%{dist}
 Summary:           Hestia Control Panel
 Group:             System Environment/Base
 License:           GPLv3
@@ -183,6 +183,9 @@ fi
 %{_tmpfilesdir}/%{name}.conf
 
 %changelog
+* Mon May 04 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-11
+- Added support bunkerweb
+
 * Sun Mar 29 2026 Alexey Berezhok <a@bayrepo.ru> - 1.9.6-9
 - Added support ansible instead of puppet
 

@@ -65,7 +65,7 @@ csv_list() {
 #----------------------------------------------------------#
 
 # Defining config path
-config_path='/etc/nginx/nginx.conf'
+config_path='/usr/local/hestia/nginx-system/etc/nginx/nginx.conf'
 
 # Defining keys
 keys="worker_processes |worker_connections |send_timeout"

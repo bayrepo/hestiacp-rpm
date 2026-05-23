@@ -1,7 +1,8 @@
-commit 27b237a3c7061b6e58befb114a131e6f42f3ee91
-Author: alexey <a@bayrepo.ru>
-Date:   Sun Mar 29 12:21:10 2026 +0300
+commit 317e3e215eb5c6100550a72f74f65b0009d9deb3
+Author: Alexey Berezhok <a@bayrepo.ru>
+Date:   Sat May 23 22:45:01 2026 +0300
 
-    Added support ansible instead of puppet
+    Added abbility with bunkerweb coopertion
+
 
 

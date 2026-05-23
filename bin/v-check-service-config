@@ -31,7 +31,7 @@ SERVICE_NAME="$1"
 
 case "$SERVICE_NAME" in
 nginx )
-    /usr/sbin/nginx -t >> "$DEBUG_LOG_FILE" 2>&1
+    /usr/local/hestia/nginx-system/sbin/nginx -t >> "$DEBUG_LOG_FILE" 2>&1
     V_RESULT=$?
     exit $V_RESULT
 ;;
@@ -47,5 +47,3 @@ esac
 
 # Something like error, we shouldn't be here
 exit 1
-
-

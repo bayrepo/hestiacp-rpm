@@ -49,7 +49,7 @@
     # Конфигурируем Nginx для Passenger
     - name: Create passenger.conf
       ansible.builtin.copy:
-        dest: /etc/nginx/conf.d/passenger.conf
+        dest: /usr/local/hestia/nginx-system/etc/nginx/conf.d/passenger.conf
         content: |
           passenger_root /usr/share/ruby/vendor_ruby/phusion_passenger/locations.ini;
           passenger_ruby /usr/bin/ruby;
@@ -59,11 +59,11 @@
           passenger_env_var PASSENGER_DOWNLOAD_NATIVE_SUPPORT_BINARY 0;
     - name: Create passenger_includer.conf
       ansible.builtin.copy:
-        dest: /etc/nginx/conf.d/main/passenger.conf
+        dest: /usr/local/hestia/nginx-system/etc/nginx/conf.d/main/passenger.conf
         content: |
           load_module modules/ngx_http_passenger_module.so;
     # Перезапускаем Nginx
     - name: Restart nginx service
       ansible.builtin.service:
-        name: nginx
+        name: nginx-system
         state: restarted

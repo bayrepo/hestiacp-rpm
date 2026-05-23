@@ -79,9 +79,9 @@ EOF
 chown root:$user $fastcgi
 chmod 640 $fastcgi
 
-str="fastcgi_cache_path /var/cache/nginx/micro/$domain levels=1:2"
+str="fastcgi_cache_path /usr/local/hestia/nginx-system/var/cache/nginx/micro/$domain levels=1:2"
 str="$str keys_zone=$domain:10m max_size=512m inactive=30m use_temp_path=off;"
-conf='/etc/nginx/conf.d/fastcgi_cache_pool.conf'
+conf='/usr/local/hestia/nginx-system/etc/nginx/conf.d/fastcgi_cache_pool.conf'
 if [ -f "$conf" ]; then
 	if [ -z "$(grep "=${domain}:" $conf)" ]; then
 		echo "$str" >> $conf
@@ -90,7 +90,7 @@ else
 	echo "$str" >> $conf
 fi
 
-mkdir -p /var/cache/nginx/micro/$domain
+mkdir -p /usr/local/hestia/nginx-system/var/cache/nginx/micro/$domain
 
 #----------------------------------------------------------#
 #                       Hestia                             #

@@ -1,0 +1,488 @@
+#!/opt/brepo/ruby33/bin/ruby
+# info: action with bunkerweb API
+# options: [SSL_CERT_PATH SSL_KEY_PATH]
+#
+# example: v-bunkerweb-module-install
+#
+# This function enables and disables additional modules
+#
+#------------------------------------------#
+#                Variables & Functions                     #
+#------------------------------------------#
+
+# Argument definition
+
+require "/usr/local/hestia/func_ruby/global_options"
+
+load_ruby_options_defaults
+$HESTIA = load_hestia_default_path_from_env
+
+require "main"
+require "modules"
+require "HestiaBunkerWebApi"
+require "securerandom"
+require "socket"
+require 'json' unless defined?(JSON)
+require 'etc'
+
+hestia_check_privileged_user
+
+load_global_bash_variables "/etc/hestiacp/hestia.conf"
+if $HESTIA.nil?
+  hestia_print_error_message_to_cli "Can't find HESTIA base path"
+  exit 1
+end
+
+load_global_bash_variables "#{$HESTIA}/conf/hestia.conf"
+
+# Perform verification if read-only mode is enabled
+check_hestia_demo_mode
+
+#------------------------------------------#
+#                       Action                             #
+#------------------------------------------#
+
+puts "========================================================"
+puts "=== AUTOMATED BUNKERWEB SETUP SCRIPT ==="
+puts "========================================================"
+puts ""
+
+# Parse command line arguments for SSL cert and key paths
+SSL_CERT_PATH = ARGV[0] || nil  # First argument: SSL certificate path
+SSL_KEY_PATH = ARGV[1] || nil   # Second argument: SSL key path
+
+# Generate secure passwords (meeting BunkerWeb password policy requirements)
+api_env_file = "/etc/bunkerweb/api.env"
+api_password = nil
+if File.exist?(api_env_file)
+  File.foreach(api_env_file) do |line|
+    if line =~ /^\s*API_PASSWORD=(.*)/
+      val = $1.strip
+      api_password = val unless val.empty?
+      break
+    end
+  end
+end
+specials = '!@#$%^&*()-_=+[]{}|;:,.<>?'
+API_PASSWORD = api_password || (SecureRandom.alphanumeric(24) + specials.chars.sample(3).join).chars.shuffle.join
+
+ui_env_file = "/etc/bunkerweb/ui.env"
+admin_password = nil
+if File.exist?(ui_env_file)
+  File.foreach(ui_env_file) do |line|
+    if line =~ /^\s*ADMIN_PASSWORD=(.*)/
+      val = $1.strip
+      admin_password = val unless val.empty?
+      break
+    end
+  end
+end
+ADMIN_PASSWORD = admin_password || (SecureRandom.alphanumeric(24) + specials.chars.sample(3).join).chars.shuffle.join
+
+puts "[INFO] Get server IP address"
+
+server_ip_addr = "127.0.0.1"  # default fallback
+# Attempt to retrieve server IP via Hestia utility
+begin
+  cmd = "/usr/local/hestia/bin/v-list-sys-ips json"
+  ips_output = `#{cmd}`.strip
+  unless ips_output.empty?
+    parsed_ips = JSON.parse(ips_output)
+    parsed_ips.each do |ip, details|
+      if details["OWNER"] == "admin"
+        server_ip_addr = ip
+        break
+      end
+    end
+  end
+rescue JSON::ParserError, Errno::ENOENT
+  # If the command fails or output is invalid, keep default fallback
+end
+
+puts ""
+
+# Compute nginx group ID once
+nginx_gid = Etc.getgrnam('nginx').gid
+
+# Step 1: Create /etc/bunkerweb/api.env configuration file
+puts "[INFO] Creating API configuration at /etc/bunkerweb/api.env..."
+api_env_content = <<~APIENV
+  # ==============================
+  # BunkerWeb API Configuration
+  # This file lists all supported API environment variables with their defaults.
+  # Uncomment and adjust as needed. Lines starting with # are ignored.
+  # ==============================
+
+  # --- Network & Proxy ---
+  # Listen address/port for the API
+  LISTEN_ADDR=127.0.0.1
+  LISTEN_PORT=8888
+  # Trusted proxy IPs for X-Forwarded-* headers (comma-separated).
+  # Default is restricted to loopback for security.
+  FORWARDED_ALLOW_IPS=127.0.0.1,::1
+  # Trusted proxy IPs for PROXY protocol (comma-separated).
+  # Defaults to FORWARDED_ALLOW_IPS when unset.
+  PROXY_ALLOW_IPS=127.0.0.1,::1
+
+  # --- Logging & Runtime ---
+  # LOG_LEVEL affects most components; CUSTOM_LOG_LEVEL overrides when provided.
+  # LOG_LEVEL=info
+  LOG_TYPES=file
+  LOG_FILE_PATH=/var/log/bunkerweb/api.log
+  # Number of workers/threads (auto if unset).
+  # MAX_WORKERS=<auto>
+  # MAX_THREADS=<auto>
+
+  # --- Authentication & Authorization ---
+  # Optional admin Bearer token (grants full access when provided).
+  # API_TOKEN=#{API_PASSWORD}
+  # Bootstrap admin user (created/validated on startup if provided).
+  API_USERNAME=admin
+  API_PASSWORD=#{API_PASSWORD}
+  # Force re-applying bootstrap admin credentials on startup (use with care).
+  # OVERRIDE_API_CREDS=no
+  # Fine-grained ACLs can be enabled/disabled here.
+  # API_ACL_BOOTSTRAP_FILE=
+
+  # --- IP allowlist ---
+  # Enable and shape inbound IP allowlist for the API.
+  API_WHITELIST_ENABLED=yes
+  WHITELIST_IPS=127.0.0.1
+
+  # --- FastAPI surface ---
+  # Customize or disable documentation endpoints. Use 'disabled' to turn off.
+  # API_TITLE=BunkerWeb API
+  # API_DOCS_URL=/docs
+  # API_REDOC_URL=/redoc
+  # API_OPENAPI_URL=/openapi.json
+  # Mount the API under a subpath (useful behind reverse proxies).
+  # API_ROOT_PATH=
+
+  # --- TLS/SSL ---
+  # Enable TLS for the API listener (requires cert and key).
+  # API_SSL_ENABLED=no
+  # Path to PEM-encoded certificate and private key.
+  # API_SSL_CERTFILE=/etc/ssl/certs/bunkerweb-api.crt
+  # API_SSL_KEYFILE=/etc/ssl/private/bunkerweb-api.key
+  # Optional chain/CA bundle and cipher suite.
+  # API_SSL_CA_CERTS=
+  # API_SSL_CIPHERS_CUSTOM=
+  # API_SSL_CIPHERS_LEVEL=modern   # choices: modern|intermediate
+
+  # --- Biscuit keys & policy ---
+  # Bind token to client IP (except private ranges).
+  # CHECK_PRIVATE_IP=yes
+  # Biscuit token lifetime in seconds (0 disables expiry).
+  # API_BISCUIT_TTL_SECONDS=3600
+  # Provide Biscuit keys via env (hex) instead of files.
+  # BISCUIT_PUBLIC_KEY=
+  # BISCUIT_PRIVATE_KEY=
+
+  # --- Rate limiting ---
+  # Enable/disable and shape rate limiting.
+  API_RATE_LIMIT_ENABLED=no
+  API_RATE_LIMIT_HEADERS_ENABLED=no
+  # Global default limit (times per seconds).
+  # API_RATE_LIMIT_TIMES=100
+  # API_RATE_LIMIT_SECONDS=60
+  # Authentication endpoint limit.
+  # API_RATE_LIMIT_AUTH_TIMES=10
+  # API_RATE_LIMIT_AUTH_SECONDS=60
+  # Advanced limits and rules (CSV/JSON/YAML).
+  # API_RATE_LIMIT_DEFAULTS="200/minute"
+  # API_RATE_LIMIT_APPLICATION_LIMITS=
+  # API_RATE_LIMIT_RULES=
+  # Strategy: fixed-window | moving-window | sliding-window-counter
+  # API_RATE_LIMIT_STRATEGY=fixed-window
+  # Key selector: ip | user | path | method | header:<Name>
+  # API_RATE_LIMIT_KEY=ip
+  # Exempt IPs (space or comma-separated CIDRs).
+  # API_RATE_LIMIT_EXEMPT_IPS=
+  # Storage options in JSON (merged with Redis settings if USE_REDIS=yes).
+  # API_RATE_LIMIT_STORAGE_OPTIONS=
+
+  # --- Redis (optional, for rate limiting storage) ---
+  # USE_REDIS=no
+  # REDIS_HOST=
+  # REDIS_PORT=6379
+  # REDIS_DATABASE=0
+  # REDIS_USERNAME=
+  # REDIS_PASSWORD=
+  # REDIS_SSL=no
+  # REDIS_SSL_VERIFY=yes
+  # REDIS_TIMEOUT=1000
+  # REDIS_KEEPALIVE_POOL=10
+  # REDIS_SENTINEL_HOSTS=sentinel1:26379 sentinel2:26379
+  # REDIS_SENTINEL_MASTER=mymaster
+  # REDIS_SENTINEL_USERNAME=
+  # REDIS_SENTINEL_PASSWORD=
+APIENV
+
+File.write("/etc/bunkerweb/api.env", api_env_content)
+File.chmod(0o660, "/etc/bunkerweb/api.env")
+File.chown(0, nginx_gid, "/etc/bunkerweb/api.env")
+puts "[SUCCESS] API configuration file created at /etc/bunkerweb/api.env"
+puts ""
+
+variables_env_content = <<~VENV
+DNS_RESOLVERS=9.9.9.9 149.112.112.112 8.8.8.8 8.8.4.4
+HTTP_PORT=80
+HTTPS_PORT=443
+API_LISTEN_IP=127.0.0.1
+MULTISITE=yes
+UI_HOST=http://127.0.0.1:7000
+SERVER_NAME=
+
+API_WHITELIST_IP=127.0.0.0/8
+USE_SERVE_FILES=no
+VENV
+
+File.write("/etc/bunkerweb/variables.env", variables_env_content)
+File.chmod(0o660, "/etc/bunkerweb/variables.env")
+File.chown(0, nginx_gid, "/etc/bunkerweb/variables.env")
+puts "[SUCCESS] Variables configuration file created at /etc/bunkerweb/variables.env"
+puts ""
+
+# Step 2: Enable and start bunkerweb-api service, wait for it to be running
+puts "[INFO] Enabling bunkerweb-api service..."
+system("systemctl enable bunkerweb-api")
+puts "[INFO] Starting bunkerweb-api service..."
+system("systemctl start bunkerweb-api")
+
+sleep(30)
+
+# Wait for the service to be ready (max 30 seconds)
+puts "[INFO] Waiting for bunkerweb-api service to be running..."
+max_attempts = 60  # Wait up to 30 seconds (check every half second)
+attempt = 0
+
+while attempt < max_attempts
+  status_output = `systemctl is-active bunkerweb-api 2>&1`
+  status = status_output.strip
+
+  if status == "active" || status == "running"
+    puts "[SUCCESS] bunkerweb-api service is running!"
+    break
+  elsif status == "failed"
+    puts "[ERROR] bunkerweb-api service failed to start!"
+    exit 1
+  else
+    print "."
+    sleep(0.5)
+    attempt += 1
+  end
+end
+
+if attempt >= max_attempts
+  puts ""
+  puts "[ERROR] bunkerweb-api service did not become active within timeout"
+  puts "[INFO] Current status: #{status_output.strip}"
+  log_event E_INVALID, $ARGUMENTS
+  exit 1
+end
+
+puts ""
+
+# Step 3: Configure UI settings based on documentation at https://docs.bunkerweb.io/latest/web-ui/
+puts "[INFO] Configuring Web UI..."
+
+# Determine SSL settings for UI
+ui_ssl_enabled = "no"
+if SSL_CERT_PATH && SSL_KEY_PATH && File.exist?(SSL_CERT_PATH) && File.exist?(SSL_KEY_PATH)
+  ui_ssl_enabled = "yes"
+end
+
+ui_env_content = <<~UIENV
+  # ==============================
+  # BunkerWeb UI Configuration
+  # This file configures the Web UI settings.
+  # ==============================
+
+  # --- Listener & TLS ---
+  # Bind address for the UI (use server IP for external access)
+  UI_LISTEN_ADDR=127.0.0.1
+  # Bind port for the UI
+  UI_LISTEN_PORT=7000
+  # Enable TLS in the UI container
+  UI_SSL_ENABLED=#{ui_ssl_enabled}
+UIENV
+
+# Add SSL cert/key paths if provided
+if ui_ssl_enabled == "yes"
+  ui_env_content += <<~SSLCONF
+
+    # SSL Certificate and Key paths
+    UI_SSL_CERTFILE=#{SSL_CERT_PATH}
+    UI_SSL_KEYFILE=#{SSL_KEY_PATH}
+  SSLCONF
+end
+
+ui_env_content += <<~UIENV2
+
+  # --- Admin Authentication ---
+  # Seed admin account
+  ADMIN_USERNAME=admin
+  ADMIN_PASSWORD=#{ADMIN_PASSWORD}
+
+  # --- Proxy settings ---
+  # Trusted proxy IPs for X-Forwarded-* headers
+  # UI_FORWARDED_ALLOW_IPS=127.0.0.1,::1
+
+UIENV2
+
+File.write("/etc/bunkerweb/ui.env", ui_env_content)
+File.chmod(0o660, "/etc/bunkerweb/ui.env")
+File.chown(0, nginx_gid, "/etc/bunkerweb/ui.env")
+puts "[SUCCESS] UI configuration file created at /etc/bunkerweb/ui.env"
+puts ""
+
+# Step 4: Reload the bunkerweb-ui service to apply new configuration
+puts "[INFO] Reloading bunkerweb-ui service..."
+system("systemctl restart bunkerweb-ui")
+
+# Wait for UI to be ready (max 10 seconds)
+sleep(2)
+
+if system("systemctl is-active bunkerweb-ui >/dev/null 2>&1")
+  puts "[SUCCESS] bunkerweb-ui service is running!"
+else
+  puts "[WARN] bunkerweb-ui service status could not be verified"
+end
+
+puts ""
+
+# Step 5: Now proceed with the original service creation logic
+puts "[INFO] Connecting to BunkerWeb API..."
+
+API_URL = "http://127.0.0.1:8888"
+
+USERNAME = "admin"
+PASSWORD = API_PASSWORD
+
+# Default services to create after setup
+DEFAULT_SERVICES = [
+  {
+    name: "#{server_ip_addr}",
+    options: {
+      ssl: "no",
+      reverse_proxy_host: "http://127.0.0.1:7000",
+      use_template: "ui",
+      reverse_proxy_url: "/kormilo",
+      use_reverse_proxy: "yes"
+    }
+  },
+  # Add more services here if needed:
+  # {
+  #   name: "secure.example.com",
+  #   options: {
+  #     ssl: "yes",
+  #     certificate_path: "/etc/ssl/certs/example.crt",
+  #     key_path: "/etc/ssl/private/example.key"
+  #   }
+  # }
+]
+
+begin
+  api = HestiaBunkerWebApi.new(API_URL, USERNAME, PASSWORD)
+
+  puts ""
+  puts "[SUCCESS] API connected successfully!"
+  puts ""
+
+  # List existing services
+  services = api.list_services()
+  services = api.list_services()
+  if services && services.is_a?(Hash) && services.key?('services')
+    services = services['services']
+    services = nil if services.is_a?(Array) && services.empty?
+  else
+    services = nil
+  end
+  if services.nil?
+    puts "[INFO] No services found - creating default configuration..."
+
+    DEFAULT_SERVICES.each do |service_config|
+      begin
+        puts "[INFO] Creating service: #{service_config[:name]}"
+        result = api.create_service(service_config[:name], service_config[:options])
+        puts "  ✓ Service '#{service_config[:name]}' created"
+      rescue BunkerWebApiError => e
+        if e.message.include?("already exists")
+          puts "  ℹ Service '#{service_config[:name]}' already exists, skipping..."
+        else
+          raise
+        end
+      end
+
+    end
+
+    puts "[SUCCESS] Default services created!"
+
+  else
+    puts "[INFO] Existing services:"
+    services.each { |s| puts "  - #{s['server_name']}" }
+    puts ""
+  end
+
+  # Reload configuration on all instances
+  puts "[INFO] Reloading configuration..."
+  api.reload_instance()
+
+  puts "[INFO] Restarting bunkerweb service..."
+  system("systemctl restart bunkerweb")
+  puts "[INFO] Restarting bunkerweb-scheduler service..."
+  system("systemctl restart bunkerweb-scheduler")
+
+  puts ""
+  puts "======================================================"
+  puts "=== SETUP COMPLETED SUCCESSFULLY ==="
+  puts "======================================================"
+  puts ""
+  puts "Web UI is now accessible at:"
+  if ui_ssl_enabled == "yes"
+    puts "  https://#{server_ip_addr}/kormilo"
+  else
+    puts "  http://#{server_ip_addr}/kormilo"
+  end
+  puts ""
+  puts "API URL: #{API_URL}"
+  puts ""
+  puts "API Credentials:"
+  puts "  Username: admin"
+  puts "  Password: #{PASSWORD}"
+  puts ""
+
+  puts "UI Credentials:"
+  puts "  Username: admin"
+  puts "  Password: #{ADMIN_PASSWORD}"
+  puts ""
+
+rescue BunkerWebApiError => e
+
+  if e.message.include?("Authentication") || e.message.include?("Connection refused")
+    puts "[ERROR] Could not connect to BunkerWeb API"
+    puts "[INFO] This means the setup has NOT been completed correctly"
+    puts ""
+    puts "Please verify that:"
+    puts "  1. bunkerweb-api service is running: systemctl status bunkerweb-api"
+    puts "  2. API configuration file exists at /etc/bunkerweb/api.env"
+    puts "  3. Check logs: journalctl -u bunkerweb-api -f"
+    puts ""
+    log_event E_INVALID, $ARGUMENTS
+    exit 1
+
+  else
+    puts "[ERROR] #{e.message}"
+    log_event E_INVALID, $ARGUMENTS
+    exit 1
+  end
+
+rescue => e
+  puts "[ERROR] Unexpected error: #{e.message}"
+  puts "Backtrace:"
+  puts e.backtrace.inspect
+  log_event E_INVALID, $ARGUMENTS
+  exit 1
+end
+
+exit 0

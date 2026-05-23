@@ -9,7 +9,7 @@
 # www.domain.tld type will be automatically assigned to the domain unless
 # "none" is transmited as argument. If ip have associated dns name, this
 # domain will also get the alias domain-tpl.$ipname. An alias with the ip
-# name is useful during the site testing while dns isn't moved to server yet.
+# name is useful during the site testing while dns isn't moved to server yaliet.
 
 #----------------------------------------------------------#
 #                Variables & Functions                     #
@@ -250,6 +250,15 @@ check_result $? "Web restart failed" > /dev/null
 # Restarting proxy server
 $BIN/v-restart-proxy "$restart"
 check_result $? "Proxy restart failed" > /dev/null
+
+# Execute bunkerweb_module if it's enabled
+module_state=$($BIN/v-ext-modules state bunkerweb_module json | jq -r '.[0].STATE')
+if [ "$module_state" = "enabled" ]; then
+    $BIN/v-ext-modules-run bunkerweb_module add "$domain" "$ip"
+    if [ -n "%$ALIAS" ]; then
+        $BIN/v-ext-modules-run bunkerweb_module alias "$domain" "$ALIAS"
+    fi
+fi
 
 # Logging
 $BIN/v-log-action "$user" "Info" "Web" "Added new web domain (Name: $domain)."

@@ -90,6 +90,16 @@ check_result $? "Web restart failed" > /dev/null
 $BIN/v-restart-proxy "$restart"
 check_result $? "Proxy restart failed" > /dev/null
 
+# Execute bunkerweb_module if it's enabled
+module_state=$($BIN/v-ext-modules state bunkerweb_module json | jq -r '.[0].STATE')
+if [ "$module_state" = "enabled" ] && [ "$BUNKERWEB" = "yes" ]; then
+    BUNKW_DIR=$HOMEDIR/$user/conf/web/$domain/ssl/bunkerweb
+    if [ -d "$BUNKW_DIR" ]; then
+        $BIN/v-ext-modules-run bunkerweb_module deletessl "$domain"
+        rm -f $BUNKW_DIR/$domain.*
+    fi
+fi
+
 # Logging
 $BIN/v-log-action "$user" "Warning" "Web" "SSL disabled (Domain: $domain)."
 log_event "$OK" "$ARGUMENTS"

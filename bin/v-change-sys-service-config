@@ -65,18 +65,18 @@ fi
 
 # Defining dst config path
 case $service in
-	nginx) dst='/etc/nginx/nginx.conf' ;;
+	nginx) dst='/usr/local/hestia/nginx-system/etc/nginx/nginx.conf' ;;
 	httpd) dst='/etc/httpd/conf/httpd.conf' ;;
 	apache2) dst='/etc/apache2/apache2.conf' ;;
 	exim) dst='/etc/exim/exim.conf' ;;
 	exim4) dst='/etc/exim4/exim4.conf.template' ;;
 	vsftpd) dst=$(find /etc/vsftpd* -name 'vsftpd.conf') ;;
 	proftpd) dst=$(find /etc/proftpd* -name 'proftpd.conf') ;;
-	php) 
+	php)
 		if [ "$LOCAL_PHP" == "yes" ]; then
-			dst=$(find /opt/brepo/php${php_v} -name php.ini) 
+			dst=$(find /opt/brepo/php${php_v} -name php.ini)
 		else
-			dst=$(find /etc/opt/remi/php${php_v} -name php.ini) 
+			dst=$(find /etc/opt/remi/php${php_v} -name php.ini)
 		fi
 	;;
 	mysql) dst=$(find /etc/my* -name my.cnf) ;;
@@ -136,7 +136,7 @@ if [ "$update" = 'yes' ] && [ "$restart" != 'no' ]; then
 		fi
 	fi
 
-	$BIN/v-restart-service "$service" > /dev/null 2>&1
+    $BIN/v-restart-service "$service" > /dev/null 2>&1
 
 	if [ $? -ne 0 ]; then
 		for config in $dst; do

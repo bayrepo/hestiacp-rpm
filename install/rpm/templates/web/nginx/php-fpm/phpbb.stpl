@@ -50,7 +50,7 @@ server {
 
 		# Pass the php scripts to FastCGI server specified in upstream declaration.
 		location ~ \.php(/|$) {
-			include         /etc/nginx/fastcgi_params;
+			include         /usr/local/hestia/nginx-system/etc/nginx/fastcgi_paramsystem/etc/nginx/fastcgi_params;
 
 			fastcgi_index index.php;
 			fastcgi_split_path_info ^(.+\.php)(/.*)$;
@@ -81,7 +81,7 @@ server {
 
 		# Pass the php scripts to fastcgi server specified in upstream declaration.
 		location ~ \.php(/|$) {
-			include         /etc/nginx/fastcgi_params;
+			include         /usr/local/hestia/nginx-system/etc/nginx/fastcgi_paramsystem/etc/nginx/fastcgi_params;
 
 			fastcgi_index index.php;
 			fastcgi_split_path_info ^(.+\.php)(/.*)$;

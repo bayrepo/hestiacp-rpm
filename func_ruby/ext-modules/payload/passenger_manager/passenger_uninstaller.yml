@@ -25,14 +25,14 @@
     # Удаляем конфигурационные файлы Nginx
     - name: Remove passenger.conf
       ansible.builtin.file:
-        path: /etc/nginx/conf.d/passenger.conf
+        path: /usr/local/hestia/nginx-system/etc/nginx/conf.d/passenger.conf
         state: absent
     - name: Remove passenger_includer.conf
       ansible.builtin.file:
-        path: /etc/nginx/conf.d/main/passenger.conf
+        path: /usr/local/hestia/nginx-system/etc/nginx/conf.d/main/passenger.conf
         state: absent
     # Перезапускаем Nginx (необязательно, но полезно)
     - name: Restart nginx service
       ansible.builtin.service:
-        name: nginx
+        name: nginx-system
         state: restarted

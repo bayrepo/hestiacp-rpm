@@ -25,10 +25,14 @@ send_email_report() {
 	email=$(echo "$email" | cut -f 2 -d "'")
 	tmpfile=$(mktemp)
 	subj="$(hostname): $PROXY_SYSTEM restart failed"
-	nginx -t >> $tmpfile 2>&1
+	/usr/local/hestia/nginx-system/sbin/nginx -t >> $tmpfile 2>&1
 
 	if [ "$1" == "DO_RESTART" ]; then
-		service "$PROXY_SYSTEM" restart >> $tmpfile 2>&1
+	    if [ "$PROXY_SYSTEM" = "nginx" ]; then
+			service nginx-system restart >> $tmpfile 2>&1
+		else
+		    service "$PROXY_SYSTEM" restart >> $tmpfile 2>&1
+		fi
 	fi
 	cat "$tmpfile" | $SENDMAIL -s "$subj" "$email"
 	if [ "$DEBUG_MODE" = "true" ]; then

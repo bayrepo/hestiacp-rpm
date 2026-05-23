@@ -48,13 +48,13 @@ conf=$(grep "DOMAIN='$domain'" "$USER_DATA/web.conf")
 parse_object_kv_list "$conf"
 
 # Purge nginx FastCGI cache
-if [ -d "/var/cache/nginx/micro/$domain" ]; then
-	rm -rf /var/cache/nginx/micro/$domain/*
+if [ -d "/usr/local/hestia/nginx-system/var/cache/nginx/micro/$domain" ]; then
+	rm -rf /usr/local/hestia/nginx-system/var/cache/nginx/micro/$domain/*
 fi
 
 # Purge nginx proxy cache
-if [ -d "/var/cache/nginx/$domain" ]; then
-	rm -rf /var/cache/nginx/$domain/*
+if [ -d "/usr/local/hestia/nginx-system/var/cache/nginx/$domain" ]; then
+	rm -rf /usr/local/hestia/nginx-system/var/cache/nginx/$domain/*
 fi
 
 #----------------------------------------------------------#

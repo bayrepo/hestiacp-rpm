@@ -88,6 +88,25 @@ check_result $? "Web restart failed" > /dev/null
 $BIN/v-restart-proxy "$restart"
 check_result $? "Proxy restart failed" > /dev/null
 
+# Execute bunkerweb_module if it's enabled
+module_state=$($BIN/v-ext-modules state bunkerweb_module json | jq -r '.[0].STATE')
+if [ "$module_state" = "enabled" ] && [ "$BUNKERWEB" = "yes" ]; then
+    BUNKW_DIR=$HOMEDIR/$user/conf/web/$domain/ssl/bunkerweb
+    if [ ! -d "$BUNKW_DIR" ]; then
+        mkdir -p "$BUNKW_DIR"
+        chmod 0755 "$BUNKW_DIR"
+    fi
+    cp -f "$HOMEDIR/$user/conf/web/$domain/ssl/$domain.crt" "$BUNKW_DIR/"
+    cp -f "$HOMEDIR/$user/conf/web/$domain/ssl/$domain.key" "$BUNKW_DIR/"
+    cp -f "$HOMEDIR/$user/conf/web/$domain/ssl/$domain.pem" "$BUNKW_DIR/"
+    if [ -e "$HOMEDIR/$user/conf/web/$domain/ssl/$domain.ca" ]; then
+        cp -f "$HOMEDIR/$user/conf/web/$domain/ssl/$domain.ca" "$BUNKW_DIR/"
+    fi
+    chown root:nginx "$BUNKW_DIR"/*
+    chmod 0640 "$BUNKW_DIR"/*
+    $BIN/v-ext-modules-run bunkerweb_module addssl "$domain" "$BUNKW_DIR/$domain.pem" "$BUNKW_DIR/$domain.key"
+fi
+
 # Logging
 $BIN/v-log-action "$user" "Info" "Web" "SSL certificate changed (Domain: $domain)."
 log_event "$OK" "$ARGUMENTS"

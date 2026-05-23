@@ -86,7 +86,11 @@ if [ -n "$old_ip" ]; then
 
 	# Updating PROXY
 	if [ -n "$PROXY_SYSTEM" ]; then
-		cd /etc/$PROXY_SYSTEM/$pconfd
+		if [ "$PROXY_SYSTEM" = "nginx" ]; then
+			cd /usr/local/hestia/nginx-system/etc/nginx/$pconfd
+		else
+			cd /etc/$PROXY_SYSTEM/$pconfd
+		fi
 		if [ -e "$old_ip.conf" ]; then
 			mv $old_ip.conf $new_ip.conf
 			sed -i "s/$old_ip/$new_ip/g" $new_ip.conf
@@ -95,7 +99,11 @@ if [ -n "$old_ip" ]; then
 
 	# Updating WEB
 	if [ -n "$WEB_SYSTEM" ]; then
-		cd /etc/$WEB_SYSTEM/$confd
+		if [ "$WEB_SYSTEM" = "nginx" ]; then
+			cd /usr/local/hestia/nginx-system/etc/nginx/$confd
+		else
+			cd /etc/$WEB_SYSTEM/$confd
+		fi
 
 		if [ -e "$old_ip.conf" ]; then
 			mv $old_ip.conf $new_ip.conf
@@ -161,8 +169,8 @@ for ip in $ips; do
 		prefixlen="$(ip -d -j addr show | jq --arg IP "$ip" -r '.[].addr_info[] | if .local == $IP then .prefixlen else empty end')"
 		netmask="$(convert_cidr "$prefixlen")"
 		$BIN/v-add-sys-ip "$ip" "$netmask" "$interface"
-	elif [ -e "/etc/nginx/conf.d/$ip.conf" ]; then
-		process_http2_directive "/etc/nginx/conf.d/$ip.conf"
+	elif [ -e "/usr/local/hestia/nginx-system/etc/nginx/conf.d/$ip.conf" ]; then
+		process_http2_directive "/usr/local/hestia/nginx-system/etc/nginx/conf.d/$ip.conf"
 	fi
 done
 

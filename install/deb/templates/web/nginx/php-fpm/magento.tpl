@@ -28,7 +28,7 @@ server {
 
 			fastcgi_pass %backend_lsnr%;
 
-			include /etc/nginx/fastcgi_params;
+			include /usr/local/hestia/nginx-system/etc/nginx/fastcgi_params;
 			include %home%/%user%/conf/web/%domain%/nginx.fastcgi_cache.conf*;
 		}
 
@@ -46,7 +46,7 @@ server {
 		root %docroot%;
 
 		location ~ ^/update/index.php {
-			include /etc/nginx/fastcgi_params;
+			include /usr/local/hestia/nginx-system/etc/nginx/fastcgi_params;
 
 			fastcgi_index index.php;
 			fastcgi_param PATH_INFO $fastcgi_path_info;
@@ -159,7 +159,7 @@ server {
 	location ~ (index|get|static|report|404|503)\.php$ {
 		try_files $uri =404;
 
-		include /etc/nginx/fastcgi_params;
+		include /usr/local/hestia/nginx-system/etc/nginx/fastcgi_params;
 
 		fastcgi_buffers 1024 4k;
 		fastcgi_connect_timeout 600s;

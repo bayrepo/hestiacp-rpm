@@ -1,0 +1,14 @@
+---
+- name: Install Bunkerweb on localhost
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: false
+  environment:
+    LANG: en_US.UTF-8
+    LC_ALL: en_US.UTF-8
+  tasks:
+    - name: Install bunkerweb
+      ansible.builtin.dnf:
+        name: bunkerweb
+        state: present

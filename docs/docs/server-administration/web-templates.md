@@ -112,11 +112,11 @@ fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 try_files $uri =404;
 fastcgi_pass %backend_lsnr%;
 fastcgi_index index.php;
-include /etc/nginx/fastcgi_params;
+include /usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/etc/nginx/fastcgi_params;
 }
 ```
 
-Добавьте следующие строки под `include /etc/nginx/fastcgi_params;`:
+Добавьте следующие строки под `include /usr/local/hestia/nginx-system/usr/local/hestia/nginx-system/etc/nginx/fastcgi_params;`:
 
 ```bash
 include %home%/%user%/conf/web/%domain%/nginx.fastcgi_cache.conf*;

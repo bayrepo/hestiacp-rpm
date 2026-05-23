@@ -73,7 +73,7 @@ for service in $service_list; do
 		$BIN/v-stop-firewall
 		$BIN/v-update-firewall
 	elif [ "$restart" = "ssl" ] && [ "$service" = "nginx" ]; then
-		service $service upgrade >> $log 2>&1
+		service nginx-system upgrade >> $log 2>&1
 	elif [ -z "$restart" -o "$restart" = "no" ] && [ \
 		"$service" = "nginx" -o \
 		"$service" = "httpd" -o \
@@ -86,10 +86,19 @@ for service in $service_list; do
 		"$service" = "proftpd" -o \
 		"$service" = "ssh" -o \
 		"$service" = "fail2ban" ]; then
-		systemctl reload-or-restart "$service" >> $log 2>&1
+		if [ "$service" = "nginx" ]; then
+		    systemctl reload-or-restart nginx-system >> $log 2>&1
+		else
+		    systemctl reload-or-restart "$service" >> $log 2>&1
+		fi
 	else
-		systemctl reset-failed "$service" >> $log 2>&1
-		systemctl restart "$service" >> $log 2>&1
+	    if [ "$service" = "nginx" ]; then
+			systemctl reset-failed nginx-system >> $log 2>&1
+    		systemctl restart nginx-system >> $log 2>&1
+		else
+    		systemctl reset-failed "$service" >> $log 2>&1
+    		systemctl restart "$service" >> $log 2>&1
+		fi
 	fi
 
 	# Check the result of the service restart and report whether it failed.

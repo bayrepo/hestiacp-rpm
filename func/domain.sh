@@ -383,7 +383,11 @@ add_web_config() {
 
 	if [[ "$TPLNM" =~ stpl$ ]]; then
 		rm -f /etc/$1/$confd/domains/$domain.ssl.conf
-		ln -s $conf /etc/$1/$confd/domains/$domain.ssl.conf
+		if [ "$1" = "nginx" ]; then
+		    ln -s $conf /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$domain.ssl.conf
+		else
+		    ln -s $conf /etc/$1/$confd/domains/$domain.ssl.conf
+		fi
 
 		# Rename/Move extra SSL config files
 		find=$(find $HOMEDIR/$user/conf/web/*.$domain.org* 2> /dev/null)
@@ -399,8 +403,13 @@ add_web_config() {
 			fi
 		done
 	else
-		rm -f /etc/$1/$confd/domains/$domain.conf
-		ln -s $conf /etc/$1/$confd/domains/$domain.conf
+	    if [ "$1" = "nginx" ]; then
+			rm -f /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$domain.conf
+    		ln -s $conf /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$domain.conf
+		else
+    		rm -f /etc/$1/$confd/domains/$domain.conf
+    		ln -s $conf /etc/$1/$confd/domains/$domain.conf
+		fi
 		# Rename/Move extra config files
 		find=$(find $HOMEDIR/$user/conf/web/*.$domain.org* 2> /dev/null)
 		for f in $find; do
@@ -514,17 +523,29 @@ del_web_config() {
 		rm -f $legacyconf
 
 		# Remove old global includes file
-		rm -f /etc/$1/$confd/hestia.conf
+		if [ "$1" = "nginx" ]; then
+		    rm -f /usr/local/hestia/nginx-system/etc/$1/$confd/hestia.conf
+		else
+		    rm -f /etc/$1/$confd/hestia.conf
+		fi
 	fi
 
 	# Remove domain configuration files and clean up symbolic links
 	rm -f "$conf"
 
 	if [ -n "$WEB_SYSTEM" ] && [ "$WEB_SYSTEM" = "$1" ]; then
-		rm -f "/etc/$WEB_SYSTEM/$confd/domains/$confname"
+	    if [ "$WEB_SYSTEM" = "nginx" ]; then
+			rm -f "/usr/local/hestia/nginx-system/etc/$WEB_SYSTEM/$confd/domains/$confname"
+		else
+		    rm -f "/etc/$WEB_SYSTEM/$confd/domains/$confname"
+		fi
 	fi
 	if [ -n "$PROXY_SYSTEM" ] && [ "$PROXY_SYSTEM" = "$1" ]; then
-		rm -f "/etc/$PROXY_SYSTEM/$confd/domains/$confname"
+	    if [ "$PROXY_SYSTEM" = "nginx" ]; then
+			rm -f "/usr/local/hestia/nginx-system/etc/$PROXY_SYSTEM/$confd/domains/$confname"
+		else
+		    rm -f "/etc/$PROXY_SYSTEM/$confd/domains/$confname"
+		fi
 	fi
 }
 
@@ -913,8 +934,16 @@ del_mail_ssl_config() {
 
 	# Remove SSL vhost configuration
 	rm -f $HOMEDIR/$user/conf/mail/$domain/*.*ssl.conf
-	rm -f /etc/$WEB_SYSTEM/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
-	rm -f /etc/$PROXY_SYSTEM/$pconfd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+	if [ "$WEB_SYSTEM" = "nginx" ]; then
+	    rm -f /usr/local/hestia/nginx-system/etc/$WEB_SYSTEM/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+	else
+	    rm -f /etc/$WEB_SYSTEM/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+	fi
+	if [ "$PROXY_SYSTEM" = "nginx" ]; then
+	    rm -f /usr/local/hestia/nginx-system/etc/$PROXY_SYSTEM/$pconfd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+	else
+	    rm -f /etc/$PROXY_SYSTEM/$pconfd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+	fi
 
 	# Remove SSL certificates
 	rm -f $HOMEDIR/$user/conf/mail/$domain/ssl/*
@@ -1002,13 +1031,23 @@ add_webmail_config() {
 	if [[ "$2" =~ stpl$ ]]; then
 		if [ -n "$WEB_SYSTEM" ]; then
 			forcessl="$HOMEDIR/$user/conf/mail/$domain/$WEB_SYSTEM.forcessl.conf"
-			rm -f /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
-			ln -s $conf /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+			if [ "$1"  = "nginx" ]; then
+			    rm -f /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+    			ln -s $conf /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+			else
+    			rm -f /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+    			ln -s $conf /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+			fi
 		fi
 		if [ -n "$PROXY_SYSTEM" ]; then
 			forcessl="$HOMEDIR/$user/conf/mail/$domain/$PROXY_SYSTEM.forcessl.conf"
-			rm -f /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
-			ln -s $conf /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+			if [ "$1"  = "nginx" ]; then
+                rm -f /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+    			ln -s $conf /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+			else
+    			rm -f /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+    			ln -s $conf /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+			fi
 		fi
 
 		# Add rewrite rules to force HTTPS/SSL connections
@@ -1023,12 +1062,22 @@ add_webmail_config() {
 		find $HOMEDIR/$user/conf/mail/ -maxdepth 1 -type f \( -name "$domain.*" -o -name "ssl.$domain.*" -o -name "*nginx.$domain.*" \) -exec rm {} \;
 	else
 		if [ -n "$WEB_SYSTEM" ]; then
-			rm -f /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
-			ln -s $conf /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+		    if [ "$1"  = "nginx" ]; then
+				rm -f /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+    			ln -s $conf /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+			else
+    			rm -f /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+    			ln -s $conf /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+			fi
 		fi
 		if [ -n "$PROXY_SYSTEM" ]; then
-			rm -f /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
-			ln -s $conf /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+		    if [ "$1"  = "nginx" ]; then
+				rm -f /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+    			ln -s $conf /usr/local/hestia/nginx-system/etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+		    else
+    			rm -f /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+    			ln -s $conf /etc/$1/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+		    fi
 		fi
 		# Clear old configurations
 		find $HOMEDIR/$user/conf/mail/ -maxdepth 1 -type f \( -name "$domain.*" \) -exec rm {} \;
@@ -1049,12 +1098,20 @@ del_webmail_config() {
 	fi
 	if [ -n "$WEB_SYSTEM" ]; then
 		rm -f $HOMEDIR/$user/$confd/mail/$domain/$WEB_SYSTEM.conf
-		rm -f /etc/$WEB_SYSTEM/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+		if [ "$WEB_SYSTEM" = "nginx" ]; then
+		    rm -f /usr/local/hestia/nginx-system/etc/$WEB_SYSTEM/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+		else
+		    rm -f /etc/$WEB_SYSTEM/$confd/domains/$WEBMAIL_ALIAS.$domain.conf
+		fi
 	fi
 
 	if [ -n "$PROXY_SYSTEM" ]; then
 		rm -f $HOMEDIR/$user/conf/mail/$domain/$PROXY_SYSTEM.*conf
-		rm -f /etc/$PROXY_SYSTEM/$pconfd/domains/$WEBMAIL_ALIAS.$domain.conf
+		if [ "$PROXY_SYSTEM" = "nginx" ]; then
+		    rm -f /usr/local/hestia/nginx-system/etc/$PROXY_SYSTEM/$pconfd/domains/$WEBMAIL_ALIAS.$domain.conf
+		else
+		    rm -f /etc/$PROXY_SYSTEM/$pconfd/domains/$WEBMAIL_ALIAS.$domain.conf
+		fi
 	fi
 }
 
@@ -1072,12 +1129,20 @@ del_webmail_ssl_config() {
 	fi
 	if [ -n "$WEB_SYSTEM" ]; then
 		rm -f $HOMEDIR/$user/conf/mail/$domain/$WEB_SYSTEM.*ssl.conf
-		rm -f /etc/$WEB_SYSTEM/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+		if [ "$WEB_SYSTEM" = "nginx" ]; then
+		    rm -f /usr/local/hestia/nginx-system/etc/$WEB_SYSTEM/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+		else
+		    rm -f /etc/$WEB_SYSTEM/$confd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+		fi
 	fi
 
 	if [ -n "$PROXY_SYSTEM" ]; then
 		rm -f $HOMEDIR/$user/conf/mail/$domain/$PROXY_SYSTEM.*ssl.conf
-		rm -f /etc/$PROXY_SYSTEM/$pconfd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+		if [ "$PROXY_SYSTEM" = "nginx" ]; then
+		    rm -f /usr/local/hestia/nginx-system/etc/$PROXY_SYSTEM/$pconfd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+		else
+		    rm -f /etc/$PROXY_SYSTEM/$pconfd/domains/$WEBMAIL_ALIAS.$domain.ssl.conf
+		fi
 	fi
 }
 
@@ -1183,14 +1248,14 @@ is_base_domain_owner() {
 #----------------------------------------------------------#
 
 process_http2_directive() {
-	if [ -e /etc/nginx/conf.d/http2-directive.conf ]; then
+	if [ -e /usr/local/hestia/nginx-system/etc/nginx/conf.d/http2-directive.conf ]; then
 		while IFS= read -r old_param; do
 			new_param="$(echo "$old_param" | sed 's/\shttp2//')"
 			sed -i "s/$old_param/$new_param/" "$1"
 		done < <(grep -E "listen.*(\bssl\b(\s|.+){1,}\bhttp2\b|\bhttp2\b(\s|.+){1,}\bssl\b).*;" "$1")
 	else
-		if version_ge "$(nginx -v 2>&1 | cut -d'/' -f2)" "1.25.1"; then
-			echo "http2 on;" > /etc/nginx/conf.d/http2-directive.conf
+		if version_ge "$(/usr/local/hestia/nginx-system/sbin/nginx -v 2>&1 | cut -d'/' -f2)" "1.25.1"; then
+			echo "http2 on;" > /usr/local/hestia/nginx-system/etc/nginx/conf.d/http2-directive.conf
 
 			while IFS= read -r old_param; do
 				new_param="$(echo "$old_param" | sed 's/\shttp2//')"

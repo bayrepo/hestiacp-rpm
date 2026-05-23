@@ -31,7 +31,7 @@ server {
 		location ~ [^/]\.php(/|$) {
 			try_files $uri =404;
 
-			include /etc/nginx/fastcgi_params;
+			include /usr/local/hestia/nginx-system/etc/nginx/fastcgi_params;
 
 			fastcgi_index index.php;
 			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;

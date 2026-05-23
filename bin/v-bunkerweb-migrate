@@ -1,0 +1,574 @@
+#!/opt/brepo/ruby33/bin/ruby
+# info: utility to prepare existing server with hestiacp to use bunkerweb
+# do not run this script n the server, where bunkerweb was installed with hestiacp
+# installation
+# options: COMMAND
+#
+# example: v-bunkerweb-migrate migrate-nginx
+#
+# Commands:
+# migratenginx - move old nginx configs to the new port and path
+# migratetobunkerweb - create items of sites in the bunkerweb database
+#
+
+#------------------------------------------#
+#                Variables & Functions                     #
+#------------------------------------------#
+
+# Argument definition
+v_command = ARGV[0]
+
+require "/usr/local/hestia/func_ruby/global_options"
+
+load_ruby_options_defaults
+$HESTIA = load_hestia_default_path_from_env
+
+require "main"
+require "modules"
+require "HestiaBunkerWebApi"
+
+require 'json' unless defined?(JSON)
+require 'fileutils'
+require 'time'
+require 'pathname'
+
+
+def copy_nginx_files(src_root, dest_root)
+  FileUtils.mkdir_p(dest_root)
+  Dir.foreach(src_root) do |entry|
+    next if entry == '.' || entry == '..'
+    next if entry == 'modules' || entry == 'modules-enabled'
+    src_path = File.join(src_root, entry)
+    dest_path = File.join(dest_root, entry)
+    if File.directory?(src_path)
+      FileUtils.mkdir_p(dest_path)
+      copy_nginx_files(src_path, dest_path)
+    else
+      FileUtils.cp(src_path, dest_path)
+    end
+  end
+end
+
+# Function to log and execute migration stages
+def log_migrate_stage(stage)
+  log_file = '/usr/local/hestia/log/bunkerweb_migrate_stages.log'
+  # Check if the stage has already been recorded
+  if File.exist?(log_file) && File.readlines(log_file).any? { |line| line.strip == stage }
+    hestia_print_error_message_to_cli "Stage #{stage} already completed, skipping."
+    return
+  end
+  # Execute the stage block
+  begin
+    yield
+    # Record the successful stage
+    File.open(log_file, 'a') { |f| f.puts stage }
+    hestia_print_info_message_to_cli "Stage #{stage} completed."
+  rescue => e
+    hestia_print_error_message_to_cli "Stage #{stage} failed: #{e.message}"
+    exit 1
+  end
+end
+
+# Function to parse and migrate nginx.conf from /usr/local/hestia/nginx-system/etc/nginx/nginx.conf
+def migrate_nginx_config_from_file(source_path)
+  return false unless File.exist?(source_path)
+
+  hestia_print_info_message_to_cli "Processing nginx config from: #{source_path}"
+
+  content = File.read(source_path)
+  original_content = content.dup
+
+  modified = false
+
+  # Replace all paths starting with /var/ to /usr/local/hestia/nginx-system/var/
+  # This pattern matches any absolute path that starts with /var/ anywhere in the line
+  content = content.gsub(/\/var\//, '/usr/local/hestia/nginx-system/var/')
+
+  # Replace pid path from /run/nginx.pid to /run/nginx-system.pid
+  content = content.gsub(/pid\s+\S+/) { |match| match.gsub('/run/nginx.pid', '/run/nginx-system.pid') }
+
+  if content != original_content
+    File.write(source_path, content)
+    hestia_print_info_message_to_cli "Updated config: #{source_path}"
+    modified = true
+  end
+
+  modified
+end
+
+def parse_listen(line)
+  # Попытка найти IP:port
+  m = line.match(/^\s*listen\s+([^\s:]+):(\d+)/i)
+  return [m[1], m[2]] if m
+  # Если только порт после listen
+  m = line.match(/^\s*listen\s+(\d+);?\s*$/i)
+  return [nil, m[1]] if m
+  nil
+end
+
+# Helper function to parse and replace ports in listen directives using temp placeholders
+def parse_and_replace_listen_directive(line, proxy_port, proxy_ssl_port)
+  return line unless line.match?(/\blisten\b/i)
+
+  new_line = line.dup
+
+  # Define target ports (always migrate to these values regardless of input)
+  target_http_port = '8078'
+  target_ssl_port = '8079'
+
+  result = parse_listen(line)
+  return line unless result
+  ip, port = result
+
+  if port == proxy_port
+    if ip
+      new_line.gsub!("#{ip}:#{port}", "#{ip}:#{target_http_port}")
+    else
+      new_line.gsub!(port, target_http_port)
+    end
+  elsif port == proxy_ssl_port
+    if ip
+      new_line.gsub!("#{ip}:#{port}", "#{ip}:#{target_ssl_port}")
+    else
+      new_line.gsub!(port, target_ssl_port)
+    end
+  end
+
+  new_line
+end
+
+hestia_check_privileged_user
+
+load_global_bash_variables "/etc/hestiacp/hestia.conf"
+if $HESTIA.nil?
+  hestia_print_error_message_to_cli "Can't find HESTIA base path"
+  exit 1
+end
+
+load_global_bash_variables "#{$HESTIA}/conf/hestia.conf"
+
+#------------------------------------------#
+#                    Verifications                         #
+#------------------------------------------#
+
+check_args 1, ARGV, "COMMAND"
+
+# Perform verification if read-only mode is enabled
+check_hestia_demo_mode
+
+#------------------------------------------#
+#                       Action                             #
+#------------------------------------------#
+
+case v_command.to_sym
+when :migratenginx
+  log_migrate_stage('stage0') do
+    # Create backup of /etc/nginx with timestamp
+
+    timestamp = Time.now.strftime('%Y%m%d_%H%M%S')
+    backup_root = "/etc/nginx_backup_#{timestamp}"
+    FileUtils.mkdir_p(backup_root)
+
+    src_root = '/etc/nginx'
+    dest_root = backup_root
+
+    # Custom copy function to handle symlinks in conf.d/domains
+    def copy_with_symlinks(src, dest)
+      Dir.foreach(src) do |entry|
+        next if entry == '.' || entry == '..'
+        src_path = File.join(src, entry)
+        dest_path = File.join(dest, entry)
+
+        if File.symlink?(src_path)
+          # Check if symlink is inside conf.d/domains
+          if src_path.include?(File.join('conf.d', 'domains'))
+            # Resolve the target of the symlink
+            target_path = File.readlink(src_path)
+            # Resolve relative symlink paths
+            unless Pathname.new(target_path).absolute?
+              target_path = File.expand_path(target_path, File.dirname(src_path))
+            end
+            if File.exist?(target_path) && File.file?(target_path)
+              content = File.read(target_path)
+              new_file_name = "#{entry}_content.conf"
+              new_file_path = File.join(dest, new_file_name)
+              File.write(new_file_path, content)
+            end
+          else
+            # Preserve the symlink as is
+            FileUtils.mkdir_p(File.dirname(dest_path))
+            target = File.readlink(src_path)
+            FileUtils.ln_s(target, dest_path)
+          end
+        elsif File.directory?(src_path)
+          FileUtils.mkdir_p(dest_path)
+          copy_with_symlinks(src_path, dest_path)
+        else
+          FileUtils.cp(src_path, dest_path)
+        end
+      end
+    end
+
+    copy_with_symlinks(src_root, dest_root)
+  end
+  log_migrate_stage('stage1') do
+    if $BUNKERWEB.nil?
+      hestia_change_sys_config_value("BUNKERWEB", "yes")
+    end
+  end
+  log_migrate_stage('stage2') do
+    unless system('yum install -y nginx-system')
+      hestia_print_error_message_to_cli "Failed to install nginx-system via yum"
+      log_event E_ARGS, $ARGUMENTS
+      exit 1
+    end
+  end
+  log_migrate_stage('stage3') do
+    FileUtils.rm_f Dir.glob('/usr/local/hestia/nginx-system/etc/nginx/conf.d/*.conf')
+    src_root = '/etc/nginx'
+    dest_root = '/usr/local/hestia/nginx-system/etc/nginx'
+    copy_nginx_files(src_root, dest_root)
+  end
+  log_migrate_stage('stage4') do
+    # Find all files under the nginx-system directory
+    nginx_conf_dir = '/usr/local/hestia/nginx-system/etc/nginx'
+    Dir.glob(File.join(nginx_conf_dir, '**', '*')).each do |path|
+      hestia_print_info_message_to_cli "stage 4 processing file #{path}"
+      next if File.directory?(path)
+      content = File.read(path)
+      new_content = content.gsub(/(?<!\/usr\/local\/hestia\/nginx-system)\/etc\/nginx/, '/usr/local/hestia/nginx-system/etc/nginx')
+      if new_content != content
+        hestia_print_info_message_to_cli "Changed path to config in file #{path}"
+        File.open(path, 'w') { |f| f.write(new_content) }
+      end
+    end
+  end
+  log_migrate_stage('stage4.1') do
+    # Parse nginx.conf file to replace paths
+    if migrate_nginx_config_from_file("/usr/local/hestia/nginx-system/etc/nginx/nginx.conf")
+      hestia_print_info_message_to_cli "Completed migration of nginx.conf paths"
+    else
+      hestia_print_error_message_to_cli "Warning: Could not migrate nginx.conf from #{File.expand_path('/usr/local/hestia/nginx-system/etc/nginx/nginx.conf')}"
+    end
+  end
+  log_migrate_stage('stage5') do
+    nginx_conf_dir = '/usr/local/hestia/nginx-system/etc/nginx'
+
+    # Read proxy ports from configuration
+    #proxy_port = $PROXY_PORT.nil? || $PROXY_PORT.empty? ? '80' : $PROXY_PORT
+    #proxy_ssl_port = $PROXY_SSL_PORT.nil? || $PROXY_SSL_PORT.empty? ? '443' : $PROXY_SSL_PORT
+
+    proxy_port = '80'
+    proxy_ssl_port = '443'
+
+    hestia_print_info_message_to_cli "Migrating ports: #{proxy_port} -> 8078, #{proxy_ssl_port} -> 8079"
+
+    # Find and replace port in all .conf files
+    Dir.glob(File.join(nginx_conf_dir, '**', '*.conf')).each do |conf_file|
+      hestia_print_info_message_to_cli "stage 5 processing file #{conf_file}"
+      content = File.read(conf_file)
+      modified = false
+
+      # Process line by line - only replace ports in listen directives
+      new_lines = []
+
+      content.each_line do |line|
+        # Check if line is a listen directive (starts with optional whitespace then 'listen')
+        if /^\s*listen\s+/i.match?(line) || /^listen\s+/i.match?(line)
+          # This is a listen line - process it
+          new_line = parse_and_replace_listen_directive(line, proxy_port, proxy_ssl_port)
+          modified = true unless new_line == line
+          new_lines << new_line
+        else
+          # Not a listen line, keep as is
+          new_lines << line
+        end
+      end
+
+      # Write changes back if modified
+      if modified
+        File.open(conf_file, 'w') { |f| f.write(new_lines.join) }
+        hestia_print_info_message_to_cli "  Updated: #{conf_file}"
+      end
+    end
+  end
+
+  log_migrate_stage('stage6') do
+    hestia_change_sys_config_value("PROXY_PORT", "8078")
+    hestia_change_sys_config_value("PROXY_SSL_PORT", "8079")
+  end
+  log_migrate_stage('stage7') do
+    if system('/usr/local/hestia/bin/v-ext-modules enable update_module')
+      output = IO.popen("/usr/local/hestia/bin/v-ext-modules state update_module json").read
+      begin
+        parsed = JSON.parse(output)
+        if parsed.is_a?(Array) && parsed.first && parsed.first['STATE'] == 'enabled'
+          system('/usr/local/hestia/bin/v-ext-modules-run update_module synctemplates')
+        else
+          hestia_print_error_message_to_cli "update_module not enabled after enable command"
+          exit 1
+        end
+      rescue JSON::ParserError => e
+        hestia_print_error_message_to_cli "Failed to parse JSON from state command: #{e.message}"
+        exit 1
+      end
+    else
+      hestia_print_error_message_to_cli "Failed to enable update_module"
+      exit 1
+    end
+  end
+  log_migrate_stage('stage8') do
+    hestia_change_sys_config_value("PROXY_PORT", "8078")
+    hestia_change_sys_config_value("PROXY_SSL_PORT", "8079")
+  end
+  #stage8 активация из запуск nginx-system
+  log_migrate_stage('stage9') do
+    # Delete all contents inside /etc/nginx
+    FileUtils.rm_rf Dir.glob('/etc/nginx/*')
+    # Stop nginx service
+    system('systemctl stop nginx')
+    # Start nginx-system service
+    system('systemctl enable nginx-system')
+    system('systemctl start nginx-system')
+  end
+when :migratetobunkerweb
+  log_migrate_stage('stage10') do
+    if system('/usr/local/hestia/bin/v-ext-modules enable bunkerweb_module')
+      output = IO.popen("/usr/local/hestia/bin/v-ext-modules state bunkerweb_module json").read
+      begin
+        parsed = JSON.parse(output)
+        if parsed.is_a?(Array) && parsed.first && parsed.first['STATE'] == 'enabled'
+          result = system('/usr/local/hestia/bin/v-ext-modules-run bunkerweb_module configure')
+          unless result
+            hestia_print_error_message_to_cli "bunkerweb_module configure command failed"
+            exit 1
+          end
+        else
+          hestia_print_error_message_to_cli "bunkerweb_module not enabled after enable command"
+          exit 1
+        end
+      rescue JSON::ParserError => e
+        hestia_print_error_message_to_cli "Failed to parse JSON from state command: #{e.message}"
+        exit 1
+      end
+    else
+      hestia_print_error_message_to_cli "Failed to enable bunkerweb_module"
+      exit 1
+    end
+    hestia_print_info_message_to_cli "Ожидаем минуту для перезапуска сервиса bunkerweb..."
+    sleep 60
+  end
+  LIST_DOMAINS=[]
+
+  log_migrate_stage('stage11') do
+    hestia_print_info_message_to_cli "Stage 11: Migrating users and domains to BunkerWeb..."
+
+    # Get all users from HestiaCP in JSON format
+    user_list_output = IO.popen("/usr/local/hestia/bin/v-list-users json").read
+    begin
+      user_data = JSON.parse(user_list_output)
+    rescue JSON::ParserError => e
+      hestia_print_error_message_to_cli "Failed to parse users JSON: #{e.message}"
+      exit 1
+    end
+
+    # Iterate over each user
+    user_data.each do |username, user_info|
+      next unless user_info.is_a?(Hash)
+
+      web_domains_count = user_info['U_WEB_DOMAINS']
+      next unless web_domains_count && web_domains_count.to_i > 0
+
+      hestia_print_info_message_to_cli "Processing user: #{username} (#{web_domains_count} domains)"
+
+      # Get web domains for this user in JSON format
+      domain_list_output = IO.popen("/usr/local/hestia/bin/v-list-web-domains #{username} json").read
+      begin
+        domain_data = JSON.parse(domain_list_output)
+      rescue JSON::ParserError => e
+        hestia_print_error_message_to_cli "Failed to parse domains JSON for user #{username}: #{e.message}"
+        next
+      end
+
+      # Process each domain
+      domain_data.each do |domain_name, domain_info|
+        next unless domain_info.is_a?(Hash)
+
+        ssl_status = domain_info['SSL'] || 'no'
+        is_ssl = ssl_status == 'yes'
+
+        # Get IP from domain info - should be available in the parsed JSON
+        proxy_host = domain_info['IP'] || (domain_info['IP6'].present? ? domain_info['IP6'].strip : "127.0.0.1")
+        proxy_host = proxy_host.nil? || proxy_host.empty? ? "127.0.0.1" : proxy_host
+
+        # Create alias list from domain info (ALIAS field contains comma-separated aliases)
+        raw_aliases = domain_info['ALIAS'] || ''
+        if raw_aliases && !raw_aliases.empty?
+          # Hestia uses comma-separated, pass as-is to v-bunkerweb-module (it handles conversion internally)
+          aliases_list = raw_aliases
+        else
+          aliases_list = domain_name  # No aliases, use domain name only
+        end
+
+        hestia_print_info_message_to_cli "Processing domain: #{domain_name} (SSL: #{is_ssl}, IP: #{proxy_host})"
+
+        begin
+          # Add domain to BunkerWeb via module script (without SSL)
+          cmd = "/usr/local/hestia/bin/v-bunkerweb-module add #{domain_name} #{proxy_host}"
+          puts_cmd = "  Added #{domain_name}: Executing command: #{cmd}"
+          hestia_print_info_message_to_cli puts_cmd
+
+          result = system(cmd)
+
+          if result
+            # Команда успешно выполнена
+            hestia_print_info_message_to_cli "  Status: Success"
+          else
+            hestia_print_error_message_to_cli "  Failed to add domain #{domain_name}"
+            next
+          end
+        rescue => e
+          hestia_print_error_message_to_cli "Failed to add domain #{domain_name} to BunkerWeb: #{e.message}"
+          next
+        end
+
+        # Add aliases to the domain via module script
+        begin
+          cmd = "/usr/local/hestia/bin/v-bunkerweb-module alias #{domain_name} \"#{aliases_list}\""
+          puts_cmd = "  Added aliases for #{domain_name}: Executing command: #{cmd}"
+          hestia_print_info_message_to_cli puts_cmd
+
+          result = system(cmd)
+
+          if result
+            hestia_print_info_message_to_cli "  Status: Success"
+          else
+            hestia_print_error_message_to_cli "  Failed to set aliases for #{domain_name}"
+            next
+          end
+        rescue => e
+          hestia_print_error_message_to_cli "Failed to set aliases for #{domain_name}: #{e.message}"
+          next
+        end
+
+        # Handle SSL configuration if enabled
+        if is_ssl
+          original_ssl_dir = "/home/#{username}/conf/web/#{domain_name}/ssl"
+
+          # Check if SSL directory and files exist
+          unless Dir.exist?(original_ssl_dir) || File.exist?("#{original_ssl_dir}/#{domain_name}.pem")
+            hestia_print_error_message_to_cli "Warning: SSL files not found for #{domain_name}"
+            LIST_DOMAINS << {
+              user: username,
+              domain: domain_name,
+              is_ssl: true,
+              path_to_ssl: nil
+            }
+            next
+          end
+
+          # Define bunkerweb directory for this domain's certificates
+          bunkerweb_ssl_dir = "/home/#{username}/conf/web/#{domain_name}/ssl/bunkerweb"
+
+          begin
+            # Create bunkerweb SSL directory if it doesn't exist
+            FileUtils.mkdir_p(bunkerweb_ssl_dir)
+            FileUtils.chmod(0755, bunkerweb_ssl_dir)
+
+            # Define paths in bunkerweb directory
+            crt_path_bunkerweb = "#{bunkerweb_ssl_dir}/#{domain_name}.crt"
+            cert_path_bunkerweb = "#{bunkerweb_ssl_dir}/#{domain_name}.pem"
+            key_path_bunkerweb = "#{bunkerweb_ssl_dir}/#{domain_name}.key"
+
+            # Copy all SSL files if they exist (matching v-add-web-domain-ssl behavior)
+            original_crt = "#{original_ssl_dir}/#{domain_name}.crt"
+            original_pem = "#{original_ssl_dir}/#{domain_name}.pem"
+            original_key = "#{original_ssl_dir}/#{domain_name}.key"
+            original_ca = "#{original_ssl_dir}/#{domain_name}.ca"
+
+            # Copy .crt file if exists
+            if File.exist?(original_crt)
+              FileUtils.cp(original_crt, crt_path_bunkerweb)
+            end
+
+            if File.exist?(original_pem)
+              # Only use .pem if .crt doesn't exist (fallback like the backup script)
+              FileUtils.cp(original_pem, cert_path_bunkerweb)
+            end
+
+            # Copy .key file if exists
+            if File.exist?(original_key)
+              FileUtils.cp(original_key, key_path_bunkerweb)
+            end
+
+            # Copy .ca file if exists
+            if File.exist?(original_ca)
+              FileUtils.cp(original_ca, "#{bunkerweb_ssl_dir}/#{domain_name}.ca")
+            end
+
+            # Set ownership and permissions (nginx user can read, others cannot)
+            FileUtils.chown('root', 'nginx', bunkerweb_ssl_dir)
+            FileUtils.chmod(0755, bunkerweb_ssl_dir)
+
+            FileUtils.chown('root', 'nginx', cert_path_bunkerweb) if File.exist?(cert_path_bunkerweb)
+            FileUtils.chmod(0640, cert_path_bunkerweb) if File.exist?(cert_path_bunkerweb)
+
+            FileUtils.chown('root', 'nginx', key_path_bunkerweb) if File.exist?(key_path_bunkerweb)
+            FileUtils.chmod(0640, key_path_bunkerweb) if File.exist?(key_path_bunkerweb)
+
+            FileUtils.chown('root', 'nginx', crt_path_bunkerweb) if File.exist?(crt_path_bunkerweb)
+            FileUtils.chmod(0640, crt_path_bunkerweb) if File.exist?(crt_path_bunkerweb)
+
+            # Add SSL configuration to BunkerWeb via module script (use proxy_host from earlier)
+
+            cmd = "/usr/local/hestia/bin/v-bunkerweb-module addssl #{domain_name} #{crt_path_bunkerweb} #{key_path_bunkerweb}"
+            puts_cmd = "  Added SSL for #{domain_name}: Executing command: #{cmd}"
+            hestia_print_info_message_to_cli puts_cmd
+
+            result = system(cmd)
+
+            if result
+              hestia_print_info_message_to_cli "  Status: Success"
+            else
+              hestia_print_error_message_to_cli "  Failed to configure SSL for #{domain_name}"
+            end
+
+            # Update path_to_ssl to point to bunkerweb directory
+            ssl_cert_path = crt_path_bunkerweb
+          rescue => e
+            hestia_print_error_message_to_cli "Failed to configure SSL for #{domain_name}: #{e.message}"
+          end
+        end
+
+        # Populate LIST_DOMAINS array with domain info
+        LIST_DOMAINS << {
+          user: username,
+          domain: domain_name,
+          proxy_host: proxy_host.to_s,
+          is_ssl: is_ssl == true ? "yes" : "no",  # Convert boolean/string to proper string format
+          path_to_ssl: ssl_cert_path ? ssl_cert_path : nil
+        }
+
+        hestia_print_info_message_to_cli "Successfully migrated #{domain_name} for user #{username}"
+      end
+    end
+
+    # Output the populated LIST_DOMAINS array
+    if !LIST_DOMAINS.empty?
+      hestia_print_info_message_to_cli "\n=== Populated LIST_DOMAINS ==="
+      LIST_DOMAINS.each_with_index do |entry, idx|
+        hestia_print_info_message_to_cli "#{idx + 1}. user: #{entry[:user]}, domain: #{entry[:domain]}, is_ssl: #{entry[:is_ssl].to_s}, path_to_ssl: #{entry[:path_to_ssl]}"
+      end
+    else
+      hestia_print_error_message_to_cli "No domains were migrated to BunkerWeb"
+    end
+
+    hestia_print_info_message_to_cli "Stage 11 completed."
+  end
+else
+  hestia_print_error_message_to_cli "unknown command (use migratetobunkerweb or migratenginx)"
+  log_event E_ARGS, $ARGUMENTS
+  exit 1
+end
+
+exit 0

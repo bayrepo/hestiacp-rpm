@@ -1,0 +1,267 @@
+#!/opt/brepo/ruby33/bin/ruby
+# info: action with bunkerweb API
+# options: COMMAND [SERVICE_NAME | SSL_CERT | SSL_KEY | FORMAT]
+#
+# example: v-bunkerweb-module list json
+#
+# This function enables and disables additional modules
+#
+# Commands:
+# add [domain_name] [ip]
+# addssl [domain_name] [SSL_CERT_PATH] [SSL_KEY_PATH]
+# delete [domain_name]
+# updssl [domain] [SSL_CERT_PATH] [SSL_KEY_PATH]
+# list
+
+#----------------------------------------------------------#
+#                Variables & Functions                     #
+#----------------------------------------------------------#
+
+# Argument definition
+v_command = ARGV[0]
+v_format = nil
+
+require "/usr/local/hestia/func_ruby/global_options"
+
+load_ruby_options_defaults
+$HESTIA = load_hestia_default_path_from_env
+
+require "main"
+require "modules"
+require "HestiaBunkerWebApi"
+
+require 'json' unless defined?(JSON)
+
+hestia_check_privileged_user
+
+load_global_bash_variables "/etc/hestiacp/hestia.conf"
+if $HESTIA.nil?
+  hestia_print_error_message_to_cli "Can't find HESTIA base path"
+  exit 1
+end
+
+load_global_bash_variables "#{$HESTIA}/conf/hestia.conf"
+
+#----------------------------------------------------------#
+#                    Verifications                         #
+#----------------------------------------------------------#
+
+check_args 1, ARGV, "COMMAND [COMMAND_OPTIONS] [ACTION]"
+
+# Perform verification if read-only mode is enabled
+check_hestia_demo_mode
+
+#----------------------------------------------------------#
+#                       Action                             #
+#----------------------------------------------------------#
+
+case v_command.to_sym
+when :add
+
+  v_domain = ARGV[1].strip
+  v_ip = ARGV[2] ? ARGV[2].strip : nil
+  v_format = ARGV[3] unless ARGV[2].nil?
+
+  if v_domain.nil? || v_domain == "" || v_ip.nil? || v_ip == ""
+    hestia_print_error_message_to_cli "domain and ip should not be empty"
+    log_event E_ARGS, $ARGUMENTS
+    exit 1
+  else
+
+    begin
+      api = HestiaBunkerWebApi.new("http://127.0.0.1:8888")
+      existing_services = api.list_services()
+      if existing_services.nil?
+        result_arr = []
+      else
+        if existing_services["services"]
+          if existing_services["services"].any? { |s| s["id"] == v_domain }
+            hestia_print_error_message_to_cli "domain already exists"
+            log_event E_EXISTS, $ARGUMENTS
+            exit 1
+          end
+          result_arr = existing_services["services"]
+        else
+          result_arr = []
+        end
+      end
+      api.create_service(v_domain, {
+        ssl: "no",
+        reverse_proxy_host: "http://#{v_ip}:#{$PROXY_PORT}"
+      })
+    rescue BunkerWebApiError => e
+      hestia_print_error_message_to_cli "[ERROR] Ошибка API: #{e.message}"
+      log_event E_INVALID, $ARGUMENTS
+      exit 1
+    end
+  end
+when :alias
+
+  v_domain = ARGV[1].strip
+  v_alias = ARGV[2].strip
+  v_format = ARGV[3] unless ARGV[3].nil?
+
+  if v_domain.nil? || v_domain == ""
+    hestia_print_error_message_to_cli "domain should not be empty"
+    log_event E_ARGS, $ARGUMENTS
+    exit 1
+  else
+
+    begin
+      api = HestiaBunkerWebApi.new("http://127.0.0.1:8888")
+      existing_services = api.list_services()
+      if existing_services.nil?
+        result_arr = []
+      else
+        if existing_services["services"]
+          result_arr = existing_services["services"]
+        else
+          result_arr = []
+        end
+      end
+      unless result_arr.any? { |s| s["id"] == v_domain }
+        hestia_print_error_message_to_cli "domain does not exist"
+        log_event E_NOTEXIST, $ARGUMENTS
+        exit 1
+      end
+      api.set_alias(v_domain, v_alias)
+    rescue BunkerWebApiError => e
+      hestia_print_error_message_to_cli "[ERROR] Ошибка API: #{e.message}"
+      log_event E_INVALID, $ARGUMENTS
+      exit 1
+    end
+  end
+when :delete
+
+  v_domain = ARGV[1].strip
+  v_format = ARGV[2] unless ARGV[2].nil?
+
+  if v_domain.nil? || v_domain == ""
+    hestia_print_error_message_to_cli "domain should not be empty"
+    log_event E_ARGS, $ARGUMENTS
+    exit 1
+  else
+
+    begin
+      api = HestiaBunkerWebApi.new("http://127.0.0.1:8888")
+      existing_services = api.list_services()
+      if existing_services.nil?
+        result_arr = []
+      else
+        if existing_services["services"]
+          result_arr = existing_services["services"]
+        else
+          result_arr = []
+        end
+      end
+      unless result_arr.any? { |s| s["id"] == v_domain }
+        hestia_print_error_message_to_cli "domain does not exist"
+        log_event E_NOTEXIST, $ARGUMENTS
+        exit 1
+      end
+      api.delete_service(v_domain)
+    rescue BunkerWebApiError => e
+      hestia_print_error_message_to_cli "[ERROR] Ошибка API: #{e.message}"
+      log_event E_INVALID, $ARGUMENTS
+      exit 1
+    end
+  end
+when :addssl, :updssl
+
+  v_domain = ARGV[1].strip
+  v_ssl_cert = ARGV[2]
+  v_ssl_key = ARGV[3]
+  v_format = ARGV[4] unless ARGV[4].nil?
+
+  if v_domain.nil? || v_domain == "" || v_ssl_cert.nil? || v_ssl_key.nil? || !File.exist?(v_ssl_cert) || !File.exist?(v_ssl_key)
+    hestia_print_error_message_to_cli "domain, SSL cert and key must be provided and must exist"
+    log_event E_ARGS, $ARGUMENTS
+    exit 1
+  else
+    begin
+      api = HestiaBunkerWebApi.new("http://127.0.0.1:8888")
+      existing_services = api.list_services()
+      if existing_services.nil?
+        result_arr = []
+      else
+        if existing_services["services"]
+          result_arr = existing_services["services"]
+        else
+          result_arr = []
+        end
+      end
+      unless result_arr.any? { |s| s["id"] == v_domain }
+        hestia_print_error_message_to_cli "domain does not exist"
+        log_event E_NOTEXIST, $ARGUMENTS
+        exit 1
+      end
+      api.update_service_ssl(v_domain, v_ssl_cert, v_ssl_key)
+    rescue BunkerWebApiError => e
+      hestia_print_error_message_to_cli "[ERROR] Ошибка API: #{e.message}"
+      log_event E_INVALID, $ARGUMENTS
+      exit 1
+    end
+  end
+when :deletessl
+
+  v_domain = ARGV[1].strip
+  v_format = ARGV[2] unless ARGV[2].nil?
+
+  if v_domain.nil? || v_domain == ""
+    hestia_print_error_message_to_cli "domain should not be empty"
+    log_event E_ARGS, $ARGUMENTS
+    exit 1
+  else
+
+    begin
+      api = HestiaBunkerWebApi.new("http://127.0.0.1:8888")
+      existing_services = api.list_services()
+      if existing_services.nil?
+        result_arr = []
+      else
+        if existing_services["services"]
+          result_arr = existing_services["services"]
+        else
+          result_arr = []
+        end
+      end
+      unless result_arr.any? { |s| s["id"] == v_domain }
+        hestia_print_error_message_to_cli "domain does not exist"
+        log_event E_NOTEXIST, $ARGUMENTS
+        exit 1
+      end
+      api.delete_service_ssl(v_domain)
+    rescue BunkerWebApiError => e
+      hestia_print_error_message_to_cli "[ERROR] Ошибка API: #{e.message}"
+      log_event E_INVALID, $ARGUMENTS
+      exit 1
+    end
+  end
+when :list
+  v_format = ARGV[1] unless ARGV[1].nil?
+
+  begin
+    api = HestiaBunkerWebApi.new("http://127.0.0.1:8888")
+    existing_services = api.list_services()
+    if existing_services.nil?
+      result_arr = []
+    else
+      if existing_services["services"]
+        result_arr = existing_services["services"]
+      else
+        result_arr = []
+      end
+    end
+    hestia_print_array_of_hashes(result_arr, v_format, "id, method, is_draft, creation_date, last_update, template, security_mode")
+  rescue BunkerWebApiError => e
+    hestia_print_error_message_to_cli "[ERROR] Ошибка API: #{e.message}"
+    log_event E_INVALID, $ARGUMENTS
+    exit 1
+  end
+else
+  hestia_print_error_message_to_cli "unknown command"
+  log_event E_ARGS, $ARGUMENTS
+  exit 1
+end
+
+exit 0

@@ -56,11 +56,12 @@ upgrade_health_check() {
 
 upgrade_welcome_message() {
 	echo
-	echo '                  _   _           _   _        ____ ____                      '
-	echo '                 | | | | ___  ___| |_(_) __ _ / ___|  _ \                     '
-	echo '                 | |_| |/ _ \/ __| __| |/ _` | |   | |_) |                    '
-	echo '                 |  _  |  __/\__ \ |_| | (_| | |___|  __/                     '
-	echo '                 |_| |_|\___||___/\__|_|\__,_|\____|_|                        '
+	echo '                _   _           _   _        ____ ____                        '
+	echo '               | | | | ___  ___| |_(_) __ _ / ___|  _ \   _  _ .  .           '
+	echo '               | |_| |/ _ \/ __| __| |/ _` | |   | |_) | | \| \|\/|           '
+	echo '               |  _  |  __/\__ \ |_| | (_| | |___|  __/  |_/|_/|  |           '
+	echo '               |_| |_|\___||___/\__|_|\__,_|\____|_|     | \|  |  |           '
+	echo "                                                                              "
 	echo "                                                                              "
 	echo "                    Hestia Control Panel Software Update                      "
 	echo "                               Version: ${DISPLAY_VER}"
@@ -535,7 +536,7 @@ upgrade_cloudflare_ip() {
 		cf_ips="$(curl -fsLm5 --retry 2 https://api.cloudflare.com/client/v4/ips)"
 
 		if [ -n "$cf_ips" ] && [ "$(echo "$cf_ips" | jq -r '.success//""')" = "true" ]; then
-			cf_inc="/etc/nginx/conf.d/cloudflare.inc"
+			cf_inc="/usr/local/hestia/nginx-system/etc/nginx/conf.d/cloudflare.inc"
 
 			echo "[ * ] Updating Cloudflare IP Ranges for NGINX..."
 			echo "# Cloudflare IP Ranges" > $cf_inc

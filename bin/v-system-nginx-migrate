@@ -1,0 +1,282 @@
+#!/opt/brepo/ruby33/bin/ruby
+# info: utility to prepare existing server with hestiacp to use new alternative nginx
+# options: COMMAND
+#
+# example: v-system-nginx-migrate migrate-nginx
+#
+# Commands:
+# migratenginx - move old nginx configs to the new port and path
+#
+#
+
+#------------------------------------------#
+#                Variables & Functions                     #
+#------------------------------------------#
+
+# Argument definition
+v_command = ARGV[0]
+
+require "/usr/local/hestia/func_ruby/global_options"
+
+load_ruby_options_defaults
+$HESTIA = load_hestia_default_path_from_env
+
+require "main"
+require "modules"
+
+require 'json' unless defined?(JSON)
+require 'fileutils'
+require 'time'
+require 'pathname'
+
+
+def copy_nginx_files(src_root, dest_root)
+  FileUtils.mkdir_p(dest_root)
+  Dir.foreach(src_root) do |entry|
+    next if entry == '.' || entry == '..'
+    next if entry == 'modules' || entry == 'modules-enabled'
+    src_path = File.join(src_root, entry)
+    dest_path = File.join(dest_root, entry)
+    if File.directory?(src_path)
+      FileUtils.mkdir_p(dest_path)
+      copy_nginx_files(src_path, dest_path)
+    else
+      FileUtils.cp(src_path, dest_path)
+    end
+  end
+end
+
+# Function to log and execute migration stages
+def log_migrate_stage(stage)
+  log_file = '/usr/local/hestia/log/bunkerweb_migrate_stages.log'
+  # Check if the stage has already been recorded
+  if File.exist?(log_file) && File.readlines(log_file).any? { |line| line.strip == stage }
+    hestia_print_error_message_to_cli "Stage #{stage} already completed, skipping."
+    return
+  end
+  # Execute the stage block
+  begin
+    yield
+    # Record the successful stage
+    File.open(log_file, 'a') { |f| f.puts stage }
+    hestia_print_info_message_to_cli "Stage #{stage} completed."
+  rescue => e
+    hestia_print_error_message_to_cli "Stage #{stage} failed: #{e.message}"
+    exit 1
+  end
+end
+
+# Function to parse and migrate nginx.conf from /usr/local/hestia/nginx-system/etc/nginx/nginx.conf
+def migrate_nginx_config_from_file(source_path)
+  return false unless File.exist?(source_path)
+
+  hestia_print_info_message_to_cli "Processing nginx config from: #{source_path}"
+
+  content = File.read(source_path)
+  original_content = content.dup
+
+  modified = false
+
+  # Replace all paths starting with /var/ to /usr/local/hestia/nginx-system/var/
+  # This pattern matches any absolute path that starts with /var/ anywhere in the line
+  content = content.gsub(/\/var\//, '/usr/local/hestia/nginx-system/var/')
+
+  # Replace pid path from /run/nginx.pid to /run/nginx-system.pid
+  content = content.gsub(/pid\s+\S+/) { |match| match.gsub('/run/nginx.pid', '/run/nginx-system.pid') }
+
+  if content != original_content
+    File.write(source_path, content)
+    hestia_print_info_message_to_cli "Updated config: #{source_path}"
+    modified = true
+  end
+
+  modified
+end
+
+def parse_listen(line)
+  # Попытка найти IP:port
+  m = line.match(/^\s*listen\s+([^\s:]+):(\d+)/i)
+  return [m[1], m[2]] if m
+  # Если только порт после listen
+  m = line.match(/^\s*listen\s+(\d+);?\s*$/i)
+  return [nil, m[1]] if m
+  nil
+end
+
+# Helper function to parse and replace ports in listen directives using temp placeholders
+def parse_and_replace_listen_directive(line, proxy_port, proxy_ssl_port)
+  return line unless line.match?(/\blisten\b/i)
+
+  new_line = line.dup
+
+  # Define target ports (always migrate to these values regardless of input)
+  target_http_port = '8078'
+  target_ssl_port = '8079'
+
+  result = parse_listen(line)
+  return line unless result
+  ip, port = result
+
+  if port == proxy_port
+    if ip
+      new_line.gsub!("#{ip}:#{port}", "#{ip}:#{target_http_port}")
+    else
+      new_line.gsub!(port, target_http_port)
+    end
+  elsif port == proxy_ssl_port
+    if ip
+      new_line.gsub!("#{ip}:#{port}", "#{ip}:#{target_ssl_port}")
+    else
+      new_line.gsub!(port, target_ssl_port)
+    end
+  end
+
+  new_line
+end
+
+hestia_check_privileged_user
+
+load_global_bash_variables "/etc/hestiacp/hestia.conf"
+if $HESTIA.nil?
+  hestia_print_error_message_to_cli "Can't find HESTIA base path"
+  exit 1
+end
+
+load_global_bash_variables "#{$HESTIA}/conf/hestia.conf"
+
+#------------------------------------------#
+#                    Verifications                         #
+#------------------------------------------#
+
+check_args 1, ARGV, "COMMAND"
+
+# Perform verification if read-only mode is enabled
+check_hestia_demo_mode
+
+#------------------------------------------#
+#                       Action                             #
+#------------------------------------------#
+
+case v_command.to_sym
+when :migratenginx
+  log_migrate_stage('nstage0') do
+    # Create backup of /etc/nginx with timestamp
+
+    timestamp = Time.now.strftime('%Y%m%d_%H%M%S')
+    backup_root = "/etc/nginx_backup_#{timestamp}"
+    FileUtils.mkdir_p(backup_root)
+
+    src_root = '/etc/nginx'
+    dest_root = backup_root
+
+    # Custom copy function to handle symlinks in conf.d/domains
+    def copy_with_symlinks(src, dest)
+      Dir.foreach(src) do |entry|
+        next if entry == '.' || entry == '..'
+        src_path = File.join(src, entry)
+        dest_path = File.join(dest, entry)
+
+        if File.symlink?(src_path)
+          # Check if symlink is inside conf.d/domains
+          if src_path.include?(File.join('conf.d', 'domains'))
+            # Resolve the target of the symlink
+            target_path = File.readlink(src_path)
+            # Resolve relative symlink paths
+            unless Pathname.new(target_path).absolute?
+              target_path = File.expand_path(target_path, File.dirname(src_path))
+            end
+            if File.exist?(target_path) && File.file?(target_path)
+              content = File.read(target_path)
+              new_file_name = "#{entry}_content.conf"
+              new_file_path = File.join(dest, new_file_name)
+              File.write(new_file_path, content)
+            end
+          else
+            # Preserve the symlink as is
+            FileUtils.mkdir_p(File.dirname(dest_path))
+            target = File.readlink(src_path)
+            FileUtils.ln_s(target, dest_path)
+          end
+        elsif File.directory?(src_path)
+          FileUtils.mkdir_p(dest_path)
+          copy_with_symlinks(src_path, dest_path)
+        else
+          FileUtils.cp(src_path, dest_path)
+        end
+      end
+    end
+
+    copy_with_symlinks(src_root, dest_root)
+  end
+  log_migrate_stage('nstage2') do
+    unless system('yum install -y nginx-system')
+      hestia_print_error_message_to_cli "Failed to install nginx-system via yum"
+      log_event E_ARGS, $ARGUMENTS
+      exit 1
+    end
+  end
+  log_migrate_stage('nstage3') do
+    FileUtils.rm_f Dir.glob('/usr/local/hestia/nginx-system/etc/nginx/conf.d/*.conf')
+    src_root = '/etc/nginx'
+    dest_root = '/usr/local/hestia/nginx-system/etc/nginx'
+    copy_nginx_files(src_root, dest_root)
+  end
+  log_migrate_stage('nstage4') do
+    # Find all files under the nginx-system directory
+    nginx_conf_dir = '/usr/local/hestia/nginx-system/etc/nginx'
+    Dir.glob(File.join(nginx_conf_dir, '**', '*')).each do |path|
+      hestia_print_info_message_to_cli "stage 4 processing file #{path}"
+      next if File.directory?(path)
+      content = File.read(path)
+      new_content = content.gsub(/(?<!\/usr\/local\/hestia\/nginx-system)\/etc\/nginx/, '/usr/local/hestia/nginx-system/etc/nginx')
+      if new_content != content
+        hestia_print_info_message_to_cli "Changed path to config in file #{path}"
+        File.open(path, 'w') { |f| f.write(new_content) }
+      end
+    end
+  end
+  log_migrate_stage('nstage4.1') do
+    # Parse nginx.conf file to replace paths
+    if migrate_nginx_config_from_file("/usr/local/hestia/nginx-system/etc/nginx/nginx.conf")
+      hestia_print_info_message_to_cli "Completed migration of nginx.conf paths"
+    else
+      hestia_print_error_message_to_cli "Warning: Could not migrate nginx.conf from #{File.expand_path('/usr/local/hestia/nginx-system/etc/nginx/nginx.conf')}"
+    end
+  end
+  log_migrate_stage('nstage7') do
+    if system('/usr/local/hestia/bin/v-ext-modules enable update_module')
+      output = IO.popen("/usr/local/hestia/bin/v-ext-modules state update_module json").read
+      begin
+        parsed = JSON.parse(output)
+        if parsed.is_a?(Array) && parsed.first && parsed.first['STATE'] == 'enabled'
+          system('/usr/local/hestia/bin/v-ext-modules-run update_module synctemplates')
+        else
+          hestia_print_error_message_to_cli "update_module not enabled after enable command"
+          exit 1
+        end
+      rescue JSON::ParserError => e
+        hestia_print_error_message_to_cli "Failed to parse JSON from state command: #{e.message}"
+        exit 1
+      end
+    else
+      hestia_print_error_message_to_cli "Failed to enable update_module"
+      exit 1
+    end
+  end
+  log_migrate_stage('stage9') do
+    # Delete all contents inside /etc/nginx
+    FileUtils.rm_rf Dir.glob('/etc/nginx/*')
+    # Stop nginx service
+    system('systemctl stop nginx')
+    system('systemctl disable nginx')
+    # Start nginx-system service
+    system('systemctl enable nginx-system')
+    system('systemctl start nginx-system')
+  end
+else
+  hestia_print_error_message_to_cli "unknown command (use migratenginx)"
+  log_event E_ARGS, $ARGUMENTS
+  exit 1
+end
+
+exit 0

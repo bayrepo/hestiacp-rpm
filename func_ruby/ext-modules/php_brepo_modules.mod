@@ -1,6 +1,6 @@
 #!/opt/brepo/ruby33/bin/ruby
 
-class EmptyWorker < Kernel::ModuleCoreWorker
+class PHPWorker < Kernel::ModuleCoreWorker
   MODULE_ID = "php_brepo_modules"
 
   def info
@@ -241,16 +241,16 @@ class EmptyWorker < Kernel::ModuleCoreWorker
   implements IPluginInterface
 end
 
-module EmptyModule
+module PHPModule
   def get_object
-    Proc.new { EmptyWorker.new }
+    Proc.new { PHPWorker.new }
   end
 
   module_function :get_object
 end
 
 class Kernel::PluginConfiguration
-  include EmptyModule
+  include PHPModule
 
-  @@loaded_plugins[EmptyWorker::MODULE_ID] = EmptyModule.get_object
+  @@loaded_plugins[PHPWorker::MODULE_ID] = PHPModule.get_object
 end

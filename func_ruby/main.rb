@@ -77,6 +77,10 @@ class File
   end
 end
 
+def hestia_print_info_message_to_cli(error_message)
+  puts "Info: #{error_message}"
+end
+
 def hestia_print_error_message_to_cli(error_message)
   puts "Error: #{error_message}"
 end
@@ -313,5 +317,82 @@ def hestia_save_file_key_pair(file, key, value)
     storage.each do |k, v|
       f.puts("#{k}=#{v}")
     end
+  end
+end
+
+def hestia_change_sys_config_value(key, value)
+  # Privileged access check
+  hestia_check_privileged_user unless Process.uid == 0
+
+  config_file = "/usr/local/hestia/conf/hestia.conf"
+
+  if File.exist?(config_file)
+    # First pass: read entire file to check if key exists and get all lines
+    content = nil
+
+    File.open(config_file, "r") do |f|
+      content = f.read
+    end
+
+    if content
+      lines = content.split("\n")
+
+      # Check if key exists in the configuration file
+      existing_line_index = -1
+
+      lines.each_with_index do |line, idx|
+        line_stripped = line.strip
+        # Skip comment lines
+        next if line_stripped.start_with?("#")
+        next if line_stripped.empty?
+
+        key_match = line_stripped.match(/^\s*#{Regexp.escape(key)}='\s*(.*?)\s*$/)
+        if key_match
+          existing_line_index = idx + 1
+          break
+        end
+      end
+
+      if existing_line_index.nil? || existing_line_index == -1
+        # Key doesn't exist - append new line to file
+        File.open(config_file, "a") do |append_f|
+          append_f.puts("#{key}='#{value}'")
+        end
+        OK
+      else
+        # Key exists - update value using Ruby operators (in-place edit)
+        # Use temporary file for safety and atomic replacement
+        temp_file = "#{config_file}.tmp"
+
+        # Second pass: rebuild the content with updated value
+        new_lines = []
+
+        lines.each do |line|
+          line_stripped = line.strip
+          # Skip comment lines
+          next if line_stripped.start_with?("#")
+          next if line_stripped.empty?
+
+          # Match and replace the key-value pair
+          if line.match(/^\s*#{Regexp.escape(key)}='[^']*'/)
+            new_lines << "#{key}='#{value}'"
+          else
+            new_lines << line
+          end
+        end
+
+        File.open(temp_file, "w") do |output_f|
+          new_lines.each { |l| output_f.puts(l) }
+        end
+
+        # Atomic file replacement
+        File.rename(temp_file, config_file)
+        OK
+      end
+    else
+      OK
+    end
+  else
+    check_result error_code: E_NOTEXIST, error_message: "Configuration file #{config_file} does not exist"
   end
 end

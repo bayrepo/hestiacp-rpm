@@ -108,6 +108,13 @@ check_result $? "Web restart failed" > /dev/null
 $BIN/v-restart-proxy "$restart"
 check_result $? "Proxy restart failed" > /dev/null
 
+# Execute bunkerweb_module if it's enabled
+module_state=$($BIN/v-ext-modules state bunkerweb_module json | jq -r '.[0].STATE')
+if [ "$module_state" = "enabled" ]; then
+    get_domain_values 'web'
+    $BIN/v-ext-modules-run bunkerweb_module alias "$domain" "$ALIAS"
+fi
+
 $BIN/v-log-action "$user" "Info" "Web" "Added new web domain alias (Alias: $aliases, Domain: $domain)."
 log_event "$OK" "$ARGUMENTS"
 

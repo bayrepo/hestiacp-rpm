@@ -54,7 +54,7 @@ server {
 		try_files $uri $uri/ /index.php;
 
 		location ~ \.php(?:$|/) {
-			include /etc/nginx/fastcgi_params;
+			include /usr/local/hestia/nginx-system/etc/nginx/fastcgi_params;
 
 			#fastcgi_param HTTPS on;
 			fastcgi_param PATH_INFO $fastcgi_path_info;

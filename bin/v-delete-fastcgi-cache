@@ -49,7 +49,7 @@ if [ -f "$HOMEDIR/$user/conf/web/$domain/$WEB_SYSTEM.fastcgi_cache.conf" ]; then
 	rm -rf $HOMEDIR/$user/conf/web/$domain/$WEB_SYSTEM.fastcgi_cache.conf
 fi
 
-conf='/etc/nginx/conf.d/fastcgi_cache_pool.conf'
+conf='/usr/local/hestia/nginx-system/etc/nginx/conf.d/fastcgi_cache_pool.conf'
 if [ -f "$conf" ]; then
 	sed -i "/ keys_zone=$domain/d" $conf
 	if [ ! -s "$conf" ]; then
@@ -58,7 +58,7 @@ if [ -f "$conf" ]; then
 fi
 
 # Delete FastCGI cache folder
-if [ -d "/var/cache/nginx/micro/$domain" ]; then
+if [ -d "/usr/local/hestia/nginx-system/var/cache/nginx/micro/$domain" ]; then
 	rm -rf /var/cache/nginx/micro/$domain
 fi
 
