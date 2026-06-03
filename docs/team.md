@@ -1,37 +1,38 @@
 ---
 layout: page
-
-title: The Team
+title: Команда
 ---
 
+<style>
+.VPTeamPageSection {
+  margin-top: 50px !important;
+}
+</style>
 <script setup>
   import { VPTeamPage, VPTeamPageTitle, VPTeamPageSection, VPTeamMembers } from "vitepress/theme";
-  import { projectManagers, teamMembers } from "./_data/team";
+  import { projectManagers, teamMembers, teamRpm } from "./_data/team";
 </script>
-
-<VPTeamPage>
   <VPTeamPageTitle>
-    <template #title>The Team</template>
+    <template #title>Команда</template>
     <template #lead>
-      The development of Hestia is guided by an international team, some of whom have chosen to be featured below.
+    Разработка Hestia осуществляется международной командой, некоторые из участников которой представлены ниже.
     </template>
   </VPTeamPageTitle>
   <VPTeamPageSection>
-    <template #title>Project Managers</template>
+    <template #title>Руководители проекта</template>
     <template #members>
       <VPTeamMembers :members="projectManagers" />
     </template>
   </VPTeamPageSection>
   <VPTeamPageSection>
-    <template #title>Team Members</template>
+    <template #title>Участники команды</template>
     <template #members>
       <VPTeamMembers :members="teamMembers" />
     </template>
   </VPTeamPageSection>
-  <!-- <VPTeamPageSection>
-    <template #title>Contributors ❤️</template>
+  <VPTeamPageSection>
+    <template #title>Сопровождающий RPM-версии</template>
     <template #members>
-      <VPTeamMembers size="small" :members="featuredContributors" />
+      <VPTeamMembers :members="teamRpm" />
     </template>
-  </VPTeamPageSection> -->
-</VPTeamPage>
+  </VPTeamPageSection>

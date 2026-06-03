@@ -3,46 +3,33 @@ export const projectManagers = [
 	{
 		avatar: 'https://www.github.com/ScIT-Raphael.png',
 		name: 'Raphael Schneeberger 🇨🇭',
-		title: 'Project Founder',
+		title: 'Основатель проекта',
 		links: [{ icon: 'github', link: 'https://github.com/ScIT-Raphael' }],
 	},
 	{
 		avatar: 'https://www.github.com/jaapmarcus.png',
 		name: 'Jaap Marcus 🇳🇱',
-		links: [
-			{ icon: 'github', link: 'https://github.com/jaapmarcus' },
-			{ icon: 'twitter', link: 'https://twitter.com/jaapmarcus' },
-		],
+		links: [{ icon: 'github', link: 'https://github.com/jaapmarcus' }],
 	},
 	{
 		avatar: 'https://www.github.com/Lupul.png',
 		name: 'Robert Zollner 🇷🇴',
 		links: [{ icon: 'github', link: 'https://github.com/Lupul' }],
 	},
-	{
-		avatar: 'https://www.github.com/krismkenn.png',
-		name: 'Kristan Kenney 🇨🇦',
-		links: [{ icon: 'github', link: 'https://github.com/krismkenn' }],
-	},
 ];
+
+const globeIcon = {
+	svg: '🌐',
+};
 
 /** @type {import("vitepress").DefaultTheme.TeamMember[]} */
 export const teamMembers = [
 	{
-		avatar: 'https://www.github.com/jakobbouchard.png',
-		name: 'Jakob Bouchard 🇨🇦',
-		title: 'Developer',
-		org: 'Prosomo',
-		orgLink: 'https://prosomo.com',
+		avatar: 'https://www.github.com/imjuniper.png',
+		name: 'Juniper Bouchard 🇨🇦',
 		links: [
-			{ icon: 'github', link: 'https://github.com/jakobbouchard' },
-			{ icon: 'linkedin', link: 'https://linkedin.com/in/jakobbouchard' },
-			{
-				icon: {
-					svg: '<svg role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><title>Website</title><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>',
-				},
-				link: 'https://jakobbouchard.dev',
-			},
+			{ icon: 'github', link: 'https://github.com/imjuniper' },
+			{ icon: globeIcon, link: 'https://imjuniper.fyi' },
 		],
 	},
 	{
@@ -57,11 +44,6 @@ export const teamMembers = [
 		links: [{ icon: 'github', link: 'https://github.com/divinity76' }],
 	},
 	{
-		avatar: 'https://www.github.com/istiak101.png',
-		name: 'istiak101 🇧🇩',
-		links: [{ icon: 'github', link: 'https://github.com/istiak101' }],
-	},
-	{
 		avatar: 'https://www.github.com/Pleskan.png',
 		name: 'Anton Pleskanovskyy 🇺🇦',
 		links: [{ icon: 'github', link: 'https://github.com/Pleskan' }],
@@ -69,6 +51,33 @@ export const teamMembers = [
 	{
 		avatar: 'https://www.github.com/AlecRust.png',
 		name: 'Alec Rust 🇬🇧',
-		links: [{ icon: 'github', link: 'https://github.com/AlecRust' }],
+		links: [
+			{ icon: 'github', link: 'https://github.com/AlecRust' },
+			{ icon: globeIcon, link: 'https://www.alecrust.com/' },
+		],
+	},
+	{
+		avatar: 'https://github.com/ioannidesalex.png',
+		name: 'Alexandros Ioannides 🇨🇾',
+		title: 'Технический директор (CTO)',
+		org: 'FocusNet',
+		orgLink: 'https://focus-net.net',
+		links: [
+			{ icon: 'github', link: 'https://github.com/ioannidesalex' },
+			{ icon: 'linkedin', link: 'https://www.linkedin.com/in/ioannidesa' },
+		],
+	},
+];
+/** @type {import("vitepress").DefaultTheme.TeamMember[]} */
+export const teamRpm = [
+	{
+		avatar: 'https://www.github.com/bayrepo.png',
+		name: 'Alexey Berezhok 🇷🇺',
+		title: 'Сопровождающий RPM-версии',
+		desc: 'Отвечает за адаптацию и поддержку экосистем RHEL / Rocky / AlmaLinux.',
+		links: [
+			{ icon: 'github', link: 'https://github.com/bayrepo' },
+			{ icon: globeIcon, link: 'https://hestiadocs.brepo.ru' },
+		],
 	},
 ];

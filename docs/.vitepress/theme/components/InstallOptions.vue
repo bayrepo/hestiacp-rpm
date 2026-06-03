@@ -1,204 +1,250 @@
-<script>
-export default {
-	props: {
-		languages: {
-			required: true,
-			selected: "en",
-		},
-		items: {
-			required: true,
-		},
-	},
-	data() {
-		return {
-			pageloader: false,
-			hestia_wget:
-				"wget https://raw.githubusercontent.com/bayrepo/hestiacp-rpm/refs/heads/rhel-version/install/hst-install.sh",
-			hestia_wget_devel:
-				"wget https://dev.brepo.ru/bayrepo/hestiacp/raw/branch/master/install/hst-install.sh",
-			hestia_install: "sudo bash hst-install.sh",
-			installStr: "",
-		};
-	},
-	methods: {
-		getOptionString(item) {
-			if (item.textField) {
-				return item.selected ? `${item.param} '${item.text}'` : "";
-			}
-
-			if (item.selectField) {
-				return item.selected ? `${item.param} '${item.text}'` : "";
-			}
-			return `${item.param}${item.selected ? " yes" : " no"}`;
-		},
-		generateString() {
-			const installStr = this.items.map(this.getOptionString).filter(Boolean);
-
-			this.installStr = `${this.hestia_install} ${installStr.join(" ")}`;
-			this.$refs.dialog.showModal();
-		},
-		closeDialog(e) {
-			if (e.target === this.$refs.dialogClose || e.target === this.$refs.dialog) {
-				this.$refs.dialog.close();
-			}
-		},
-		checkNeedEnabled(e) {
-			if (e.target.value != "") {
-				let id = e.target.getAttribute("target");
-				if (!document.getElementById(id).checked) {
-					document.getElementById(id).click();
-				}
-			}
-		},
-		toggleOption(e) {
-			if (e.target.checked) {
-				let conflicts = e.target.getAttribute("conflicts");
-				if (conflicts) {
-					if (document.getElementById(conflicts).checked) {
-						document.getElementById(conflicts).click();
-					}
-				}
-				let depends = e.target.getAttribute("depends");
-				if (depends) {
-					if (!document.getElementById(depends).checked) {
-						document.getElementById(depends).click();
-					}
-				}
-			}
-		},
-		copyToClipboard(text, button) {
-			navigator.clipboard.writeText(text).then(
-				() => {
-					button.textContent = "Copied!";
-					setTimeout(() => {
-						button.textContent = "Copy";
-					}, 1000);
-				},
-				(err) => {
-					console.error("Could not copy to clipboard:", err);
-				}
-			);
-		},
-	},
-};
-</script>
-
 <template>
-	<div class="container">
-		<div class="grid">
-			<div class="form-group" v-for="item in items">
-				<div class="form-check u-mb10">
-					<input
-						@change="toggleOption"
-						type="checkbox"
-						class="form-check-input"
-						v-model="item.selected"
-						:value="item.value"
-						:id="item.id"
-						:conflicts="item.conflicts"
-						:depends="item.depends"
-					/>
-					<label :for="item.id">{{ item.id }}</label>
-				</div>
-				<template v-if="item.textField || item.selectField">
-					<label class="form-label" :for="'input-' + item.id">{{ item.desc }}</label>
-				</template>
-				<template v-else>
-					<p>{{ item.desc }}</p>
-				</template>
-				<div v-if="item.textField">
-					<input
-						@change="checkNeedEnabled"
-						type="text"
-						class="form-control"
-						v-model="item.text"
-						:target="item.id"
-						:id="'input-' + item.id"
-						:type="'+item.type+'"
-					/>
-				</div>
-				<div v-if="item.selectField">
-					<select class="form-select" v-model="item.text" :id="'input-' + item.id">
-						<option v-for="language in languages" :value="language.value" :key="language.value">
-							{{ language.text }}
-						</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="u-text-center u-mb10">
-			<button @click="generateString" class="form-submit" type="button">Submit</button>
-		</div>
-		<dialog ref="dialog" class="modal" @click="closeDialog">
-			<button class="modal-close" @click="closeDialog" type="button" ref="dialogClose">
-				Close
-			</button>
-			<div ref="dialogContent" class="modal-content">
-				<h1 class="modal-heading">Installation instructions</h1>
+	<div class="InstallOptions">
+		<div class="container">
+			<div class="output-card">
+				<h1 class="u-text-center">Инструкция по установке для RHEL</h1>
 				<p class="u-mb10">
-					Log in to your server as root, either directly or via SSH:
-					<code>ssh root@your.server</code> and download the installation script:
+					Войдите на свой сервер как root, напрямую или через SSH: ssh root@ваш.сервер, и загрузите
+					установочный скрипт:
 				</p>
-				<div class="u-pos-relative">
-					<input
-						type="text"
-						class="form-control u-monospace u-mb10"
-						v-model="hestia_wget"
-						readonly
-					/>
-					<button
-						class="button-positioned"
-						@click="copyToClipboard(hestia_wget, $event.target)"
-						type="button"
-						title="Copy to Clipboard"
-					>
-						Copy
-					</button>
-				</div>
-				<p class="u-mb10">For downloading devel version use:</p>
-				<div class="u-pos-relative">
-					<input
-						type="text"
-						class="form-control u-monospace u-mb10"
-						v-model="hestia_wget_devel"
-						readonly
-					/>
-					<button
-						class="button-positioned"
-						@click="copyToClipboard(hestia_wget_devel, $event.target)"
-						type="button"
-						title="Copy to Clipboard"
-					>
-						Copy
-					</button>
-				</div>
-				<p class="u-mb10">Then run the following command:</p>
-				<div class="u-pos-relative">
-					<textarea class="form-control u-min-height100" v-model="installStr" readonly />
-					<button
-						class="button-positioned"
-						@click="copyToClipboard(installStr, $event.target)"
-						type="button"
-						title="Copy to Clipboard"
-					>
-						Copy
-					</button>
-				</div>
+				<CopyToClipboardInput
+					class="u-mb10"
+					value="wget https://raw.githubusercontent.com/bayrepo/hestiacp-rpm/refs/heads/rhel-version/install/hst-install.sh"
+					style="font-size: 1.2em"
+				/>
+				<p class="u-mb10">Для загрузки разработочной версии используйте:</p>
+				<CopyToClipboardInput
+					class="u-mb10"
+					value="wget https://dev.brepo.ru/bayrepo/hestiacp/raw/branch/master/install/hst-install.sh"
+					style="font-size: 1.2em"
+				/>
+				<p class="u-mb10">
+					Убедитесь, что вы вошли на сервер как <code>root</code>. Настройте параметры в полях ниже,
+					затем скопируйте и выполните готовую команду в терминале сервера:
+				</p>
+				<CopyToClipboardInput class="u-mb10" :value="installCommand" style="font-size: 1.2em" />
 			</div>
-		</dialog>
+			<h2 class="u-text-center">Настройка компонентов: выберите необходимые для установки</h2>
+			<h3 class="u-text-center">
+				<i class="fa-solid fa-triangle-exclamation"></i> Примечание: Рекомендуется выполнить полную
+				настройку здесь, иначе вам придётся вводить данные в терминале! (Пункты 1.2.3.4.5
+				обязательны)
+			</h3>
+			<ul class="option-list">
+				<li
+					v-for="option in options"
+					:key="option.flag"
+					:class="{
+						'option-item': true,
+						'is-active': selectedOptions[option.flag].enabled,
+						'is-clickable': !option.type || !selectedOptions[option.flag].enabled,
+					}"
+				>
+					<div class="option-header">
+						<div class="form-check">
+							<input
+								type="checkbox"
+								class="form-check-input"
+								:id="option.flag"
+								v-model="selectedOptions[option.flag].enabled"
+								:conflicts="option.conflicts"
+								:depends="option.depends"
+								@change="toggleOption"
+							/>
+							<label :for="option.flag" @click.stop>{{ option.label }}</label>
+						</div>
+					</div>
+					<div class="option-description" v-html="option.description"></div>
+					<div v-if="option.type === 'text'" class="option-content">
+						<input
+							class="form-control"
+							type="text"
+							:id="`${option.flag}-input`"
+							v-model="selectedOptions[option.flag].value"
+							:placeholder="option.default"
+							@input="checkNeedEnabled(option.flag, $event)"
+						/>
+					</div>
+					<div v-if="option.type === 'select'" class="option-content">
+						<select
+							class="form-select"
+							:id="`${option.flag}-input`"
+							v-model="selectedOptions[option.flag].value"
+							@change="checkNeedEnabled(option.flag, $event)"
+						>
+							<option v-for="opt in option.options" :key="opt.value" :value="opt.value">
+								{{ opt.label }}
+							</option>
+						</select>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 </template>
 
+<script setup>
+import { ref, watchEffect } from "vue";
+import CopyToClipboardInput from "./CopyToClipboardInput.vue";
+
+const { options } = defineProps({
+	options: {
+		type: Array,
+		required: true,
+		default: () => [],
+	},
+});
+
+const selectedOptions = ref({});
+options.forEach((option) => {
+	const isPortOrLang = ["port", "lang"].includes(option.flag);
+	selectedOptions.value[option.flag] = {
+		enabled: isPortOrLang || option.default === "yes",
+		value: option.default !== "yes" && option.default !== "no" ? option.default : null,
+	};
+});
+
+const checkNeedEnabled = (flag, event) => {
+	if (event.target.value !== "" && event.target.value !== null) {
+		if (!selectedOptions.value[flag].enabled) {
+			selectedOptions.value[flag].enabled = true;
+		}
+	}
+};
+
+const toggleOption = (event) => {
+	const checkbox = event.target;
+	const flag = checkbox.id;
+	const conflicts = checkbox.getAttribute("conflicts");
+	const depends = checkbox.getAttribute("depends");
+
+	if (checkbox.checked) {
+		if (conflicts) {
+			const conflictFlag = conflicts;
+			if (selectedOptions.value[conflictFlag]?.enabled) {
+				selectedOptions.value[conflictFlag].enabled = false;
+			}
+		}
+		if (depends) {
+			const dependFlag = depends;
+			if (!selectedOptions.value[dependFlag]?.enabled) {
+				selectedOptions.value[dependFlag].enabled = true;
+			}
+		}
+	}
+};
+
+const installCommand = ref("bash hst-install.sh");
+watchEffect(() => {
+	let cmd = "sudo bash hst-install.sh";
+	const quoteshellarg = (str) => {
+		if (!str) return "''";
+		return `'${str.replace(/'/g, "'\\''")}'`;
+	};
+	for (const [key, { enabled, value }] of Object.entries(selectedOptions.value)) {
+		const opt = options.find((o) => o.flag === key);
+		if (!opt.type || opt.type === "checkbox") {
+			if (enabled !== (opt.default === "yes")) {
+				cmd += ` --${key} ${enabled ? "yes" : "no"}`;
+			}
+		} else if (enabled && value !== opt.default) {
+			const value_quoted = quoteshellarg(value);
+			cmd += ` --${key} ${value_quoted}`;
+		}
+	}
+	installCommand.value = cmd;
+});
+</script>
+
 <style scoped>
+.InstallOptions {
+	padding: 0 24px;
+
+	@media (min-width: 640px) {
+		padding: 0 48px;
+	}
+
+	@media (min-width: 960px) {
+		padding: 0 72px;
+	}
+}
+:root {
+	--text-color-light: #282828;
+	--text-color-dark: #f0f0f0;
+}
+h1 {
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 30px;
+	color: var(--text-color-light);
+}
+h2 {
+	font-size: 24px;
+	font-weight: 600;
+	margin-bottom: 25px;
+	color: var(--text-color-light);
+}
+
+h3 {
+	font-size: 20px;
+	font-weight: 500;
+	margin-bottom: 20px;
+	color: #b7236a;
+	font-weight: bold;
+}
+@media (max-width: 640px) {
+	h1 {
+		font-size: 20px;
+	}
+	h2 {
+		font-size: 18px;
+	}
+	h3 {
+		font-size: 16px;
+	}
+}
+p {
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1.6;
+	margin-bottom: 15px;
+	color: var(--text-color-light);
+}
+a {
+	color: var(--vp-button-brand-active-bg);
+	text-decoration: none;
+}
+a:visited {
+	color: var(--vp-button-brand-active-bg);
+}
+a:hover {
+	color: var(--vp-button-brand-hover-bg);
+}
+a:active {
+	color: var(--vp-button-brand-hover-bg);
+}
 .container {
-	margin: 0px auto;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
 	max-width: 1152px;
 }
-.grid {
+.output-card {
+	background-color: var(--vp-c-bg-alt);
+	border-radius: 10px;
+	padding: 30px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+
+	@media (min-width: 640px) {
+		padding: 30px 50px;
+	}
+}
+.option-list {
 	display: grid;
-	grid-gap: 20px;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	grid-gap: 23px;
+	margin-bottom: 50px;
 
 	@media (min-width: 640px) {
 		grid-template-columns: 1fr 1fr;
@@ -208,17 +254,87 @@ export default {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 }
-.form-group {
+.option-item {
 	font-size: 0.9em;
 	border-radius: 10px;
-	padding: 15px 20px;
+	border: 2px solid transparent;
+	padding: 10px 20px;
 	background-color: var(--vp-c-bg-alt);
+	transition: border-color 0.2s;
+
+	&:hover {
+		border-color: var(--vp-button-brand-hover-bg);
+	}
+
+	&.is-active {
+		border-color: var(--vp-button-brand-active-bg);
+	}
+}
+.option-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 8px;
+}
+.option-icon {
+	padding: 5px;
+	margin-right: -5px;
+
+	& i {
+		opacity: 0.7;
+	}
+
+	&:hover i {
+		opacity: 1;
+	}
+}
+.option-description {
+	font-size: 13px;
+	line-height: 1.5;
+	margin-bottom: 10px;
+	padding-bottom: 8px;
+}
+.option-description pre {
+	background-color: var(--vp-c-bg, #f5f5f5);
+	border: 1px solid var(--vp-c-border, #e0e0e0);
+	border-radius: 8px;
+	padding: 12px 16px;
+	overflow-x: auto;
+	margin: 12px 0;
+	font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
+	font-size: 13px;
+	line-height: 1.5;
+}
+.option-description code {
+	font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
+	font-size: 13px;
+	background-color: var(--vp-c-bg, #f0f0f0);
+	padding: 2px 6px;
+	border-radius: 4px;
+}
+.option-description pre code {
+	background-color: transparent;
+	padding: 0;
+	font-size: 13px;
+}
+@media (prefers-color-scheme: dark) {
+	.option-description pre {
+		background-color: #2d2d2d;
+		border-color: #444;
+	}
+	.option-description code {
+		background-color: #2d2d2d;
+	}
+}
+.option-content {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 .form-label {
 	display: inline-block;
-	margin-left: 2px;
+	font-size: 16px;
+	line-height: 1.5;
 	padding-bottom: 5px;
-	text-transform: capitalize;
 }
 .form-control {
 	font-size: 0.9em;
@@ -242,7 +358,7 @@ export default {
 	border: 1px solid var(--vp-c-border);
 	border-radius: 4px;
 	background-color: var(--vp-c-bg);
-	padding: 5px 10px;
+	padding: 6px;
 	width: 100%;
 
 	&:hover {
@@ -254,100 +370,36 @@ export default {
 	}
 }
 .form-check {
+	flex-grow: 1;
 	position: relative;
-	padding-left: 20px;
-	margin-left: 3px;
-	min-height: 24px;
+	padding-left: 25px;
 
 	& label {
+		font-size: 16px;
 		font-weight: 600;
+		display: block;
+		line-height: 1.6;
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 }
 .form-check-input {
+	cursor: pointer;
 	position: absolute;
+	width: 15px;
+	height: 15px;
 	margin-top: 5px;
-	margin-left: -20px;
-}
-.form-submit {
-	border: 1px solid transparent;
-	display: inline-block;
-	font-weight: 600;
-	transition: color 0.25s, border-color 0.25s, background-color 0.25s;
-	border-radius: 20px;
-	font-size: 16px;
-	padding: 10px 20px;
-	background-color: var(--vp-button-brand-bg);
-	border-color: var(--vp-button-brand-border);
-	color: var(--vp-button-brand-text);
-
-	&:hover {
-		background-color: var(--vp-button-brand-hover-bg);
-		border-color: var(--vp-button-brand-hover-border);
-		color: var(--vp-button-brand-hover-text);
-	}
-
-	&:active {
-		background-color: var(--vp-button-brand-active-bg);
-		border-color: var(--vp-button-brand-active-border);
-		color: var(--vp-button-brand-active-text);
-	}
-}
-.button-positioned {
-	position: absolute;
-	right: 1px;
-	top: 1px;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
-	color: var(--vp-c-brand);
-	font-weight: 600;
-	padding: 6px 10px;
-	background-color: var(--vp-c-bg);
-}
-.modal {
-	position: fixed;
-	border-radius: 10px;
-	border: 1px solid var(--vp-c-border);
-	box-shadow: 0 8px 40px 0 rgb(0 0 0 / 35%);
-	padding: 0;
-
-	&::backdrop {
-		background-color: rgb(0 0 0 / 50%);
-	}
-}
-.modal-close {
-	position: absolute;
-	top: 10px;
-	right: 15px;
-	font-weight: 600;
-	color: var(--vp-c-brand);
-}
-.modal-content {
-	padding: 30px;
-}
-.modal-heading {
-	font-weight: 600;
-	font-size: 1.3em;
-	text-align: center;
-	margin-bottom: 15px;
-}
-code {
-	background-color: var(--vp-c-bg-alt);
-	border-radius: 3px;
-	padding: 2px 5px;
+	margin-left: -25px;
 }
 .u-mb10 {
 	margin-bottom: 10px !important;
 }
-.u-min-height100 {
-	min-height: 100px;
-}
 .u-text-center {
 	text-align: center !important;
 }
-.u-monospace {
-	font-family: monospace !important;
-}
-.u-pos-relative {
-	position: relative !important;
+.is-clickable {
+	cursor: pointer;
 }
 </style>

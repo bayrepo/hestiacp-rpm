@@ -13,12 +13,13 @@ Hestia необходимо установить поверх новой уст�
 Если на VPS/KVM уже есть учетная запись администратора, либо удалите этот идентификатор администратора по умолчанию, либо используйте `--force`, чтобы продолжить установку. Дополнительные сведения см. в разделе «Выборочная установка» ниже.
 :::
 
-| | Минимум | Рекомендуется |
-| -------------------- | --------------------------------------------- | ------------------------------------ |
-| **ЦП** | 1 ядро, 64-разрядный | 4 ядра |
-| **Память** | 1 ГБ (без SpamAssassin и ClamAV) | 4 ГБ |
-| **Диск** | 10 ГБ HDD | 40 ГБ SSD |
-| **Операционная система** | Debian 10, 11 или 12<br>Ubuntu 20.04, 22.04 LTS | Последняя версия Debian <br> Последняя версия Ubuntu LTS |
+| Компонент                                | Минимум                                                  | Рекомендуется                                          |
+| :--------------------------------------- | :------------------------------------------------------- | :----------------------------------------------------- |
+| **ЦП**                                   | 1 ядро, 64-разрядный                                     | 4 ядра                                                 |
+| **Память**                               | 1 ГБ (без SpamAssassin и ClamAV)                         | 4 ГБ                                                   |
+| **Диск**                                 | 10 ГБ HDD                                                | 40 ГБ SSD                                              |
+| **Операционная система (Debian/Ubuntu)** | Debian 11, 12, 13 LTS <br>Ubuntu 22.04, 24.04, 26.04 LTS | Последняя версия Debian<br>Последняя версия Ubuntu LTS |
+| **Операционная система (RPM)**           | MSVSphere 9<br>AlmaLinux 9<br>Rocky Linux 9              | MSVSphere 10<br>Rocky Linux 10<br>AlmaLinux 10         |
 
 ::: warning
 Hestia работает только на процессорах AMD64 / x86_64 и ARM64 / aarch64. Также требуется 64-разрядная операционная система!
@@ -28,9 +29,9 @@ Hestia работает только на процессорах AMD64 / x86_64 
 
 ### Поддерживаемые операционные системы
 
-- MSVSphere 9
-- AlmaLinux 9
-- Rocky Linux 9
+- MSVSphere 9,10
+- AlmaLinux 9,10
+- Rocky Linux 9,10
 
 ## Обычная установка
 
@@ -79,37 +80,36 @@ bash hst-install.sh -h
 Чтобы выбрать, какое программное обеспечение будет установлено, вы можете указать флаги в скрипте установки. Полный список параметров можно просмотреть ниже.
 
 ```bash
-  -a, --apache            Install Apache             [yes|no]   default: yes
-  -w, --phpfpm            Install PHP-FPM            [yes|no]   default: yes
-  -o, --multiphp          Install Multi-PHP          [yes|no]   default: no
-  -v, --vsftpd            Install Vsftpd             [yes|no]   default: yes
-  -j, --proftpd           Install ProFTPD            [yes|no]   default: no
-  -k, --named             Install Bind               [yes|no]   default: yes
-  -m, --mysql             Install MariaDB            [yes|no]   default: yes
-  -M, --mysql-classic     Install MySQL 8            [yes|no]   default: no
-  -g, --postgresql        Install PostgreSQL         [yes|no]   default: no
-  -x, --exim              Install Exim               [yes|no]   default: yes
-  -z, --dovecot           Install Dovecot            [yes|no]   default: yes
-  -Z, --sieve             Install Sieve              [yes|no]   default: no
-  -c, --clamav            Install ClamAV             [yes|no]   default: no
-  -t, --spamassassin      Install SpamAssassin       [yes|no]   default: yes
-  -i, --firewall          Install firewalld          [yes|no]   default: yes
-  -b, --fail2ban          Install Fail2ban           [yes|no]   default: yes
-  -q, --quota             Filesystem Quota           [yes|no]   default: no
-  -d, --api               Activate API               [yes|no]   default: yes
-  -r, --port              Change Backend Port                   default: 8083
-  -l, --lang              Default language                      default: en
-  -y, --interactive       Interactive install        [yes|no]   default: yes
-  -I, --nopublicip        Use local ip               [yes|no]   default: no
-  -u, --uselocalphp       Use PHP from local repo    [yes|no]   default: no
-  -C, --usemirrorclamav   Use mirrored clamav        [yes|no]   default: no
-  -s, --hostname          Set hostname
-  -e, --email             Set admin email
-  -p, --password          Set admin password
-  -R, --with-rpms         Path to Hestia rpms
-  -f, --force             Force installation
-  -h, --help              Print this help
-
+-a, --apache Install Apache [yes | no] default: yes
+-w, --phpfpm Install PHP-FPM [yes | no] default: yes
+-o, --multiphp Install Multi-PHP [yes | no] default: no
+-v, --vsftpd Install Vsftpd [yes | no] default: yes
+-j, --proftpd Install ProFTPD [yes | no] default: no
+-k, --named Install Bind [yes | no] default: yes
+-m, --mysql Install MariaDB [yes | no] default: yes
+-M, --mysql-classic Install MySQL 8 [yes | no] default: no
+-g, --postgresql Install PostgreSQL [yes | no] default: no
+-x, --exim Install Exim [yes | no] default: yes
+-z, --dovecot Install Dovecot [yes | no] default: yes
+-Z, --sieve Install Sieve [yes | no] default: no
+-c, --clamav Install ClamAV [yes | no] default: no
+-t, --spamassassin Install SpamAssassin [yes | no] default: yes
+-i, --firewall Install firewalld [yes | no] default: yes
+-b, --fail2ban Install Fail2ban [yes | no] default: yes
+-q, --quota Filesystem Quota [yes | no] default: no
+-d, --api Activate API [yes | no] default: yes
+-r, --port Change Backend Port default: 8083
+-l, --lang Default language default: en
+-y, --interactive Interactive install [yes | no] default: yes
+-I, --nopublicip Use local ip [yes | no] default: no
+-u, --uselocalphp Use PHP from local repo [yes | no] default: no
+-C, --usemirrorclamav Use mirrored clamav [yes | no] default: no
+-s, --hostname Set hostname
+-e, --email Set admin email
+-p, --password Set admin password
+-R, --with-rpms Path to Hestia rpms
+-f, --force Force installation
+-h, --help Print this help
 ```
 
 #### Пример
