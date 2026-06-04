@@ -18,8 +18,7 @@ Hestia необходимо установить поверх новой уст�
 | **ЦП**                                   | 1 ядро, 64-разрядный                                     | 4 ядра                                                 |
 | **Память**                               | 1 ГБ (без SpamAssassin и ClamAV)                         | 4 ГБ                                                   |
 | **Диск**                                 | 10 ГБ HDD                                                | 40 ГБ SSD                                              |
-| **Операционная система (Debian/Ubuntu)** | Debian 11, 12, 13 LTS <br>Ubuntu 22.04, 24.04, 26.04 LTS | Последняя версия Debian<br>Последняя версия Ubuntu LTS |
-| **Операционная система (RPM)**           | MSVSphere 9<br>AlmaLinux 9<br>Rocky Linux 9              | MSVSphere 10<br>Rocky Linux 10<br>AlmaLinux 10         |
+| **Операционная система (RPM)**           | AlmaLinux 9<br>Rocky Linux 9              | Rocky Linux 9<br>AlmaLinux 9         |
 
 ::: warning
 Hestia работает только на процессорах AMD64 / x86_64 и ARM64 / aarch64. Также требуется 64-разрядная операционная система!
@@ -29,9 +28,8 @@ Hestia работает только на процессорах AMD64 / x86_64 
 
 ### Поддерживаемые операционные системы
 
-- MSVSphere 9,10
-- AlmaLinux 9,10
-- Rocky Linux 9,10
+- AlmaLinux 9
+- Rocky Linux 9
 
 ## Обычная установка
 

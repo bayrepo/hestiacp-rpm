@@ -1,8 +1,8 @@
-commit 317e3e215eb5c6100550a72f74f65b0009d9deb3
+commit b31dce3817fd89b03d99ad41d6fb5dd285ff9202
 Author: Alexey Berezhok <a@bayrepo.ru>
-Date:   Sat May 23 22:45:01 2026 +0300
+Date:   Thu Jun 4 14:23:42 2026 +0300
 
-    Added abbility with bunkerweb coopertion
+    Some fixes in documentaion
 
 
 
